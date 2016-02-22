@@ -47,12 +47,12 @@ public class LoginScreenActivity extends AppCompatActivity {
 
         boolean loginFieldsFilled = true;
 
-        if(username == null || username.isEmpty()){
+        if(username.isEmpty()){
             usernameEditText.setError("Username cannot be empty");
             loginFieldsFilled = false;
         }
 
-        if(password == null || password.isEmpty()){
+        if(password.isEmpty()){
             passwordEditText.setError("Password cannot be empty");
             loginFieldsFilled = false;
         }
