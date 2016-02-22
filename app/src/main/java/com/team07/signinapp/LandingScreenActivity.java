@@ -1,4 +1,4 @@
-package com.example.danielconnolly.signinapp;
+package com.team07.signinapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
