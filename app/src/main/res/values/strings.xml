@@ -7,5 +7,10 @@
     <string name="signInButtonText">Sign In</string>
     <string name="title_activity_landing_screen">LandingScreenActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="LessonClickTest">This is a clickable lesson</string>
+    <string name="title_activity_lesson_card_view">LessonCardViewActivity</string>
+    <string name="lesson_card_view_location">Location</string>
+    <string name="lesson_card_view_time">Time</string>
+    <string name="lesson_card_view_date">Date</string>
+
 </resources>

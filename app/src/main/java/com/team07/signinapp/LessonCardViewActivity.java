@@ -1,24 +1,22 @@
 package com.team07.signinapp;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class LandingScreenActivity extends AppCompatActivity {
+public class LessonCardViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing_screen);
+        setContentView(R.layout.activity_lesson_card_view);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_landing_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_lesson_card_view, menu);
         return true;
     }
 
@@ -35,11 +33,5 @@ public class LandingScreenActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void lessonClickButton(View view)
-    {
-        Intent intent = new Intent(this, LessonCardViewActivity.class);
-        startActivity(intent);
     }
 }
