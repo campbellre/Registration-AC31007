@@ -13,7 +13,7 @@ import android.view.View;
 
 public class LandingScreenActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
+    private DrawerLayout drawer_menu_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class LandingScreenActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Schedule");
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LandingScreenActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
+                drawer_menu_layout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.action_settings:
                 return true;

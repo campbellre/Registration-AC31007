@@ -19,15 +19,4 @@
 
     </group>
 
-    <item android:title="Sub-Menu">
-        <menu>
-            <item
-                android:icon="@drawable/ic_settings_white_24dp"
-                android:title="Settings" />
-            <item
-                android:icon="@drawable/ic_exit_to_app_white_24dp"
-                android:title="Logout" />
-        </menu>
-    </item>
-
 </menu>
