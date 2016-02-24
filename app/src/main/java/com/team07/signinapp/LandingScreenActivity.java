@@ -5,34 +5,32 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LandingScreenActivity extends AppCompatActivity {
-
-
     private DrawerLayout drawer_menu_layout;
     private RecyclerView scheduleView;
     private RecyclerView.Adapter scheduleAdapter;
     private RecyclerView.LayoutManager scheduleLayout;
 
-    //current list of lessons to be used for testing.
-    //Later implement fetch from database
-    List<Lesson> lessons;
+    // Current list of lessons to be used for testing.
+    // Later implement fetch from database
+    private List<Lesson> lessons;
 
     private void initializeData(){
         lessons = new ArrayList<>();
 
+        // TODO: Pull from database
         lessons.add(new Lesson("Name1", "Place1", "Time1"));
         lessons.add(new Lesson("Name2", "Place2", "Time3"));
         lessons.add(new Lesson("Name3","Place2","Time3"));
@@ -51,16 +49,16 @@ public class LandingScreenActivity extends AppCompatActivity {
         initializeData();
 
         // Get data passed to this activity from LoginScreenActivity
-        String username = "";
-        Login.UserType userType = Login.UserType.None;
+        String username = null;
+        Login.UserType userType = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             username = extras.getString("Username");
             userType = (Login.UserType)extras.get("UserType");
         }
 
-        //Fetches the recycler view by id and sets up layout and
-        //adapters to fill schedule with the correct information
+        // Fetches the recycler view by id and sets up layout and
+        // adapters to fill schedule with the correct information
         scheduleView  = (RecyclerView) findViewById(R.id.schedule_view);
         scheduleLayout = new LinearLayoutManager(this);
         scheduleView.setLayoutManager(scheduleLayout);
@@ -68,7 +66,7 @@ public class LandingScreenActivity extends AppCompatActivity {
         scheduleAdapter = new ScheduleAdapter(lessons);
         scheduleView.setAdapter(scheduleAdapter);
 
-        //initialises tool bar with menu button
+        // initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -79,12 +77,12 @@ public class LandingScreenActivity extends AppCompatActivity {
             actionBar.setTitle("Schedule");
         }
 
-        //Fetches the layout for the drawer
-        //Set in layout->drawer_layout
+        // Fetches the layout for the drawer
+        // Set in layout->drawer_layout
         drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        //Gets the navigation view component and accesses the associated header
-        //Then sets the title to the currently signed in username
+        // Gets the navigation view component and accesses the associated header
+        // Then sets the title to the currently signed in username
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View navigationDrawerHeader = navigationView.getHeaderView(0);
         TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
