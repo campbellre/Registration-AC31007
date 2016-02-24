@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -10,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +71,19 @@ public class LandingScreenActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(username + " (" + userType + ")");
+            actionBar.setTitle("Schedule");
         }
 
         //Fetches the layout for the drawer
         //Set in layout->drawer_layout
         drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Gets the navigation view component and accesses the associated header
+        //Then sets the title to the currently signed in username
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View navigationDrawerHeader = navigationView.getHeaderView(0);
+        TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
+        drawerHeaderTitle.setText(username + " (" + userType +")");
     }
 
     @Override
