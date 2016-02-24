@@ -8,7 +8,7 @@ import android.widget.TextView;
 //This is the class for each of the Cards that gets displayed
 public class LessonViewHolder extends RecyclerView.ViewHolder {
     private CardView lessonCard;
-
+    public Lesson lesson;
     public TextView name;
     public TextView location;
     public TextView time;

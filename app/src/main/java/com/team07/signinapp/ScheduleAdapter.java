@@ -28,6 +28,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     //override method to set variables on each LessonCard
     @Override
     public void onBindViewHolder(LessonViewHolder lessonViewHolder, int i) {
+        lessonViewHolder.lesson = lessons.get(i);
         lessonViewHolder.name.setText(lessons.get(i).name);
         lessonViewHolder.location.setText(lessons.get(i).location);
         lessonViewHolder.time.setText(lessons.get(i).time);
