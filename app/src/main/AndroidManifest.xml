@@ -20,10 +20,6 @@
             android:name=".LandingScreenActivity"
             android:label="@string/title_activity_landing_screen" >
         </activity>
-        <activity
-            android:name=".LessonCardViewActivity"
-            android:label="@string/title_activity_lesson_card_view" >
-        </activity>
     </application>
 
 </manifest>

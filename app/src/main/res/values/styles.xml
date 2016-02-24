@@ -11,7 +11,7 @@
 
 
     <!-- Override for text colour on tool bar-->
-    <style name="toolBarStyle" parent="AppTheme">
+    <style name="toolBarOverrideStyle" parent="AppTheme">
         <item name="android:textColorPrimary">#FFFFFF</item>
     </style>
 </resources>

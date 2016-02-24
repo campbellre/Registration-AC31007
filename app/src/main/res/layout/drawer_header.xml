@@ -6,7 +6,7 @@
     android:layout_height="120dp"
     android:background="?attr/colorPrimaryDark"
     android:padding="16dp"
-    app:theme="@style/toolBarStyle"
+    app:theme="@style/toolBarOverrideStyle"
     android:gravity="bottom">
 
     <TextView
