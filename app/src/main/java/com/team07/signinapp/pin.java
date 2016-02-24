@@ -19,4 +19,10 @@ public class pin {
         }
         return pin;
     }
+
+    private boolean checkPin()
+    {
+        //if pin entered = lecturers pin
+        return true;
+    }
 }
