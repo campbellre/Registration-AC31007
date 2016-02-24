@@ -14,4 +14,8 @@
     <style name="toolBarOverrideStyle" parent="AppTheme">
         <item name="android:textColorPrimary">#FFFFFF</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
