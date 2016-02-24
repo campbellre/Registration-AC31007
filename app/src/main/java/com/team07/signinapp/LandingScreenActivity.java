@@ -39,8 +39,16 @@ public class LandingScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
 
-
         initializeData();
+
+        // Get data passed to this activity from LoginScreenActivity
+        String username = "";
+        Login.UserType userType = Login.UserType.None;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            username = extras.getString("Username");
+            userType = (Login.UserType)extras.get("UserType");
+        }
 
         //Fetches the recycler view by id and sets up layout and
         //adapters to fill schedule with the correct information
@@ -58,7 +66,7 @@ public class LandingScreenActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Schedule");
+            actionBar.setTitle(username + " (" + userType + ")");
         }
 
         //Fetches the layout for the drawer

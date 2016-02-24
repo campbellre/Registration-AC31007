@@ -66,6 +66,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         if(loginFieldsFilled) {
             if (login.loginValid(username, password)) {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
+                intent.putExtra("Username", username);
                 intent.putExtra("UserType", login.getUserType(username));
                 startActivity(intent);
             } else {

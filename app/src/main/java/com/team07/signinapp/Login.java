@@ -8,6 +8,7 @@ public class Login {
     public enum UserType {
         Student,
         Staff,
+        None
     }
 
     private Map<String, String> userLogins;
