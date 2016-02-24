@@ -9,17 +9,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by lewispalmer on 24/02/2016.
- */
-
 //Implementation of a recyclerview to display each lesson in a timeline view
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.LessonViewHolder>{
-
     private List<Lesson> lessons;
 
     //This is the class for each of the Cards that gets displayed
-    class LessonViewHolder extends RecyclerView.ViewHolder {
+    public class LessonViewHolder extends RecyclerView.ViewHolder {
         CardView lessonCard;
 
         TextView name;
