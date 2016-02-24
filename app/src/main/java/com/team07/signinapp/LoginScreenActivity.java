@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import com.team07.signinapp.Login;
 
 public class LoginScreenActivity extends AppCompatActivity {
+    private Login login;
+
+    public LoginScreenActivity(){
+        login = new Login();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         }
 
         if(loginFieldsFilled) {
-            if (loginValid(username, password)) {
+            if (login.loginValid(username, password)) {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
                 startActivity(intent);
             } else {
@@ -72,14 +74,5 @@ public class LoginScreenActivity extends AppCompatActivity {
         }
     }
 
-    public boolean loginValid(String username, String password){
-        // TODO: Actual validation with database
-        Map<String, String> users = new HashMap<String, String>();
-        users.put("student", "ss");
-        users.put("teacher", "tt");
-        if (users.containsKey(username) && users.get(username).equals(password)){
-            return true;
-        }
-        return false;
-    }
+
 }
