@@ -15,7 +15,8 @@
         android:layout_alignLeft="@+id/passwordField"
         android:layout_alignStart="@+id/passwordField"
         android:layout_alignRight="@+id/passwordField"
-        android:layout_alignEnd="@+id/passwordField" />
+        android:layout_alignEnd="@+id/passwordField"
+        android:backgroundTintMode="src_in" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,6 +39,8 @@
         android:layout_alignStart="@+id/passwordField"
         android:layout_alignRight="@+id/passwordField"
         android:layout_alignEnd="@+id/passwordField"
-        android:onClick="loginButtonAction" />
+        android:onClick="loginButtonAction"
+        android:background="@color/accent"
+        android:textColor="@color/accentText" />
 
 </RelativeLayout>
