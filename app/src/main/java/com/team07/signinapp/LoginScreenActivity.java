@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import com.team07.signinapp.Login;
 
 public class LoginScreenActivity extends AppCompatActivity {
     private Login login;
@@ -67,12 +66,11 @@ public class LoginScreenActivity extends AppCompatActivity {
         if(loginFieldsFilled) {
             if (login.loginValid(username, password)) {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
+                intent.putExtra("UserType", login.getUserType(username));
                 startActivity(intent);
             } else {
                 passwordEditText.setError("Incorrect username or password");
             }
         }
     }
-
-
 }
