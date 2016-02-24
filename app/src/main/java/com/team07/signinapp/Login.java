@@ -22,6 +22,10 @@ public class Login {
 
         userLogins.put("staff", "staff");
         userTypes.put("staff", userType.Staff);
+
+        //testing user
+        userLogins.put("a", "a");
+        userTypes.put("a", userType.Staff);
     }
 
     public boolean loginValid(String username, String password){
