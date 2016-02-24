@@ -16,7 +16,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
     //This is the class for each of the Cards that gets displayed
     public class LessonViewHolder extends RecyclerView.ViewHolder {
         CardView lessonCard;
-
+        Lesson lesson;
         TextView name;
         TextView location;
         TextView time;
@@ -45,6 +45,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
     //override method to set variables on each LessonCard
     @Override
     public void onBindViewHolder(LessonViewHolder lessonViewHolder, int i) {
+        lessonViewHolder.lesson = lessons.get(i);
         lessonViewHolder.name.setText(lessons.get(i).name);
         lessonViewHolder.location.setText(lessons.get(i).location);
         lessonViewHolder.time.setText(lessons.get(i).time);
