@@ -19,18 +19,19 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
     private List<Lesson> lessons;
 
     //This is the class for each of the Cards that gets displayed
-    public static class LessonViewHolder extends RecyclerView.ViewHolder {
+    class LessonViewHolder extends RecyclerView.ViewHolder {
         CardView lessonCard;
-        static TextView Name;
-        static TextView Location;
-        static TextView Time;
+
+        TextView name;
+        TextView location;
+        TextView time;
 
         LessonViewHolder(View cardView) {
             super(cardView);
             lessonCard = (CardView)cardView.findViewById(R.id.LessonCardView);
-            Name = (TextView)cardView.findViewById(R.id.LessonName);
-            Location = (TextView)cardView.findViewById(R.id.LessonLocation);
-            Time = (TextView)cardView.findViewById(R.id.LessonTime);
+            name = (TextView)cardView.findViewById(R.id.LessonName);
+            location = (TextView)cardView.findViewById(R.id.LessonLocation);
+            time = (TextView)cardView.findViewById(R.id.LessonTime);
         }
     }
 
@@ -49,9 +50,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
     //override method to set variables on each LessonCard
     @Override
     public void onBindViewHolder(LessonViewHolder lessonViewHolder, int i) {
-        LessonViewHolder.Name.setText(lessons.get(i).name);
-        LessonViewHolder.Location.setText(lessons.get(i).location);
-        LessonViewHolder.Time.setText(lessons.get(i).time);
+        lessonViewHolder.name.setText(lessons.get(i).name);
+        lessonViewHolder.location.setText(lessons.get(i).location);
+        lessonViewHolder.time.setText(lessons.get(i).time);
     }
 
     //Required

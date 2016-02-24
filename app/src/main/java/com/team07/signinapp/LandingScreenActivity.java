@@ -31,7 +31,12 @@ public class LandingScreenActivity extends AppCompatActivity {
 
         lessons.add(new Lesson("Name1", "Place1", "Time1"));
         lessons.add(new Lesson("Name2", "Place2", "Time3"));
-        lessons.add(new Lesson("name3","Place2","Time3"));
+        lessons.add(new Lesson("Name3","Place2","Time3"));
+        lessons.add(new Lesson("Name4","Place2","Time3"));
+        lessons.add(new Lesson("Name5","Place2","Time3"));
+        lessons.add(new Lesson("Name6","Place2","Time3"));
+        lessons.add(new Lesson("Name7","Place2","Time3"));
+        lessons.add(new Lesson("Name8","Place2","Time3"));
     }
 
     @Override
