@@ -2,7 +2,7 @@ package com.team07.signinapp;
 
 import java.util.Random;
 
-public class PinTmp {
+public class Pin {
     private static final int PIN_LENGTH = 4;
 
     public static int generate() {
