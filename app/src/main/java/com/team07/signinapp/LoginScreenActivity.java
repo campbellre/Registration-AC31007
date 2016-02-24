@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class LoginScreenActivity extends AppCompatActivity {
 
     @Override
@@ -69,7 +73,13 @@ public class LoginScreenActivity extends AppCompatActivity {
     }
 
     public boolean loginValid(String username, String password){
-        // TODO: Validate login
-        return true;
+        // TODO: Actual validation with database
+        Map<String, String> users = new HashMap<String, String>();
+        users.put("student", "ss");
+        users.put("teacher", "tt");
+        if (users.containsKey(username) && users.get(username).equals(password)){
+            return true;
+        }
+        return false;
     }
 }
