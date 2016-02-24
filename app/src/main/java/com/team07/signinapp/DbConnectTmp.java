@@ -1,5 +1,5 @@
 package com.team07.signinapp;
 
-public class dbconnect {
+public class DbConnectTmp {
     // TODO
 }

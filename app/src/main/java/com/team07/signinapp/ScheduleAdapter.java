@@ -9,28 +9,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-//Implementation of a recyclerview to display each lesson in a timeline view
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.LessonViewHolder>{
+//Implementation of a RecyclerView to display each lesson in a timeline view
+public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     private List<Lesson> lessons;
 
-    //This is the class for each of the Cards that gets displayed
-    public class LessonViewHolder extends RecyclerView.ViewHolder {
-        CardView lessonCard;
-
-        TextView name;
-        TextView location;
-        TextView time;
-
-        LessonViewHolder(View cardView) {
-            super(cardView);
-            lessonCard = (CardView)cardView.findViewById(R.id.LessonCardView);
-            name = (TextView)cardView.findViewById(R.id.LessonName);
-            location = (TextView)cardView.findViewById(R.id.LessonLocation);
-            time = (TextView)cardView.findViewById(R.id.LessonTime);
-        }
-    }
-
-    ScheduleAdapter(List<Lesson> lessons){
+    public ScheduleAdapter(List<Lesson> lessons){
         this.lessons = lessons;
     }
 
@@ -55,5 +38,4 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
     public int getItemCount() {
         return lessons.size();
     }
-
 }
