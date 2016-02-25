@@ -39,7 +39,7 @@ public class LessonActivity extends AppCompatActivity {
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
-            if(Pin.getShared().isSignedIn(lesson.id)) {
+            if(Pin.getShared().isSignedIn(lesson.getId())) {
                 Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                 attendanceSignIn.setBackgroundColor(Color.GREEN);
                 attendanceSignIn.setEnabled(false);
@@ -136,7 +136,7 @@ public class LessonActivity extends AppCompatActivity {
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!Pin.getShared().checkPin(code.getText().toString(), lesson.id)) {
+                if (!Pin.getShared().checkPin(code.getText().toString(), lesson.getId())) {
 
                     new AlertDialog.Builder(LessonActivity.this)
                             .setMessage(R.string.attendance_pin_incorrect)
