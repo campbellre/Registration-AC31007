@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LandingScreenActivity extends AppCompatActivity {
     private DrawerLayout drawer_menu_layout;
