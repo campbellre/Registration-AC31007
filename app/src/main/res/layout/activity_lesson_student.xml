@@ -143,4 +143,16 @@
         android:layout_alignRight="@+id/generateCode"
         android:layout_alignEnd="@+id/generateCode" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:id="@+id/signIn"
+        android:layout_below="@+id/timeField"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginTop="32dp"
+        android:contextClickable="false"
+        android:onClick="studentSignIn" />
+
 </RelativeLayout>

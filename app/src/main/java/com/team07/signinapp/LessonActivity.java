@@ -1,11 +1,15 @@
 package com.team07.signinapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class LessonActivity extends AppCompatActivity {
@@ -111,5 +115,36 @@ public class LessonActivity extends AppCompatActivity {
         // Generate and store code to db for lesson id
         String code = Pin.getShared().generatePin(lesson.id);
         codeTextView.setText(code);
+    }
+
+    public void studentSignIn(View view) {
+        final EditText code = new EditText(this);
+        new AlertDialog.Builder(this)
+                .setMessage("Enter Lecture PIN:")
+                .setTitle("Attendance")
+                .setView(code)
+                .setPositiveButton(R.string.attendance_sign_in, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i("TAG", code.getText().toString());
+                        if (!Pin.getShared().checkPin(code.getText().toString(), lesson.id)) {
+                            // FIX: little messy
+                            new AlertDialog.Builder(LessonActivity.this)
+                                    .setMessage("Incorrect PIN")
+                                    .setTitle("Attendance")
+                                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // do nothing
+                                        }
+                                    }).show();
+                        }
+                    }
+                }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        }).show();
     }
 }
