@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,11 +9,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -72,11 +78,14 @@ public class LessonActivity extends AppCompatActivity {
         }
     }
 
-    private void setLayout() {
-        if(userType.equals(Login.UserType.Staff)) {
+    private void setLayout()
+    {
+        if(userType.equals(Login.UserType.Staff))
+        {
             setContentView(R.layout.activity_lesson_staff);
         }
-        else {
+        else
+        {
             setContentView(R.layout.activity_lesson_student);
         }
     }
@@ -90,11 +99,12 @@ public class LessonActivity extends AppCompatActivity {
         }
     }
 
-    private void setLessonText() {
+    private void setLessonText()
+    {
         TextView lessonTitleView = (TextView)findViewById(R.id.lessonTitle);
-        TextView lessonLocationView = (TextView)findViewById(R.id.LessonLocation);
-        TextView lessonTimeView = (TextView)findViewById(R.id.LessonTime);
-        TextView lessonDateView = (TextView)findViewById(R.id.LessonDate);
+        TextView lessonLocationView = (TextView)findViewById(R.id.locationField);
+        TextView lessonTimeView = (TextView)findViewById(R.id.timeField);
+        TextView lessonDateView = (TextView)findViewById(R.id.dateField);
         lessonTitleView.setText(lessonName);
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
@@ -102,7 +112,8 @@ public class LessonActivity extends AppCompatActivity {
 
     }
 
-    private void setupToolBar() {
+    private void setupToolBar()
+    {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -119,25 +130,26 @@ public class LessonActivity extends AppCompatActivity {
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
         // Can use randomAlphanumeric also
         // Generate and store code to db for lesson id
-        int code = Pin.getShared().generatePin(lesson.getId());
+        String code = Pin.getShared().generatePin(lesson.getId());
         codeTextView.setText(code);
     }
 
     public void studentSignIn(View view) {
         final EditText code = new EditText(this);
+        code.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Change once code uses numerical input
-                if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
+                if (!Pin.getShared().checkPin(code.getText().toString(), lesson.getId())) {
+
                     new AlertDialog.Builder(LessonActivity.this)
                             .setMessage(R.string.attendance_pin_incorrect)
                             .setTitle("Attendance")
                             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
+                                    // do nothing
                                 }
                             }).show();
 
@@ -145,25 +157,31 @@ public class LessonActivity extends AppCompatActivity {
                     Button attendanceSignIn = (Button)findViewById(R.id.attendanceSignIn);
                     attendanceSignIn.setBackgroundColor(Color.GREEN);
                     attendanceSignIn.setEnabled(false);
-                    attendanceSignIn.setText(R.string.SignedInDisplayText);
+                    attendanceSignIn.setText("Signed In");
                 }
             }
         };
 
-        new AlertDialog.Builder(this)
-            .setMessage(R.string.attendance_request_pin)
-            .setTitle("Attendance")
-            .setView(code)
-            .setPositiveButton(R.string.attendance_sign_in, signInListener)
-            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Do nothing
-                }
-            }).show();
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setMessage(R.string.attendance_request_pin)
+                .setTitle("Attendance")
+                .setView(code)
+                .setPositiveButton(R.string.attendance_sign_in, signInListener)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .create();
+
+        // force keyboard
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
-    public void viewRegister(View view) {
+    public void viewRegister(View view)
+    {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
