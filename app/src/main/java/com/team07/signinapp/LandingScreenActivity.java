@@ -113,7 +113,7 @@ public class LandingScreenActivity extends AppCompatActivity {
     }
 
     private void setupToolbar(){
-        // initialises tool bar with menu button
+        // Initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

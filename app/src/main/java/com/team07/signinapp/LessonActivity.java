@@ -1,6 +1,5 @@
 package com.team07.signinapp;
 
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class LessonActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +38,7 @@ public class LessonActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home:
-                //Toolbar button has been pressed. End this activity. Defaults to parent activity
+                // Toolbar button has been pressed. End this activity. Defaults to parent activity
                 this.finish();
                 return true;
             case R.id.action_settings:
@@ -52,7 +50,7 @@ public class LessonActivity extends AppCompatActivity {
 
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
-        //can use randomAlphanumeric also
+        // Can use randomAlphanumeric also
         String code = RandomStringUtils.randomNumeric(4);
         codeTextView.setText(code);
     }
