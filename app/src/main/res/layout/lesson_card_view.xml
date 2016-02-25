@@ -10,15 +10,16 @@
     cardview:cardCornerRadius="5dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#4682b4">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#333333"
-            android:text="Lesson Title"
-            android:id="@+id/LessonName"
+            android:textColor="#ffffff"
+            android:text="NamePlaceholder"
+            android:id="@+id/LessonCardName"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:layout_alignParentTop="true"
@@ -26,31 +27,55 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#333333"
-            android:text="@string/lesson_card_view_location"
-            android:id="@+id/LessonLocation"
-            android:textSize="25sp"
-            android:layout_alignTop="@+id/LessonTime"
-            android:layout_centerHorizontal="true" />
+            android:textColor="#ffffff"
+            android:text="@string/lesson_card_view_location_label"
+            android:id="@+id/LessonCardLocationLabel"
+            android:textSize="20sp"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/LessonTimeLabel"
+            android:layout_alignLeft="@+id/LessonTimeLabel"
+            android:layout_alignStart="@+id/LessonTimeLabel" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/lesson_card_view_time"
-            android:id="@+id/LessonTime"
-            android:textColor="#333333"
-            android:textSize="25sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:layout_below="@+id/LessonName" />
+            android:text="@string/lesson_card_view_time_label"
+            android:id="@+id/LessonTimeLabel"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_below="@+id/LessonCardName"
+            android:layout_alignLeft="@+id/LessonCardName"
+            android:layout_alignStart="@+id/LessonCardName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/LessonCardTime"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_alignTop="@+id/LessonTimeLabel"
+            android:layout_alignRight="@+id/LessonCardName"
+            android:layout_alignEnd="@+id/LessonCardName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/LessonCardLocation"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_alignTop="@+id/LessonCardLocationLabel"
+            android:layout_alignRight="@+id/LessonCardName"
+            android:layout_alignEnd="@+id/LessonCardName" />
 
     </RelativeLayout>
 

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/toolBarOverrideStyle"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/colorPrimary"
+        android:text="NamePlaceholder"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:gravity="left|bottom"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/LessonTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/lesson_date_label_text"
+        android:id="@+id/LessonDateLabel"
+        android:layout_below="@+id/registerButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="73dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="DatePlaceholder"
+        android:id="@+id/LessonDate"
+        android:layout_below="@+id/LessonDateLabel"
+        android:layout_alignLeft="@+id/LessonDateLabel"
+        android:layout_alignStart="@+id/LessonDateLabel"
+        android:textSize="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/lesson_location_label_text"
+        android:id="@+id/LessonLocationLabel"
+        android:textSize="20sp"
+        android:layout_below="@+id/LessonDate"
+        android:layout_alignLeft="@+id/LessonDateLabel"
+        android:layout_alignStart="@+id/LessonDateLabel"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="LocationPlaceholder"
+        android:id="@+id/LessonLocation"
+        android:layout_below="@+id/LessonLocationLabel"
+        android:layout_alignLeft="@+id/LessonLocationLabel"
+        android:layout_alignStart="@+id/LessonLocationLabel"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/lesson_time_label_text"
+        android:id="@+id/LessonTimeLabel"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/LessonLocation"
+        android:layout_alignLeft="@+id/LessonLocationLabel"
+        android:layout_alignStart="@+id/LessonLocationLabel"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/LessonTime"
+        android:layout_below="@+id/LessonTimeLabel"
+        android:layout_alignLeft="@+id/LessonTimeLabel"
+        android:layout_alignStart="@+id/LessonTimeLabel"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20dp"
+        android:text="TimePlaceholder" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateImage"
+        android:src="@drawable/ic_event_white_24dp"
+        android:layout_alignTop="@+id/LessonDateLabel"
+        android:layout_toLeftOf="@+id/LessonDate"
+        android:layout_toStartOf="@+id/LessonDate"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:tint="#000000" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationImage"
+        android:layout_alignTop="@+id/LessonLocationLabel"
+        android:layout_alignLeft="@+id/dateImage"
+        android:layout_alignStart="@+id/dateImage"
+        android:src="@drawable/ic_place_white_24dp"
+        android:tint="#000000"
+        android:layout_marginTop="5dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignTop="@+id/LessonTimeLabel"
+        android:layout_alignLeft="@+id/locationImage"
+        android:layout_alignStart="@+id/locationImage"
+        android:layout_marginTop="5dp"
+        android:tint="#000000"
+        android:src="@drawable/ic_access_time_white_24dp" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="bottom|center"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/editButton"
+        android:layout_alignRight="@+id/LessonTitle"
+        android:layout_alignBottom="@+id/LessonTitle"
+        android:layout_marginBottom="-23dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_edit_white_24dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate Code"
+        android:id="@+id/generateCode"
+        android:onClick="generateCode"
+        android:layout_below="@+id/LessonTitle"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Register"
+        android:id="@+id/registerButton"
+        android:layout_below="@+id/LessonTitle"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="viewRegister" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/codeText"
+        android:layout_below="@+id/generateCode"
+        android:layout_alignRight="@+id/generateCode"
+        android:layout_alignEnd="@+id/generateCode" />
+
+</RelativeLayout>

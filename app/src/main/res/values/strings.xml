@@ -6,18 +6,25 @@
     <string name="usernameFieldHint">Username</string>
     <string name="signInButtonText">Sign In</string>
 
-    <string name="lesson_card_view_location">Location</string>
-    <string name="lesson_card_view_time">Time</string>
-    <string name="lesson_card_view_date">Date</string>
-
-    //Strings for navigationview drawer
+    //Strings for navigation view drawer
     <string name="schedule_title">Schedule</string>
     <string name="attendance_title">Attendance</string>
     <string name="title_activity_lesson">LessonActivity</string>
 
+    <string name="lesson_card_view_location_label">Location</string>
+    <string name="lesson_card_view_time_label">Time</string>
 
-    //Strings for lesson view
-    <string name="lessonDate">Date:</string>
-    <string name="lessonLocation">Location:</string>
-    <string name="lessonTime">Time:</string>
+    <string name="lesson_location_label_text">Location</string>
+    <string name="lesson_date_label_text">Date</string>
+    <string name="lesson_time_label_text">Time</string>
+
+    //Strings for Pin dialog boxes
+    <string name="attendance_sign_in">Sign In</string>
+    <string name="attendance_request_pin">Enter Lesson PIN:</string>
+    <string name="attendance_pin_incorrect">Incorrect PIN</string>
+    
+    //Strings for RegisterActivity
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="SignedInDisplayText">Signed In</string>
+
 </resources>

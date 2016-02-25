@@ -1,8 +1,9 @@
 package com.team07.signinapp;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import android.support.design.widget.NavigationView;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,9 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,104 +30,28 @@ public class LandingScreenActivity extends AppCompatActivity {
     // Later implement fetch from database
     private List<Lesson> lessons;
 
+    private String username = null;
+    private Login.UserType userType = null;
+
     private void initializeData(){
         lessons = new ArrayList<>();
 
-        // TODO: Pull from database
-        lessons.add(new Lesson("Name1", "Place1", "Time1"));
-        lessons.add(new Lesson("Name2", "Place2", "Time3"));
-        lessons.add(new Lesson("Name3","Place2","Time3"));
-        lessons.add(new Lesson("Name4","Place2","Time3"));
-        lessons.add(new Lesson("Name5","Place2","Time3"));
-        lessons.add(new Lesson("Name6","Place2","Time3"));
-        lessons.add(new Lesson("Name7","Place2","Time3"));
-        lessons.add(new Lesson("Name8","Place2","Time3"));
+        // TODO: Pull lesson information from database
+        Date date = new Date();
+        for(int i=0; i<10; i++){
+            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), date));
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
-
         initializeData();
-
-        // Get data passed to this activity from LoginScreenActivity
-        String username = null;
-        Login.UserType userType = null;
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            username = extras.getString("Username");
-            userType = (Login.UserType)extras.get("UserType");
-        }
-
-        // Fetches the recycler view by id and sets up layout and
-        // adapters to fill schedule with the correct information
-        scheduleView  = (RecyclerView) findViewById(R.id.schedule_view);
-        scheduleLayout = new LinearLayoutManager(this);
-        scheduleView.setLayoutManager(scheduleLayout);
-
-        final Login.UserType finalUserType = userType;
-        scheduleAdapter = new ScheduleAdapter(lessons, new ScheduleAdapter.ScheduleLessonHandler() {
-            @Override
-            public void handleLesson(int i) {
-                if(finalUserType.equals(Login.UserType.Staff)) {
-                    //Toast.makeText(v.getContext(), "Staff", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
-                    startActivity(intent);
-                }
-                else if(finalUserType.equals(Login.UserType.Student)){
-                    final EditText code = new EditText(LandingScreenActivity.this);
-                    new AlertDialog.Builder(LandingScreenActivity.this)
-                            .setTitle("Enter Lesson Code")
-                            .setMessage("Enter 4-digit number to mark your presence")
-                            .setView(code)
-                            .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    String url = code.getText().toString();
-                                    Toast.makeText(LandingScreenActivity.this, url, Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                }
-                            })
-                            .show();
-                }
-
-            }
-        });
-        scheduleView.setAdapter(scheduleAdapter);
-
-
-
-        // initialises tool bar with menu button
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Schedule");
-        }
-
-        // Fetches the layout for the drawer
-        // Set in layout->drawer_layout
-        drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        // Gets the navigation view component and accesses the associated header
-        // Then sets the title to the currently signed in username
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View navigationDrawerHeader = navigationView.getHeaderView(0);
-        TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
-        drawerHeaderTitle.setText(username + " (" + userType +")");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_landing_screen, menu);
-        return true;
+        receiveUserData();
+        setupScheduleView();
+        setupToolbar();
+        setupDrawer();
     }
 
     @Override
@@ -143,10 +65,78 @@ public class LandingScreenActivity extends AppCompatActivity {
             case android.R.id.home:
                 drawer_menu_layout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.action_settings:
-                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void receiveUserData(){
+        // Get data passed to this activity from LoginScreenActivity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            username = extras.getString("Username");
+            userType = (Login.UserType)extras.get("UserType");
+        }
+    }
+
+    private void setupScheduleView(){
+        // Fetches the recycler view by id and sets up layout and
+        // adapters to fill schedule with the correct information
+        scheduleView  = (RecyclerView) findViewById(R.id.schedule_view);
+        scheduleLayout = new LinearLayoutManager(this);
+        scheduleView.setLayoutManager(scheduleLayout);
+
+        final Login.UserType finalUserType = userType;
+
+        scheduleAdapter = new ScheduleAdapter(lessons, new ScheduleAdapter.ScheduleLessonHandler() {
+            @Override
+            public void handleLesson(int i, Lesson lesson) {
+            Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
+            intent.putExtra("UserType", finalUserType);
+            intent.putExtra("Lesson", lesson);
+            startActivity(intent);
+            }
+        });
+        scheduleView.setAdapter(scheduleAdapter);
+    }
+
+    private void setupToolbar(){
+        // Initialises tool bar with menu button
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Schedule");
+        }
+    }
+
+    private void setupDrawer(){
+        // Fetches the layout for the drawer
+        // Set in layout->drawer_layout
+        drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // Gets the navigation view component and accesses the associated header
+        // Then sets the title to the currently signed in username
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View navigationDrawerHeader = navigationView.getHeaderView(0);
+        TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
+        drawerHeaderTitle.setText(username + " (" + userType + ")");
+
+        // Add onClick event to drawer logout button
+        navigationView.getMenu().findItem(R.id.navigation_logout).setOnMenuItemClickListener(
+            new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                // TODO: Remove user login data if stored in future
+                Intent intent = new Intent(getApplicationContext(), LoginScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+                }
+            }
+        );
     }
 }
