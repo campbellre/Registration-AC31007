@@ -86,6 +86,7 @@ public class LandingScreenActivity extends AppCompatActivity {
                             .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     String url = code.getText().toString();
+
                                     Toast.makeText(LandingScreenActivity.this, url, Toast.LENGTH_LONG).show();
                                 }
                             })
