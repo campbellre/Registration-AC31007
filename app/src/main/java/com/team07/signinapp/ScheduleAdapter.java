@@ -20,7 +20,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     private ScheduleLessonHandler handler;
     private Login.UserType userType;
 
-    ScheduleAdapter(List<Lesson> lessons){
+    ScheduleAdapter(List<Lesson> lessons, ScheduleLessonHandler handler){
         this.lessons = lessons;
         this.handler = handler;
     }
@@ -35,13 +35,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
 
     //override method to set variables on each LessonCard
     @Override
-    public void onBindViewHolder(LessonViewHolder lessonViewHolder, int i) {
+    public void onBindViewHolder(LessonViewHolder lessonViewHolder, final int i) {
         lessonViewHolder.lesson = lessons.get(i);
         lessonViewHolder.name.setText(lessons.get(i).name);
         lessonViewHolder.location.setText(lessons.get(i).location);
         lessonViewHolder.time.setText(lessons.get(i).time);
         
-        lessonViewHolder.lessonCard.setOnClickListener(new View.OnClickListener() {
+        lessonViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 handler.handleLesson(i);

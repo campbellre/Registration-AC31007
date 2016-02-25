@@ -74,7 +74,7 @@ public class LandingScreenActivity extends AppCompatActivity {
             public void handleLesson(int i) {
                 if(finalUserType.equals(Login.UserType.Staff)) {
                     //Toast.makeText(v.getContext(), "Staff", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LandingScreenActivity.this, StaffLessonActivity.class);
+                    Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
                     startActivity(intent);
                 }
                 else if(finalUserType.equals(Login.UserType.Student)){
