@@ -51,19 +51,19 @@ public class LoginScreenActivity extends AppCompatActivity {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        boolean loginFieldsFilled = true;
+        boolean isValid = true;
 
         if(username.isEmpty()){
             usernameEditText.setError("Username cannot be empty");
-            loginFieldsFilled = false;
+            isValid = false;
         }
 
         if(password.isEmpty()){
             passwordEditText.setError("Password cannot be empty");
-            loginFieldsFilled = false;
+            isValid = false;
         }
 
-        if(loginFieldsFilled) {
+        if(isValid) {
             if (login.loginValid(username, password)) {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
                 intent.putExtra("Username", username);

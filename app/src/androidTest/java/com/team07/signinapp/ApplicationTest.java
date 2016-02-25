@@ -10,4 +10,16 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
     }
+
+    public void testLoginWorksForValidCredentials() throws Exception {
+        Login login = new Login();
+        boolean result = login.loginValid("student", "student");
+        assertTrue(result);
+    }
+
+    public void testLoginFailsForInvalidCredentials() throws Exception {
+        Login login = new Login();
+        boolean result = login.loginValid("student", "");
+        assertFalse(result);
+    }
 }
