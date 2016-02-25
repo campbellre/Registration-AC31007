@@ -8,6 +8,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:singleLine="true"
         android:id="@+id/usernameField"
         android:layout_alignParentTop="true"
         android:layout_marginTop="73dp"
@@ -16,7 +17,9 @@
         android:layout_alignStart="@+id/passwordField"
         android:layout_alignRight="@+id/passwordField"
         android:layout_alignEnd="@+id/passwordField"
-        android:backgroundTintMode="src_in" />
+        android:lines="1"
+        android:backgroundTintMode="src_in"
+        android:maxLength="12" />
 
     <EditText
         android:layout_width="wrap_content"
