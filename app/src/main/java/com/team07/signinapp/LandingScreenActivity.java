@@ -34,14 +34,14 @@ public class LandingScreenActivity extends AppCompatActivity {
         lessons = new ArrayList<>();
 
         // TODO: Pull from database
-        lessons.add(new Lesson("Name1", "Place1", "Time1"));
-        lessons.add(new Lesson("Name2", "Place2", "Time3"));
-        lessons.add(new Lesson("Name3", "Place2", "Time3"));
-        lessons.add(new Lesson("Name4", "Place2", "Time3"));
-        lessons.add(new Lesson("Name5", "Place2", "Time3"));
-        lessons.add(new Lesson("Name6", "Place2", "Time3"));
-        lessons.add(new Lesson("Name7", "Place2", "Time3"));
-        lessons.add(new Lesson("Name8", "Place2", "Time3"));
+        lessons.add(new Lesson("Name1", "Place1", "Time1", "Date1"));
+        lessons.add(new Lesson("Name2", "Place2", "Time3", "Date2"));
+        lessons.add(new Lesson("Name3", "Place2", "Time3", "Date3"));
+        lessons.add(new Lesson("Name4", "Place2", "Time3", "Date4"));
+        lessons.add(new Lesson("Name5", "Place2", "Time3", "Date5"));
+        lessons.add(new Lesson("Name6", "Place2", "Time3", "Date6"));
+        lessons.add(new Lesson("Name7", "Place2", "Time3", "Date7"));
+        lessons.add(new Lesson("Name8", "Place2", "Time3", "Date8"));
     }
 
     @Override
