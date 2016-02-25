@@ -75,10 +75,10 @@ public class LessonActivity extends AppCompatActivity {
 
     private void setVariables() {
         if (lesson != null) {
-            lessonName = lesson.name;
-            lessonLocation = lesson.location;
-            lessonTime = lesson.time;
-            lessonDate = lesson.date;
+            lessonName = lesson.getName();
+            lessonLocation = lesson.getLocation();
+            lessonTime = lesson.getTimeString();
+            lessonDate = lesson.getDateString();
         }
     }
 
@@ -112,10 +112,8 @@ public class LessonActivity extends AppCompatActivity {
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
         // Can use randomAlphanumeric also
-        int code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
-
         // Generate and store code to db for lesson id
-        String code = Pin.getShared().generatePin(lesson.id);
+        String code = Pin.getShared().generatePin(lesson.getId());
         codeTextView.setText(code);
     }
 
@@ -128,7 +126,7 @@ public class LessonActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.attendance_sign_in, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (!Pin.getShared().checkPin(code.getText().toString(), lesson.id)) {
+                        if (!Pin.getShared().checkPin(code.getText().toString(), lesson.getId())) {
                             // FIX: little messy
                             new AlertDialog.Builder(LessonActivity.this)
                                     .setMessage("Incorrect PIN")
