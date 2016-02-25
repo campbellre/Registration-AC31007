@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,8 +9,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -132,6 +136,7 @@ public class LessonActivity extends AppCompatActivity {
 
     public void studentSignIn(View view) {
         final EditText code = new EditText(this);
+        code.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
@@ -157,7 +162,7 @@ public class LessonActivity extends AppCompatActivity {
             }
         };
 
-        new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage(R.string.attendance_request_pin)
                 .setTitle("Attendance")
                 .setView(code)
@@ -167,7 +172,12 @@ public class LessonActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // do nothing
                     }
-                }).show();
+                })
+                .create();
+
+        // force keyboard
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
     public void viewRegister(View view)
