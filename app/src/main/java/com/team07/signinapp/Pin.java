@@ -6,6 +6,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  * Created by purplegoat53 on 25/02/16.
  */
 public class Pin {
+    //FIX: rename class to Attendance?
 
     static Pin instance = null;
 
@@ -30,5 +31,12 @@ public class Pin {
     public String generatePin(int lessonID) {
         // TODO: Submit to database
         return RandomStringUtils.randomNumeric(4);
+    }
+
+    //NOTE: should this be in here?
+    public boolean isSignedIn(int lessonID) {
+        // TODO: check against database
+        // will be signed in randomly
+        return RandomStringUtils.random(1, "01").equals("1");
     }
 }

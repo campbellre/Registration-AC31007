@@ -23,4 +23,6 @@
 
     //Strings for Pin dialog boxes
     <string name="attendance_sign_in">Sign In</string>
+    <string name="attendance_request_pin">Enter Lesson PIN:</string>
+    <string name="attendance_pin_incorrect">Incorrect PIN</string>
 </resources>

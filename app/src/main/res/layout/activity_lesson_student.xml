@@ -147,7 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:id="@+id/signIn"
+        android:id="@+id/attendanceSignIn"
         android:layout_below="@+id/timeField"
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView"

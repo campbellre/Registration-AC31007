@@ -2,12 +2,14 @@ package com.team07.signinapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,6 +32,17 @@ public class LessonActivity extends AppCompatActivity {
         setLessonText();
         setupToolBar();
 
+        if(userType.equals(Login.UserType.Student)) {
+            // checks if student is already signed in for lesson
+            // and updates button to reflect
+            // FIX: possibly pass in student id
+            if(Pin.getShared().isSignedIn(lesson.id)) {
+                Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
+                attendanceSignIn.setBackgroundColor(Color.GREEN);
+                attendanceSignIn.setEnabled(false);
+                attendanceSignIn.setText("Signed In");
+            }
+        }
     }
 
     @Override
@@ -118,31 +131,41 @@ public class LessonActivity extends AppCompatActivity {
 
     public void studentSignIn(View view) {
         final EditText code = new EditText(this);
-        new AlertDialog.Builder(this)
-                .setMessage("Enter Lecture PIN:")
-                .setTitle("Attendance")
-                .setView(code)
-                .setPositiveButton(R.string.attendance_sign_in, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (!Pin.getShared().checkPin(code.getText().toString(), lesson.id)) {
-                            // FIX: little messy
-                            new AlertDialog.Builder(LessonActivity.this)
-                                    .setMessage("Incorrect PIN")
-                                    .setTitle("Attendance")
-                                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // do nothing
-                                        }
-                                    }).show();
-                        }
-                    }
-                }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+        DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // do nothing
+                if (!Pin.getShared().checkPin(code.getText().toString(), lesson.id)) {
+
+                    new AlertDialog.Builder(LessonActivity.this)
+                            .setMessage(R.string.attendance_pin_incorrect)
+                            .setTitle("Attendance")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            }).show();
+
+                } else {
+                    Button attendanceSignIn = (Button)findViewById(R.id.attendanceSignIn);
+                    attendanceSignIn.setBackgroundColor(Color.GREEN);
+                    attendanceSignIn.setEnabled(false);
+                    attendanceSignIn.setText("Signed In");
+                }
             }
-        }).show();
+        };
+
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.attendance_request_pin)
+                .setTitle("Attendance")
+                .setView(code)
+                .setPositiveButton(R.string.attendance_sign_in, signInListener)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                }).show();
     }
 }
