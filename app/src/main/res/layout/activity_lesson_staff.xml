@@ -29,13 +29,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/lessonDate"
         android:id="@+id/dateTitle"
-        android:layout_below="@+id/lessonTitle"
+        android:layout_below="@+id/registerButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="43dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -154,10 +154,20 @@
         android:layout_height="wrap_content"
         android:text="Generate Code"
         android:id="@+id/generateCode"
-        android:layout_below="@+id/timeField"
-        android:layout_alignRight="@+id/editButton"
-        android:layout_alignEnd="@+id/editButton"
-        android:onClick="generateCode" />
+        android:onClick="generateCode"
+        android:layout_below="@+id/lessonTitle"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Register"
+        android:id="@+id/registerButton"
+        android:layout_below="@+id/lessonTitle"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="viewRegister" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -58,13 +58,6 @@ public class LandingScreenActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_landing_screen, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -74,8 +67,6 @@ public class LandingScreenActivity extends AppCompatActivity {
         switch (id) {
             case android.R.id.home:
                 drawer_menu_layout.openDrawer(GravityCompat.START);
-                return true;
-            case R.id.action_settings:
                 return true;
         }
 

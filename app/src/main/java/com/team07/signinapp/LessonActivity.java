@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,8 +41,6 @@ public class LessonActivity extends AppCompatActivity {
             case android.R.id.home:
                 //Toolbar button has been pressed. End this activity. Defaults to parent activity
                 this.finish();
-                return true;
-            case R.id.action_settings:
                 return true;
         }
 
@@ -112,4 +111,11 @@ public class LessonActivity extends AppCompatActivity {
         String code = Pin.getShared().generatePin(lesson.id);
         codeTextView.setText(code);
     }
+
+    public void viewRegister(View view)
+    {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

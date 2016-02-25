@@ -20,4 +20,7 @@
     <string name="lessonDate">Date:</string>
     <string name="lessonLocation">Location:</string>
     <string name="lessonTime">Time:</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
