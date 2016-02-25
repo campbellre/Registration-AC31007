@@ -18,7 +18,7 @@ public class StaffLessonActivity extends AppCompatActivity {
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeTextView);
         //can use randomAlphanumeric also
-        String code = RandomStringUtils.randomNumeric(4);
+        String code = Pin.getShared().generatePin();
         codeTextView.setText(code);
-        }
+    }
 }

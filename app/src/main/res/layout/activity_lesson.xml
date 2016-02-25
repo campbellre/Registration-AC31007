@@ -149,4 +149,23 @@
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_edit_white_24dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate Code"
+        android:id="@+id/generateCode"
+        android:layout_below="@+id/timeField"
+        android:layout_alignRight="@+id/editButton"
+        android:layout_alignEnd="@+id/editButton"
+        android:onClick="generateCode" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/codeText"
+        android:layout_below="@+id/generateCode"
+        android:layout_alignRight="@+id/generateCode"
+        android:layout_alignEnd="@+id/generateCode" />
+
 </RelativeLayout>

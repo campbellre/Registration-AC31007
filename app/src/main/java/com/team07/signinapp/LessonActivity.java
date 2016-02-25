@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -44,5 +48,12 @@ public class LessonActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void generateCode(View view){
+        TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
+        //can use randomAlphanumeric also
+        String code = RandomStringUtils.randomNumeric(4);
+        codeTextView.setText(code);
     }
 }
