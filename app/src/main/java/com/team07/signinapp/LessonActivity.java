@@ -16,7 +16,6 @@ public class LessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -51,7 +50,7 @@ public class LessonActivity extends AppCompatActivity {
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
         // Can use randomAlphanumeric also
-        String code = RandomStringUtils.randomNumeric(4);
+        int code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
         codeTextView.setText(code);
     }
 }

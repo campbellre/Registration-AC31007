@@ -1,5 +1,7 @@
 package com.team07.signinapp;
 
+import java.util.ArrayList;
+import java.util.List;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LandingScreenActivity extends AppCompatActivity {
     private DrawerLayout drawer_menu_layout;

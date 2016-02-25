@@ -11,10 +11,6 @@ import android.widget.EditText;
 public class LoginScreenActivity extends AppCompatActivity {
     private Login login;
 
-    public LoginScreenActivity(){
-        login = new Login();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +40,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public LoginScreenActivity(){
+        login = new Login();
+    }
+
     public void loginButtonAction(View view){
         EditText usernameEditText = (EditText)this.findViewById(R.id.usernameField);
         EditText passwordEditText = (EditText)this.findViewById(R.id.passwordField);
@@ -68,7 +68,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
 
                 // Pass data to new activity
-                // possibly implement using storage class in future
+                // TODO: possibly implement using storage class in future
                 intent.putExtra("Username", username);
                 intent.putExtra("UserType", login.getUserType(username));
 
