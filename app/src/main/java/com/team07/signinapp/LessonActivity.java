@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,11 +19,11 @@ public class LessonActivity extends AppCompatActivity {
     private String lessonLocation;
     private String lessonDate;
     private Login.UserType userType;
-
+    
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setContentView(R.layout.activity_lesson);
 
         receiveUserData();
         setLayout();
@@ -110,8 +111,9 @@ public class LessonActivity extends AppCompatActivity {
 
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
-        //can use randomAlphanumeric also
-        String code = RandomStringUtils.randomNumeric(4);
+
+        // Generate and store code to db for lesson id
+        String code = Pin.getShared().generatePin(lesson.id);
         codeTextView.setText(code);
     }
 }
