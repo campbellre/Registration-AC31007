@@ -23,7 +23,7 @@ public class LessonActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setTitle("Lesson Name");
+            actionBar.setTitle(null);
         }
     }
 

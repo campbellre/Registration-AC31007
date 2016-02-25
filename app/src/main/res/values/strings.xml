@@ -15,4 +15,9 @@
     <string name="attendance_title">Attendance</string>
     <string name="title_activity_lesson">LessonActivity</string>
 
+
+    //Strings for lesson view
+    <string name="lessonDate">Date:</string>
+    <string name="lessonLocation">Location:</string>
+    <string name="lessonTime">Time:</string>
 </resources>

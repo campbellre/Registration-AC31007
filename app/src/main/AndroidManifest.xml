@@ -15,14 +15,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".LandingScreenActivity"
             android:label="@string/title_activity_landing_screen" />
         <activity
             android:name=".LessonActivity"
             android:label="@string/title_activity_lesson"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>
