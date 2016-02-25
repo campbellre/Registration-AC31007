@@ -35,7 +35,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
 
     //override method to set variables on each LessonCard
     @Override
-    public void onBindViewHolder(LessonViewHolder lessonViewHolder, final int i) {
+    public void onBindViewHolder(final LessonViewHolder lessonViewHolder, final int i) {
         lessonViewHolder.lesson = lessons.get(i);
         lessonViewHolder.name.setText(lessons.get(i).name);
         lessonViewHolder.location.setText(lessons.get(i).location);
@@ -44,7 +44,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
         lessonViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                handler.handleLesson(i);
+                handler.handleLesson(i,  lessonViewHolder.lesson);
             }
         });
     }
@@ -56,6 +56,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     }
 
     interface ScheduleLessonHandler {
-        void handleLesson(int i);
+        void handleLesson(int i, Lesson lesson);
     }
 }

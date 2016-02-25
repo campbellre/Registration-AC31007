@@ -51,23 +51,27 @@ public class LoginScreenActivity extends AppCompatActivity {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        boolean isValid = true;
+        boolean loginFieldsFilled = true;
 
         if(username.isEmpty()){
             usernameEditText.setError("Username cannot be empty");
-            isValid = false;
+            loginFieldsFilled = false;
         }
 
         if(password.isEmpty()){
             passwordEditText.setError("Password cannot be empty");
-            isValid = false;
+            loginFieldsFilled = false;
         }
 
-        if(isValid) {
+        if(loginFieldsFilled) {
             if (login.loginValid(username, password)) {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
+
+                // Pass data to new activity
+                // possibly implement using storage class in future
                 intent.putExtra("Username", username);
                 intent.putExtra("UserType", login.getUserType(username));
+
                 startActivity(intent);
             } else {
                 passwordEditText.setError("Incorrect username or password");

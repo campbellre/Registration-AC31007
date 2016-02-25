@@ -1,7 +1,11 @@
 package com.team07.signinapp;
 
+import java.io.Serializable;
+
 // Lesson class
-public class Lesson {
+public class Lesson implements Serializable {
+    private static long serialVersionUID = 0L;
+
     public String name;
     public String location;
     public String time;
