@@ -36,7 +36,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
         lessonViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-            handler.handleLesson(i,  lessonViewHolder.lesson);
+            handler.handleLesson(i, lessonViewHolder.lesson);
             }
         });
     }

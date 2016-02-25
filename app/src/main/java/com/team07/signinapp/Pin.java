@@ -2,41 +2,37 @@ package com.team07.signinapp;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-/**
- * Created by purplegoat53 on 25/02/16.
- */
 public class Pin {
-    //FIX: rename class to Attendance?
-
-    static Pin instance = null;
+    private static Pin instance = null;
 
     public Pin() {
-
+        // Empty constructor
     }
 
-    // singleton?
+    // Singleton?
     public static Pin getShared() {
-        if(instance == null)
+        if(instance == null) {
             instance = new Pin();
+        }
         return instance;
     }
 
-    //lessonID?
-    public boolean checkPin(String pin, int lessonID) {
+    // LessonID?
+    public boolean checkPin(int pin, int lessonID) {
         // TODO: Use database
-        String correctPin = "1111";
-        return pin.equals(correctPin);
+        int correctPin = 1111;
+        return pin == correctPin;
     }
 
-    public String generatePin(int lessonID) {
+    public int generatePin(int lessonID) {
         // TODO: Submit to database
-        return RandomStringUtils.randomNumeric(4);
+        return Integer.parseInt(RandomStringUtils.randomNumeric(4));
     }
 
-    //NOTE: should this be in here?
+    //NOTE: Should this be in here?
     public boolean isSignedIn(int lessonID) {
-        // TODO: check against database
-        // will be signed in randomly
+        // TODO: Check against database
+        // Will be signed in randomly
         return RandomStringUtils.random(1, "01").equals("1");
     }
 }
