@@ -25,4 +25,8 @@
     <string name="attendance_sign_in">Sign In</string>
     <string name="attendance_request_pin">Enter Lesson PIN:</string>
     <string name="attendance_pin_incorrect">Incorrect PIN</string>
+    
+    //Strings for RegisterActivity
+    <string name="title_activity_register">RegisterActivity</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -57,8 +60,6 @@ public class LessonActivity extends AppCompatActivity {
                 //Toolbar button has been pressed. End this activity. Defaults to parent activity
                 this.finish();
                 return true;
-            case R.id.action_settings:
-                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -87,10 +88,10 @@ public class LessonActivity extends AppCompatActivity {
 
     private void setVariables() {
         if (lesson != null) {
-            lessonName = lesson.name;
-            lessonLocation = lesson.location;
-            lessonTime = lesson.time;
-            lessonDate = lesson.date;
+            lessonName = lesson.getName();
+            lessonLocation = lesson.getLocation();
+            lessonTime = lesson.getTimeString();
+            lessonDate = lesson.getDateString();
         }
     }
 
@@ -123,9 +124,9 @@ public class LessonActivity extends AppCompatActivity {
 
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
-
+        // Can use randomAlphanumeric also
         // Generate and store code to db for lesson id
-        String code = Pin.getShared().generatePin(lesson.id);
+        String code = Pin.getShared().generatePin(lesson.getId());
         codeTextView.setText(code);
     }
 
@@ -168,4 +169,11 @@ public class LessonActivity extends AppCompatActivity {
                     }
                 }).show();
     }
+
+    public void viewRegister(View view)
+    {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

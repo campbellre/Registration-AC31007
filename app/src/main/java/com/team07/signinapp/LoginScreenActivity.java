@@ -22,28 +22,6 @@ public class LoginScreenActivity extends AppCompatActivity {
         setTitle("Login");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public void loginButtonAction(View view){
         EditText usernameEditText = (EditText)this.findViewById(R.id.usernameField);
         EditText passwordEditText = (EditText)this.findViewById(R.id.passwordField);
@@ -68,7 +46,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
 
                 // Pass data to new activity
-                // possibly implement using storage class in future
+                // TODO: possibly implement using storage class in future
                 intent.putExtra("Username", username);
                 intent.putExtra("UserType", login.getUserType(username));
 

@@ -1,18 +1,18 @@
 package com.team07.signinapp;
 
+import java.util.List;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 // Implementation of a RecyclerView to display each lesson in a timeline view
 public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     private List<Lesson> lessons;
-    private ScheduleLessonHandler handler;
 
-    ScheduleAdapter(List<Lesson> lessons, ScheduleLessonHandler handler){
+    public ScheduleLessonHandler handler;
+
+    public ScheduleAdapter(List<Lesson> lessons, ScheduleLessonHandler handler){
         this.lessons = lessons;
         this.handler = handler;
     }
@@ -29,14 +29,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     @Override
     public void onBindViewHolder(final LessonViewHolder lessonViewHolder, final int i) {
         lessonViewHolder.lesson = lessons.get(i);
-        lessonViewHolder.name.setText(lessons.get(i).name);
-        lessonViewHolder.location.setText(lessons.get(i).location);
-        lessonViewHolder.time.setText(lessons.get(i).time);
+        lessonViewHolder.name.setText(lessons.get(i).getName());
+        lessonViewHolder.location.setText(lessons.get(i).getLocation());
+        lessonViewHolder.time.setText(lessons.get(i).getTimeString());
         
         lessonViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                handler.handleLesson(i,  lessonViewHolder.lesson);
+            handler.handleLesson(i,  lessonViewHolder.lesson);
             }
         });
     }
@@ -47,7 +47,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
         return lessons.size();
     }
 
-    interface ScheduleLessonHandler {
+    public interface ScheduleLessonHandler {
         void handleLesson(int i, Lesson lesson);
     }
 }
