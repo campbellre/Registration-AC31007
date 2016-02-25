@@ -1,6 +1,9 @@
 package com.team07.signinapp;
 
 import android.support.design.widget.NavigationView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -13,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +68,39 @@ public class LandingScreenActivity extends AppCompatActivity {
         scheduleLayout = new LinearLayoutManager(this);
         scheduleView.setLayoutManager(scheduleLayout);
 
-        scheduleAdapter = new ScheduleAdapter(lessons);
+        final Login.UserType finalUserType = userType;
+        scheduleAdapter = new ScheduleAdapter(lessons, new ScheduleAdapter.ScheduleLessonHandler() {
+            @Override
+            public void handleLesson(int i) {
+                if(finalUserType.equals(Login.UserType.Staff)) {
+                    //Toast.makeText(v.getContext(), "Staff", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
+                    startActivity(intent);
+                }
+                else if(finalUserType.equals(Login.UserType.Student)){
+                    final EditText code = new EditText(LandingScreenActivity.this);
+                    new AlertDialog.Builder(LandingScreenActivity.this)
+                            .setTitle("Enter Lesson Code")
+                            .setMessage("Enter 4-digit number to mark your presence")
+                            .setView(code)
+                            .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    String url = code.getText().toString();
+                                    Toast.makeText(LandingScreenActivity.this, url, Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                }
+                            })
+                            .show();
+                }
+
+            }
+        });
         scheduleView.setAdapter(scheduleAdapter);
+
+
 
         // initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
