@@ -27,7 +27,7 @@ public class Pin {
         return pin.equals(correctPin);
     }
 
-    public String generatePin() {
+    public String generatePin(int lessonID) {
         // TODO: Submit to database
         return RandomStringUtils.randomNumeric(4);
     }

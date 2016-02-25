@@ -11,11 +11,13 @@ import android.widget.TextView;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class LessonActivity extends AppCompatActivity {
+    Lesson lesson;
+    Login.UserType userType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -27,6 +29,8 @@ public class LessonActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setTitle(null);
         }
+
+        receiveUserData();
     }
 
     @Override
@@ -48,10 +52,20 @@ public class LessonActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void receiveUserData(){
+        // Get data passed to this activity from LandingScreenActivity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            lesson = (Lesson)extras.get("Lesson");
+            userType = (Login.UserType)extras.get("UserType");
+        }
+    }
+
     public void generateCode(View view){
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
-        // Can use randomAlphanumeric also
-        String code = RandomStringUtils.randomNumeric(4);
+
+        // Generate and store code to db for lesson id
+        String code = Pin.getShared().generatePin(lesson.id);
         codeTextView.setText(code);
     }
 }
