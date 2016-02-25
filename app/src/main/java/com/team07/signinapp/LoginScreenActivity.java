@@ -46,7 +46,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, LandingScreenActivity.class);
 
                 // Pass data to new activity
-                // possibly implement using storage class in future
+                // TODO: possibly implement using storage class in future
                 intent.putExtra("Username", username);
                 intent.putExtra("UserType", login.getUserType(username));
 

@@ -1,5 +1,8 @@
 package com.team07.signinapp;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -34,14 +37,11 @@ public class LandingScreenActivity extends AppCompatActivity {
         lessons = new ArrayList<>();
 
         // TODO: Pull from database
-        lessons.add(new Lesson(1,"Name1", "Place1", "Time1", "Date1"));
-        lessons.add(new Lesson(2,"Name2", "Place2", "Time3", "Date2"));
-        lessons.add(new Lesson(3,"Name3", "Place2", "Time3", "Date3"));
-        lessons.add(new Lesson(4,"Name4", "Place2", "Time3", "Date4"));
-        lessons.add(new Lesson(5,"Name5", "Place2", "Time3", "Date5"));
-        lessons.add(new Lesson(6,"Name6", "Place2", "Time3", "Date6"));
-        lessons.add(new Lesson(7,"Name7", "Place2", "Time3", "Date7"));
-        lessons.add(new Lesson(8,"Name8", "Place2", "Time3", "Date8"));
+        Date date = new Date();
+
+        for(int i=0; i<10; i++){
+            lessons.add(new Lesson(i, "Name" + Integer.toString(i+1), "Place" + Integer.toString(i+1), date));
+        }
     }
 
     @Override
@@ -104,7 +104,7 @@ public class LandingScreenActivity extends AppCompatActivity {
     }
 
     private void setupToolbar(){
-        // initialises tool bar with menu button
+        // Initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

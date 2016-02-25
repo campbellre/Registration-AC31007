@@ -20,7 +20,11 @@
     <string name="lessonDate">Date:</string>
     <string name="lessonLocation">Location:</string>
     <string name="lessonTime">Time:</string>
+
+    //Strings for Pin dialog boxes
+    <string name="attendance_sign_in">Sign In</string>
+    
+    //Strings for RegisterActivity
     <string name="title_activity_register">RegisterActivity</string>
 
-    <string name="hello_world">Hello world!</string>
 </resources>

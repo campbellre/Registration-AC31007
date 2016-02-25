@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-//This is the class for each of the Cards that gets displayed
+// This is the class for each of the Cards that gets displayed
 public class LessonViewHolder extends RecyclerView.ViewHolder {
     private CardView lessonCard;
     public Lesson lesson;
