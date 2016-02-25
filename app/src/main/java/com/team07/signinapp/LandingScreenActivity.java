@@ -1,9 +1,6 @@
 package com.team07.signinapp;
 
-import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,10 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
