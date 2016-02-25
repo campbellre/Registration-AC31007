@@ -1,6 +1,7 @@
 package com.team07.signinapp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
@@ -34,14 +35,11 @@ public class LandingScreenActivity extends AppCompatActivity {
         lessons = new ArrayList<>();
 
         // TODO: Pull from database
-        lessons.add(new Lesson("Name1", "Place1", "Time1"));
-        lessons.add(new Lesson("Name2", "Place2", "Time3"));
-        lessons.add(new Lesson("Name3", "Place2", "Time3"));
-        lessons.add(new Lesson("Name4", "Place2", "Time3"));
-        lessons.add(new Lesson("Name5", "Place2", "Time3"));
-        lessons.add(new Lesson("Name6", "Place2", "Time3"));
-        lessons.add(new Lesson("Name7", "Place2", "Time3"));
-        lessons.add(new Lesson("Name8", "Place2", "Time3"));
+        Date date = new Date();
+
+        for(int i=0; i<10; i++){
+            lessons.add(new Lesson(i, "Name" + Integer.toString(i+1), "Place" + Integer.toString(i+1), date));
+        }
     }
 
     @Override
