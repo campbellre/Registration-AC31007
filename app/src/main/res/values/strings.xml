@@ -13,5 +13,6 @@
     //Strings for navigationview drawer
     <string name="schedule_title">Schedule</string>
     <string name="attendance_title">Attendance</string>
+    <string name="title_activity_lesson">LessonActivity</string>
 
 </resources>

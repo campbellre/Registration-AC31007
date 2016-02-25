@@ -14,34 +14,13 @@ import android.widget.Toast;
 
 import java.util.List;
 
-/**
- * Created by lewispalmer on 24/02/2016.
- */
-
-//Implementation of a recyclerview to display each lesson in a timeline view
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.LessonViewHolder>{
-
+//Implementation of a RecyclerView to display each lesson in a timeline view
+public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     private List<Lesson> lessons;
     private ScheduleLessonHandler handler;
     private Login.UserType userType;
 
-    //This is the class for each of the Cards that gets displayed
-    public static class LessonViewHolder extends RecyclerView.ViewHolder{
-        CardView lessonCard;
-        static TextView Name;
-        static TextView Location;
-        static TextView Time;
-
-        LessonViewHolder(View cardView) {
-            super(cardView);
-            lessonCard = (CardView)cardView.findViewById(R.id.LessonCardView);
-            Name = (TextView)cardView.findViewById(R.id.LessonName);
-            Location = (TextView)cardView.findViewById(R.id.LessonLocation);
-            Time = (TextView)cardView.findViewById(R.id.LessonTime);
-        }
-    }
-
-    ScheduleAdapter(List<Lesson> lessons, ScheduleLessonHandler handler){
+    ScheduleAdapter(List<Lesson> lessons){
         this.lessons = lessons;
         this.handler = handler;
     }
@@ -56,11 +35,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Lesson
 
     //override method to set variables on each LessonCard
     @Override
-    public void onBindViewHolder(LessonViewHolder lessonViewHolder, final int i) {
-        LessonViewHolder.Name.setText(lessons.get(i).name);
-        LessonViewHolder.Location.setText(lessons.get(i).location);
-        LessonViewHolder.Time.setText(lessons.get(i).time);
-
+    public void onBindViewHolder(LessonViewHolder lessonViewHolder, int i) {
+        lessonViewHolder.lesson = lessons.get(i);
+        lessonViewHolder.name.setText(lessons.get(i).name);
+        lessonViewHolder.location.setText(lessons.get(i).location);
+        lessonViewHolder.time.setText(lessons.get(i).time);
+        
         lessonViewHolder.lessonCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
