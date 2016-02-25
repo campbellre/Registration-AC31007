@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff"
-            android:text="Name"
+            android:text="NamePlaceholder"
             android:id="@+id/LessonCardName"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
@@ -62,7 +62,6 @@
             android:id="@+id/LessonCardTime"
             android:textSize="20dp"
             android:textColor="#ffffff"
-
             android:layout_alignTop="@+id/LessonTimeLabel"
             android:layout_alignRight="@+id/LessonCardName"
             android:layout_alignEnd="@+id/LessonCardName" />

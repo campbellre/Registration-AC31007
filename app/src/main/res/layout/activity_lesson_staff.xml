@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="?attr/colorPrimary"
-        android:text="Lesson Name"
+        android:text="NamePlaceholder"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:gravity="left|bottom"
         android:paddingLeft="20dp"
         android:paddingBottom="20dp"
         android:layout_below="@+id/toolbar"
-        android:id="@+id/lessonTitle" />
+        android:id="@+id/LessonTitle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,8 +143,8 @@
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="true"
         android:id="@+id/editButton"
-        android:layout_alignRight="@+id/lessonTitle"
-        android:layout_alignBottom="@+id/lessonTitle"
+        android:layout_alignRight="@+id/LessonTitle"
+        android:layout_alignBottom="@+id/LessonTitle"
         android:layout_marginBottom="-23dp"
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_edit_white_24dp"/>
@@ -155,7 +155,7 @@
         android:text="Generate Code"
         android:id="@+id/generateCode"
         android:onClick="generateCode"
-        android:layout_below="@+id/lessonTitle"
+        android:layout_below="@+id/LessonTitle"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
 
@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:text="View Register"
         android:id="@+id/registerButton"
-        android:layout_below="@+id/lessonTitle"
+        android:layout_below="@+id/LessonTitle"
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:onClick="viewRegister" />

@@ -1,6 +1,5 @@
 package com.team07.signinapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,15 +12,11 @@ import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 public class LessonActivity extends AppCompatActivity {
-
     private Lesson lesson;
     private String lessonName;
     private String lessonTime;
@@ -78,14 +73,11 @@ public class LessonActivity extends AppCompatActivity {
         }
     }
 
-    private void setLayout()
-    {
-        if(userType.equals(Login.UserType.Staff))
-        {
+    private void setLayout() {
+        if(userType.equals(Login.UserType.Staff)) {
             setContentView(R.layout.activity_lesson_staff);
         }
-        else
-        {
+        else {
             setContentView(R.layout.activity_lesson_student);
         }
     }
@@ -99,12 +91,11 @@ public class LessonActivity extends AppCompatActivity {
         }
     }
 
-    private void setLessonText()
-    {
-        TextView lessonTitleView = (TextView)findViewById(R.id.lessonTitle);
-        TextView lessonLocationView = (TextView)findViewById(R.id.locationField);
-        TextView lessonTimeView = (TextView)findViewById(R.id.timeField);
-        TextView lessonDateView = (TextView)findViewById(R.id.dateField);
+    private void setLessonText() {
+        TextView lessonTitleView = (TextView)findViewById(R.id.LessonTitle);
+        TextView lessonLocationView = (TextView)findViewById(R.id.LessonLocation);
+        TextView lessonTimeView = (TextView)findViewById(R.id.LessonTime);
+        TextView lessonDateView = (TextView)findViewById(R.id.LessonDate);
         lessonTitleView.setText(lessonName);
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
@@ -112,8 +103,7 @@ public class LessonActivity extends AppCompatActivity {
 
     }
 
-    private void setupToolBar()
-    {
+    private void setupToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -130,7 +120,7 @@ public class LessonActivity extends AppCompatActivity {
         TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
         // Can use randomAlphanumeric also
         // Generate and store code to db for lesson id
-        String code = Pin.getShared().generatePin(lesson.getId());
+        int code = Pin.getShared().generatePin(lesson.getId());
         codeTextView.setText(code);
     }
 
@@ -141,8 +131,7 @@ public class LessonActivity extends AppCompatActivity {
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!Pin.getShared().checkPin(code.getText().toString(), lesson.getId())) {
-
+                if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
                     new AlertDialog.Builder(LessonActivity.this)
                             .setMessage(R.string.attendance_pin_incorrect)
                             .setTitle("Attendance")
@@ -180,8 +169,7 @@ public class LessonActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void viewRegister(View view)
-    {
+    public void viewRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

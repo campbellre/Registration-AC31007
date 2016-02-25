@@ -21,7 +21,7 @@
         android:paddingLeft="20dp"
         android:paddingBottom="20dp"
         android:layout_below="@+id/toolbar"
-        android:id="@+id/lessonTitle" />
+        android:id="@+id/LessonTitle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Date"
         android:id="@+id/LessonDateLabel"
-        android:layout_below="@+id/lessonTitle"
+        android:layout_below="@+id/LessonTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="50dp"
