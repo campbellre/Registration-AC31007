@@ -32,9 +32,10 @@ public class ServerInteraction {
 
     private String urlString = null;
     private HttpURLConnection connection;
+    private String ipName = null;
 
     public ServerInteraction(){
-            urlString = "http://52.49.247.171:8080/RegisterApp-0.0.1-SNAPSHOT/";
+            urlString = "http://"  + ipName + ":8080/RegisterApp-0.0.1-SNAPSHOT/";
     }
 
     public Boolean postJson(final JSONObject jsonObject, final String ext) {
