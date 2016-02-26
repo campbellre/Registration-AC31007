@@ -64,7 +64,8 @@
             android:textColor="#ffffff"
             android:layout_alignTop="@+id/LessonTimeLabel"
             android:layout_alignRight="@+id/LessonCardName"
-            android:layout_alignEnd="@+id/LessonCardName" />
+            android:layout_alignEnd="@+id/LessonCardName"
+            android:text="TimePlaceholder" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +76,8 @@
             android:textColor="#ffffff"
             android:layout_alignTop="@+id/LessonCardLocationLabel"
             android:layout_alignRight="@+id/LessonCardName"
-            android:layout_alignEnd="@+id/LessonCardName" />
+            android:layout_alignEnd="@+id/LessonCardName"
+            android:text="LocationPlaceholder" />
 
     </RelativeLayout>
 

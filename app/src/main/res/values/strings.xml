@@ -26,5 +26,4 @@
     //Strings for RegisterActivity
     <string name="title_activity_register">RegisterActivity</string>
     <string name="SignedInDisplayText">Signed In</string>
-
 </resources>
