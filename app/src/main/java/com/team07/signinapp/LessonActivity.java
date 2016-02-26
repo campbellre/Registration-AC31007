@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 public class LessonActivity extends AppCompatActivity {
     private Lesson lesson;
     private String lessonName;
@@ -23,7 +28,12 @@ public class LessonActivity extends AppCompatActivity {
     private String lessonLocation;
     private String lessonDate;
     private Login.UserType userType;
-    
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +44,20 @@ public class LessonActivity extends AppCompatActivity {
         setLessonText();
         setupToolBar();
 
-        if(userType.equals(Login.UserType.Student)) {
+        if (userType.equals(Login.UserType.Student)) {
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
-            if(Pin.getShared().isSignedIn(lesson.getId())) {
+            if (Pin.getShared().isSignedIn(lesson.getId())) {
                 Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                 attendanceSignIn.setBackgroundColor(Color.GREEN);
                 attendanceSignIn.setEnabled(false);
                 attendanceSignIn.setText("Signed In");
             }
         }
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -64,20 +77,19 @@ public class LessonActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void receiveUserData(){
+    private void receiveUserData() {
         // Get data passed to this activity from LoginScreenActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            lesson = (Lesson)getIntent().getSerializableExtra("Lesson");
-            userType = (Login.UserType)extras.get("UserType");
+            lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
+            userType = (Login.UserType) extras.get("UserType");
         }
     }
 
     private void setLayout() {
-        if(userType.equals(Login.UserType.Staff)) {
+        if (userType.equals(Login.UserType.Staff)) {
             setContentView(R.layout.activity_lesson_staff);
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_lesson_student);
         }
     }
@@ -92,10 +104,10 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     private void setLessonText() {
-        TextView lessonTitleView = (TextView)findViewById(R.id.LessonTitle);
-        TextView lessonLocationView = (TextView)findViewById(R.id.LessonLocation);
-        TextView lessonTimeView = (TextView)findViewById(R.id.LessonTime);
-        TextView lessonDateView = (TextView)findViewById(R.id.LessonDate);
+        TextView lessonTitleView = (TextView) findViewById(R.id.LessonTitle);
+        TextView lessonLocationView = (TextView) findViewById(R.id.LessonLocation);
+        TextView lessonTimeView = (TextView) findViewById(R.id.LessonTime);
+        TextView lessonDateView = (TextView) findViewById(R.id.LessonDate);
         lessonTitleView.setText(lessonName);
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
@@ -116,12 +128,10 @@ public class LessonActivity extends AppCompatActivity {
         }
     }
 
-    public void generateCode(View view){
-        TextView codeTextView = (TextView)this.findViewById(R.id.codeText);
-        // Can use randomAlphanumeric also
-        // Generate and store code to db for lesson id
+    public void generateCode(View view) {
+        TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
         int code = Pin.getShared().generatePin(lesson.getId());
-        codeTextView.setText(code);
+        codeTextView.setText(String.valueOf(code));
     }
 
     public void studentSignIn(View view) {
@@ -143,7 +153,7 @@ public class LessonActivity extends AppCompatActivity {
                             }).show();
 
                 } else {
-                    Button attendanceSignIn = (Button)findViewById(R.id.attendanceSignIn);
+                    Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                     attendanceSignIn.setBackgroundColor(Color.GREEN);
                     attendanceSignIn.setEnabled(false);
                     attendanceSignIn.setText("Signed In");
@@ -174,4 +184,43 @@ public class LessonActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Lesson Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.team07.signinapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Lesson Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.team07.signinapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }

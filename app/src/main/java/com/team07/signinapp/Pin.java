@@ -26,7 +26,11 @@ public class Pin {
 
     public int generatePin(int lessonID) {
         // TODO: Submit to database
-        return Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        int code = 0;
+        while(code < 1000){
+            code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        }
+        return code;
     }
 
     //NOTE: Should this be in here?

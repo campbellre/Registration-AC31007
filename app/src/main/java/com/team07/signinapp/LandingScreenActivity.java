@@ -91,10 +91,10 @@ public class LandingScreenActivity extends AppCompatActivity {
         scheduleAdapter = new ScheduleAdapter(lessons, new ScheduleAdapter.ScheduleLessonHandler() {
             @Override
             public void handleLesson(int i, Lesson lesson) {
-            Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
-            intent.putExtra("UserType", finalUserType);
-            intent.putExtra("Lesson", lesson);
-            startActivity(intent);
+                Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
+                intent.putExtra("UserType", finalUserType);
+                intent.putExtra("Lesson", lesson);
+                startActivity(intent);
             }
         });
         scheduleView.setAdapter(scheduleAdapter);
@@ -130,11 +130,11 @@ public class LandingScreenActivity extends AppCompatActivity {
             new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                // TODO: Remove user login data if stored in future
-                Intent intent = new Intent(getApplicationContext(), LoginScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
+                    // TODO: Remove user login data if stored in future
+                    Intent intent = new Intent(getApplicationContext(), LoginScreenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    return true;
                 }
             }
         );

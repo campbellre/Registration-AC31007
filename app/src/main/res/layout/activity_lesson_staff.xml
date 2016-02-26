@@ -174,8 +174,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/codeText"
-        android:layout_below="@+id/generateCode"
-        android:layout_alignRight="@+id/generateCode"
-        android:layout_alignEnd="@+id/generateCode" />
+        android:layout_alignBottom="@+id/generateCode"
+        android:layout_alignLeft="@+id/editButton"
+        android:layout_alignStart="@+id/editButton" />
 
 </RelativeLayout>
