@@ -5,6 +5,7 @@ import android.test.ApplicationTestCase;
 
 import junit.framework.TestCase;
 
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,30 +21,11 @@ public class UserTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
-   /* @Before
-    public void setUp() throws Exception {
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }*/
-
-//    @Test
-    /*public void testGetUserType() throws Exception {
-        User u = new User();
-        u.setUserType(1);
-
-        assertEquals("Getting user type is 1", u.getUserType(), 1);
-    }*/
-
-//    @Test
     public void testSetUserType() throws Exception {
 
     }
 
-//    @Test
     public void testGetPassword() throws Exception {
         User u = new User();
         u.setPassword("Password");
@@ -51,12 +33,10 @@ public class UserTest extends ApplicationTestCase<Application> {
         assertEquals("Getting Password is Password", u.getPassword(), "Password");
     }
 
-//    @Test
     public void testSetPassword() throws Exception {
 
     }
 
-//    @Test
     public void testGetUsername() throws Exception {
         User u = new User();
         u.setUsername("Test");
@@ -65,7 +45,6 @@ public class UserTest extends ApplicationTestCase<Application> {
 
     }
 
-//    @Test
     public void testSetUsername() throws Exception {
 
     }
@@ -82,5 +61,34 @@ public class UserTest extends ApplicationTestCase<Application> {
         u.setUserType(0);
 
         assertTrue("User is Student", u.isStudent());
+    }
+
+    public void testToJson() throws Exception {
+        User u = new User();
+
+        u.setUsername("user");
+        u.setPassword("password");
+        u.setUserType(1);
+
+        assertEquals("To Json username is user", (u.toJson()).getString("username"), "user");
+        assertEquals("To Json password is password", (u.toJson()).getString("password"), "password");
+        assertEquals("To Json user type is 1 or staff", (u.toJson()).getInt("userType"), 1);
+    }
+
+    public void testFromJson() throws Exception {
+        User u = new User();
+
+        JSONObject jsonForU = new JSONObject();
+
+        jsonForU.put("username", "user");
+        jsonForU.put("password", "password");
+        jsonForU.put("userType", 1);
+
+        u.fromJson(jsonForU);
+
+        assertEquals("From Json username is user", u.getUsername(), "user");
+        assertEquals("From Json password is password", u.getPassword(), "password");
+        assertTrue("From Json is Staff", u.isStaff());
+
     }
 }

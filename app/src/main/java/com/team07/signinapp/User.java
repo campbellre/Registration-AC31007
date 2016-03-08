@@ -1,5 +1,8 @@
 package com.team07.signinapp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by Ryan on 25/02/2016.
  */
@@ -46,5 +49,36 @@ public class User {
     {
         return (userType == 0);
     }
+
+    public void fromJson(JSONObject convertFrom){
+
+        // Check JsonObject is not null
+
+        if (convertFrom == null) return;
+
+        try {
+            this.username = convertFrom.getString("username");
+            this.password = convertFrom.getString("password");
+            this.userType = convertFrom.getInt("userType");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JSONObject toJson()
+    {
+        JSONObject convertTo = new JSONObject();
+
+        try {
+            convertTo.put("username", this.username);
+            convertTo.put("password", this.password);
+            convertTo.put("userType", this.userType);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+     return convertTo;
+    }
+
+
 
 }
