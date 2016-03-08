@@ -32,7 +32,7 @@ public class ServerInteraction {
 
     private String urlString = null;
     private HttpURLConnection connection;
-    private String ipName = null;
+    private String ipName = "52.49.247.171";
 
     public ServerInteraction(){
             urlString = "http://"  + ipName + ":8080/RegisterApp-0.0.1-SNAPSHOT/";
