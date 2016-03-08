@@ -7,14 +7,16 @@ public class User {
 
     private String username;
     private String password;
-    private UserType userType;
+
+    // Weirdness means 1 is staff, 0 is student
+    private int userType;
 
 
-    public UserType getUserType() {
+    private int getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(int userType) {
         this.userType = userType;
     }
 
@@ -33,4 +35,16 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+    public boolean isStaff()
+    {
+        return (userType == 1);
+    }
+
+    public boolean isStudent()
+    {
+        return (userType == 0);
+    }
+
 }

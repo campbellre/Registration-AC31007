@@ -41,6 +41,8 @@ public class UserInterface {
             if(jsonToParse.getString("username").equals("no")) {
                 return false;
             }
+
+            this.setUser.setUserType(jsonToParse.getInt("userType"));
             return true;
         }
 
