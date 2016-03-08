@@ -28,4 +28,5 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
 }
