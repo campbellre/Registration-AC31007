@@ -23,6 +23,8 @@ public class UserInterface {
         setUser = user;
     }
 
+    public User getUserInstance() {return  setUser; }
+
     public Boolean sendUser() throws JSONException, IOException {
         // Create the user object
         JSONObject jsonObject = new JSONObject();
