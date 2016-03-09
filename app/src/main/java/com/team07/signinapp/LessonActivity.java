@@ -182,6 +182,7 @@ public class LessonActivity extends AppCompatActivity {
     public void viewRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+        overridePendingTransition  (R.anim.right_slide_in, R.anim.left_slide_out);
     }
 
     @Override

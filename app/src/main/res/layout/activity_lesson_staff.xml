@@ -10,6 +10,117 @@
         android:background="?attr/colorPrimary"
         app:theme="@style/toolBarOverrideStyle"/>
 
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/RegisterCounter"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        cardview:cardCornerRadius="5dp"
+        android:layout_below="@+id/generateCode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#FFFFFF"
+        android:focusableInTouchMode="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#d0d0d0"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="54dp"
+                android:layout_marginEnd="54dp"
+                android:id="@+id/verticalDivider" />
+
+            <ImageButton
+                android:id="@+id/ViewRegisterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+                android:layout_alignLeft="@+id/verticalDivider"
+                android:layout_alignStart="@+id/verticalDivider"
+                android:clickable="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="4dp"
+                android:background="#f9f9f9"
+                android:tint="#cfcfcf"
+                android:onClick="viewRegister"
+                android:contextClickable="false"
+                android:focusableInTouchMode="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/register_button_label_text"
+                android:id="@+id/RegisterButtonLabel"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="000"
+                android:id="@+id/RegisterTotalStudents"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/verticalDivider"
+                android:layout_toStartOf="@+id/verticalDivider"
+                android:textSize="20sp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="/"
+                android:id="@+id/RegisterCountDivider"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/RegisterTotalStudents"
+                android:layout_toStartOf="@+id/RegisterTotalStudents"
+                android:layout_marginRight="2dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="000"
+                android:id="@+id/RegisterCurrentStudents"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/RegisterCountDivider"
+                android:layout_toStartOf="@+id/RegisterCountDivider"
+                android:layout_marginRight="2dp"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RegisterStudentsIcon"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/RegisterCurrentStudents"
+                android:layout_toStartOf="@+id/RegisterCurrentStudents"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/ic_person_white_24dp"
+                android:tint="#000000" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -29,13 +140,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/lesson_date_label_text"
         android:id="@+id/LessonDateLabel"
-        android:layout_below="@+id/registerButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="73dp"
         android:textSize="20sp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/RegisterCounter" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -158,16 +269,6 @@
         android:layout_below="@+id/LessonTitle"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Register"
-        android:id="@+id/registerButton"
-        android:layout_below="@+id/LessonTitle"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="viewRegister" />
 
     <TextView
         android:layout_width="wrap_content"
