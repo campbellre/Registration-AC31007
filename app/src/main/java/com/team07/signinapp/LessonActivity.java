@@ -28,6 +28,9 @@ public class LessonActivity extends AppCompatActivity {
     private String lessonLocation;
     private String lessonDate;
     private Login.UserType userType;
+
+    private User user = null;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -44,7 +47,8 @@ public class LessonActivity extends AppCompatActivity {
         setLessonText();
         setupToolBar();
 
-        if (userType.equals(Login.UserType.Student)) {
+        //if (userType.equals(Login.UserType.Student)) {
+        if(user.isStudent()){
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
@@ -83,11 +87,13 @@ public class LessonActivity extends AppCompatActivity {
         if (extras != null) {
             lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
             userType = (Login.UserType) extras.get("UserType");
+            user = (User)extras.getParcelable("User");
         }
     }
 
     private void setLayout() {
-        if (userType.equals(Login.UserType.Staff)) {
+        //if (userType.equals(Login.UserType.Staff)) {
+        if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
         } else {
             setContentView(R.layout.activity_lesson_student);

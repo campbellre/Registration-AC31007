@@ -1,12 +1,17 @@
 package com.team07.signinapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 /**
  * Created by Ryan on 25/02/2016.
  */
-public class User {
+public class User implements Parcelable{
 
     private String username;
     private String password;
@@ -14,6 +19,26 @@ public class User {
     // Weirdness means 1 is staff, 0 is student
     private int userType;
 
+
+    public User(){}
+
+    protected User(Parcel in) {
+        username = in.readString();
+        password = in.readString();
+        userType = in.readInt();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     private int getUserType() {
         return userType;
@@ -80,5 +105,15 @@ public class User {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(password);
+        dest.writeInt(userType);
+    }
 }

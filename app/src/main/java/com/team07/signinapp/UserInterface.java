@@ -4,12 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Ryan on 25/02/2016.
  */
-public class UserInterface {
-
+public class UserInterface{
     private User setUser;
 
     public UserInterface()

@@ -36,4 +36,5 @@ local.properties
 .idea/libraries
 .idea/
 
+/.idea/libraries
 /gradle.properties

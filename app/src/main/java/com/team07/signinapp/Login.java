@@ -14,7 +14,7 @@ public class Login {
     }
 
 
-
+    private UserInterface userInterface;
     private Map<String, String> userLogins;
     private Map<String, UserType> userTypes;
 
@@ -37,7 +37,7 @@ public class Login {
         u.setUsername(username);
         u.setPassword(password);
 
-        UserInterface userInterface = new UserInterface();
+        userInterface = new UserInterface();
         userInterface.setUserDetails(u);
 
         try {
@@ -49,6 +49,10 @@ public class Login {
         }
         return false;
 
+    }
+
+    public UserInterface getUserInterface(){
+        return userInterface;
     }
 
     public UserType getUserType(String username){
