@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,8 @@ public class LandingScreenActivity extends AppCompatActivity {
     private List<Lesson> lessons;
 
     private String username = null;
-    private Login.UserType userType = null;
+    //private Login.UserType userType = null;
+    private User user = null;
 
     private void initializeData(){
         lessons = new ArrayList<>();
@@ -75,7 +77,8 @@ public class LandingScreenActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             username = extras.getString("Username");
-            userType = (Login.UserType)extras.get("UserType");
+            //userType = (Login.UserType)extras.get("UserType");
+            user = (User)extras.getParcelable("User");
         }
     }
 
@@ -86,14 +89,15 @@ public class LandingScreenActivity extends AppCompatActivity {
         scheduleLayout = new LinearLayoutManager(this);
         scheduleView.setLayoutManager(scheduleLayout);
 
-        final Login.UserType finalUserType = userType;
+        //final Login.UserType finalUserType = userType;
 
         scheduleAdapter = new ScheduleAdapter(lessons, new ScheduleAdapter.ScheduleLessonHandler() {
             @Override
             public void handleLesson(int i, Lesson lesson) {
                 Intent intent = new Intent(LandingScreenActivity.this, LessonActivity.class);
-                intent.putExtra("UserType", finalUserType);
+                //intent.putExtra("UserType", finalUserType);
                 intent.putExtra("Lesson", lesson);
+                intent.putExtra("User", user);
                 startActivity(intent);
             }
         });
@@ -123,7 +127,9 @@ public class LandingScreenActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View navigationDrawerHeader = navigationView.getHeaderView(0);
         TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
-        drawerHeaderTitle.setText(username + " (" + userType + ")");
+        drawerHeaderTitle.setText(username + " (" +
+                ((user.isStaff()) ? "Staff" : "Student")
+                + ")");
 
         // Add onClick event to drawer logout button
         navigationView.getMenu().findItem(R.id.navigation_logout).setOnMenuItemClickListener(
