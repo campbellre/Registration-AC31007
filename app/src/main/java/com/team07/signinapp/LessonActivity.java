@@ -21,6 +21,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.List;
+import java.util.Random;
+
 public class LessonActivity extends AppCompatActivity {
     private Lesson lesson;
     private String lessonName;
@@ -28,6 +31,11 @@ public class LessonActivity extends AppCompatActivity {
     private String lessonLocation;
     private String lessonDate;
     private Login.UserType userType;
+
+    //TODO:Implement Register Class Fully
+    private List<String> students;
+    private int totalStudents = 50;
+    private int currentStudents = 10;
 
     private User user = null;
 
@@ -45,6 +53,7 @@ public class LessonActivity extends AppCompatActivity {
         setLayout();
         setVariables();
         setLessonText();
+        setRegisterCounter();
         setupToolBar();
 
         //if (userType.equals(Login.UserType.Student)) {
@@ -78,7 +87,6 @@ public class LessonActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -119,7 +127,14 @@ public class LessonActivity extends AppCompatActivity {
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
         lessonDateView.setText(lessonDate);
+    }
 
+    private void setRegisterCounter()
+    {
+        TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
+        TextView registerTotalStudents = (TextView) findViewById(R.id.RegisterTotalStudents);
+        registerCurrentStudents.setText(Integer.toString(currentStudents));
+        registerTotalStudents.setText(Integer.toString(totalStudents));
     }
 
     private void setupToolBar() {
