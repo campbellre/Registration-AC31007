@@ -99,6 +99,7 @@ public class LandingScreenActivity extends AppCompatActivity {
                 intent.putExtra("Lesson", lesson);
                 intent.putExtra("User", user);
                 startActivity(intent);
+                overridePendingTransition(R.anim.right_slide_in, R.anim.left_slide_out);
             }
         });
         scheduleView.setAdapter(scheduleAdapter);

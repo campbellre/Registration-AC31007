@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //Override for custom transition animation when android back button is pressed
     @Override
     public void onBackPressed()
     {
