@@ -21,6 +21,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+
 public class LessonActivity extends AppCompatActivity {
     private Lesson lesson;
     private String lessonName;
@@ -147,9 +149,28 @@ public class LessonActivity extends AppCompatActivity {
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
+                try {
+                    if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
+                        new AlertDialog.Builder(LessonActivity.this)
+                                .setMessage(R.string.attendance_pin_incorrect)
+                                .setTitle("Attendance")
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // do nothing
+                                    }
+                                }).show();
+
+                    } else {
+                        Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
+                        attendanceSignIn.setBackgroundColor(Color.GREEN);
+                        attendanceSignIn.setEnabled(false);
+                        attendanceSignIn.setText("Signed In");
+                    }
+
+                } catch(JSONException e) {
                     new AlertDialog.Builder(LessonActivity.this)
-                            .setMessage(R.string.attendance_pin_incorrect)
+                            .setMessage("Failed to check pin, please try again.")
                             .setTitle("Attendance")
                             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
@@ -157,12 +178,6 @@ public class LessonActivity extends AppCompatActivity {
                                     // do nothing
                                 }
                             }).show();
-
-                } else {
-                    Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
-                    attendanceSignIn.setBackgroundColor(Color.GREEN);
-                    attendanceSignIn.setEnabled(false);
-                    attendanceSignIn.setText("Signed In");
                 }
             }
         };
@@ -188,7 +203,7 @@ public class LessonActivity extends AppCompatActivity {
     public void viewRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        overridePendingTransition  (R.anim.right_slide_in, R.anim.left_slide_out);
+        overridePendingTransition(R.anim.right_slide_in, R.anim.left_slide_out);
     }
 
     @Override
