@@ -54,7 +54,8 @@ public class LessonActivity extends AppCompatActivity {
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
-            if (Pin.getShared().isSignedIn(lesson.getId())) {
+            int userID = 1234;
+            if (Pin.isSignedIn(lesson.getId(), userID)) {
                 Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                 attendanceSignIn.setBackgroundColor(Color.GREEN);
                 attendanceSignIn.setEnabled(false);
@@ -89,7 +90,7 @@ public class LessonActivity extends AppCompatActivity {
         if (extras != null) {
             lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
             userType = (Login.UserType) extras.get("UserType");
-            user = (User)extras.getParcelable("User");
+            user = (User) extras.getParcelable("User");
         }
     }
 
@@ -120,7 +121,6 @@ public class LessonActivity extends AppCompatActivity {
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
         lessonDateView.setText(lessonDate);
-
     }
 
     private void setupToolBar() {
@@ -138,37 +138,34 @@ public class LessonActivity extends AppCompatActivity {
 
     public void generateCode(View view) {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
-        int code = Pin.getShared().generatePin(lesson.getId());
-        codeTextView.setText(String.valueOf(code));
+        Integer code = Pin.generatePin(lesson.getId());
+        if(code == null) {
+            new AlertDialog.Builder(LessonActivity.this)
+                    .setMessage("Failed to set pin, please try again.")
+                    .setTitle("Attendance")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    }).show();
+        } else
+            codeTextView.setText(String.valueOf(code));
     }
 
     public void studentSignIn(View view) {
-        final EditText code = new EditText(this);
-        code.setInputType(InputType.TYPE_CLASS_NUMBER);
+        final EditText codeText = new EditText(this);
+        codeText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                try {
-                    if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
-                        new AlertDialog.Builder(LessonActivity.this)
-                                .setMessage(R.string.attendance_pin_incorrect)
-                                .setTitle("Attendance")
-                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // do nothing
-                                    }
-                                }).show();
+                int pin = Integer.parseInt(codeText.getText().toString());
+                int lessonID = lesson.getId();
 
-                    } else {
-                        Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
-                        attendanceSignIn.setBackgroundColor(Color.GREEN);
-                        attendanceSignIn.setEnabled(false);
-                        attendanceSignIn.setText("Signed In");
-                    }
+                Boolean pinCorrect = Pin.checkPin(pin, lessonID);
 
-                } catch(JSONException e) {
+                if(pinCorrect == null) {
                     new AlertDialog.Builder(LessonActivity.this)
                             .setMessage("Failed to check pin, please try again.")
                             .setTitle("Attendance")
@@ -178,6 +175,23 @@ public class LessonActivity extends AppCompatActivity {
                                     // do nothing
                                 }
                             }).show();
+
+                } else if (pinCorrect == false) {
+                    new AlertDialog.Builder(LessonActivity.this)
+                            .setMessage(R.string.attendance_pin_incorrect)
+                            .setTitle("Attendance")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            }).show();
+
+                } else {
+                    Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
+                    attendanceSignIn.setBackgroundColor(Color.GREEN);
+                    attendanceSignIn.setEnabled(false);
+                    attendanceSignIn.setText("Signed In");
                 }
             }
         };
@@ -185,7 +199,7 @@ public class LessonActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage(R.string.attendance_request_pin)
                 .setTitle("Attendance")
-                .setView(code)
+                .setView(codeText)
                 .setPositiveButton(R.string.attendance_sign_in, signInListener)
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
