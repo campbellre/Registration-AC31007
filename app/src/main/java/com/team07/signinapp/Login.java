@@ -1,5 +1,8 @@
 package com.team07.signinapp;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,8 @@ public class Login {
         Staff,
     }
 
+
+    private UserInterface userInterface;
     private Map<String, String> userLogins;
     private Map<String, UserType> userTypes;
 
@@ -26,7 +31,28 @@ public class Login {
 
     public boolean loginValid(String username, String password){
         // TODO: Use database
-        return userLogins.containsKey(username) && userLogins.get(username).equals(password);
+        //return userLogins.containsKey(username) && userLogins.get(username).equals(password);
+
+        User u = new User();
+        u.setUsername(username);
+        u.setPassword(password);
+
+        userInterface = new UserInterface();
+        userInterface.setUserDetails(u);
+
+        try {
+            return userInterface.sendUser();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+    public UserInterface getUserInterface(){
+        return userInterface;
     }
 
     public UserType getUserType(String username){
