@@ -59,7 +59,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         setLayout();
         setVariables();
         setLessonText();
-        setRegisterCounter();
         setupToolBar();
 
         //if (userType.equals(Login.UserType.Student)) {
@@ -146,6 +145,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         //if (userType.equals(Login.UserType.Staff)) {
         if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
+            setRegisterCounter();
         } else {
             setContentView(R.layout.activity_lesson_student);
         }
