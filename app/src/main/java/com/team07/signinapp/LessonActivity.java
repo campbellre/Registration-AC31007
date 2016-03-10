@@ -152,8 +152,14 @@ public class LessonActivity extends AppCompatActivity {
 
     public void generateCode(View view) {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
+        Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
         int code = Pin.getShared().generatePin(lesson.getId());
+        //generateCodeBut.setText(String.valueOf(code));
+        //generateCodeBut.setEnabled(false);
+        generateCodeBut.setVisibility(View.GONE);
+        codeTextView.setVisibility(View.VISIBLE);
         codeTextView.setText(String.valueOf(code));
+
     }
 
     public void studentSignIn(View view) {
