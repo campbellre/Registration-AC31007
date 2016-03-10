@@ -3,6 +3,7 @@ package com.team07.signinapp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -13,14 +14,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
 
-public class LandingScreenActivity extends AppCompatActivity {
+public class LandingScreenActivity extends AppCompatActivity{
     private DrawerLayout drawer_menu_layout;
     private RecyclerView scheduleView;
     private RecyclerView.Adapter scheduleAdapter;
@@ -29,11 +27,10 @@ public class LandingScreenActivity extends AppCompatActivity {
     // Current list of lessons to be used for testing.
     // Later implement fetch from database
     private List<Lesson> lessons;
-
     private String username = null;
     private Login.UserType userType = null;
 
-    private void initializeData(){
+    private void initializeData() {
         lessons = new ArrayList<>();
 
         // TODO: Pull lesson information from database
@@ -53,6 +50,8 @@ public class LandingScreenActivity extends AppCompatActivity {
         setupToolbar();
         setupDrawer();
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
