@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.Serializable;
+
 public class LoginScreenActivity extends AppCompatActivity {
     private Login login;
 
@@ -46,7 +48,8 @@ public class LoginScreenActivity extends AppCompatActivity {
                 // Pass data to new activity
                 // TODO: possibly implement using storage class in future
                 intent.putExtra("Username", username);
-                intent.putExtra("UserType", login.getUserType(username));
+                //intent.putExtra("UserType", login.getUserType(username));
+                intent.putExtra("User", (login.getUserInterface()).getUserInstance());
 
                 startActivity(intent);
             } else {

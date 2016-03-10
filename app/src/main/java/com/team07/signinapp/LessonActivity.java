@@ -29,6 +29,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.List;
+import java.util.Random;
+
 public class LessonActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private Lesson lesson;
     private String lessonName;
@@ -38,6 +41,14 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private Login.UserType userType;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
+
+
+    //TODO:Implement Register Class Fully
+    private List<String> students;
+    private int totalStudents = 50;
+    private int currentStudents = 10;
+
+    private User user = null;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -54,9 +65,11 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         setLayout();
         setVariables();
         setLessonText();
+        setRegisterCounter();
         setupToolBar();
 
-        if (userType.equals(Login.UserType.Student)) {
+        //if (userType.equals(Login.UserType.Student)) {
+        if(user.isStudent()){
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
@@ -118,9 +131,9 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             case android.R.id.home:
                 //Toolbar button has been pressed. End this activity. Defaults to parent activity
                 this.finish();
+                overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -130,11 +143,13 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         if (extras != null) {
             lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
             userType = (Login.UserType) extras.get("UserType");
+            user = (User)extras.getParcelable("User");
         }
     }
 
     private void setLayout() {
-        if (userType.equals(Login.UserType.Staff)) {
+        //if (userType.equals(Login.UserType.Staff)) {
+        if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
         } else {
             setContentView(R.layout.activity_lesson_student);
@@ -159,7 +174,14 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
         lessonDateView.setText(lessonDate);
+    }
 
+    private void setRegisterCounter()
+    {
+        TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
+        TextView registerTotalStudents = (TextView) findViewById(R.id.RegisterTotalStudents);
+        registerCurrentStudents.setText(Integer.toString(currentStudents));
+        registerTotalStudents.setText(Integer.toString(totalStudents));
     }
 
     private void setupToolBar() {
@@ -229,6 +251,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     public void viewRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.right_slide_in, R.anim.left_slide_out);
     }
 
     @Override
@@ -270,6 +293,16 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         );
         AppIndex.AppIndexApi.end(googleApiClient, viewAction);
         googleApiClient.disconnect();
+        AppIndex.AppIndexApi.end(googleApiClient, viewAction);
+        googleApiClient.disconnect();
+    }
+
+    //Override for custom transition animation when android back button is pressed
+    @Override
+    public void onBackPressed()
+    {
+        this.finish();
+        overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
     }
 
     private void printLocation(){

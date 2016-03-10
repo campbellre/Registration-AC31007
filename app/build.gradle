@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.1'
@@ -28,4 +28,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
+}
 }

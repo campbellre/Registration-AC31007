@@ -35,3 +35,6 @@ local.properties
 .idea/workspace.xml
 .idea/libraries
 .idea/
+
+/.idea/libraries
+/gradle.properties

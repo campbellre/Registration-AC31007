@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
             case android.R.id.home:
                 //Toolbar button has been pressed. End this activity. Defaults to parent activity
                 this.finish();
+                overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
                 return true;
         }
 
@@ -46,5 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setTitle("Register");
         }
+    }
+
+    //Override for custom transition animation when android back button is pressed
+    @Override
+    public void onBackPressed()
+    {
+        this.finish();
+        overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
     }
 }
