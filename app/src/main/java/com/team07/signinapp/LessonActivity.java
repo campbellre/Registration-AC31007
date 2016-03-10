@@ -1,59 +1,64 @@
 package com.team07.signinapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
-import java.util.List;
-import java.util.Random;
+//import java.util.List;
 
-public class LessonActivity extends AppCompatActivity {
+public class LessonActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private Lesson lesson;
     private String lessonName;
     private String lessonTime;
     private String lessonLocation;
     private String lessonDate;
     private Login.UserType userType;
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation;
+
 
     //TODO:Implement Register Class Fully
-    private List<String> students;
+    //private List<String> students;
     private int totalStudents = 50;
     private int currentStudents = 10;
 
     private User user = null;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         receiveUserData();
+        setupGoogleApiClient();
+        ensureLocationServicesEnabled();
         setLayout();
         setVariables();
         setLessonText();
-        setRegisterCounter();
         setupToolBar();
 
         //if (userType.equals(Login.UserType.Student)) {
@@ -68,9 +73,45 @@ public class LessonActivity extends AppCompatActivity {
                 attendanceSignIn.setText("Signed In");
             }
         }
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public void setupGoogleApiClient(){
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .addApi(AppIndex.API)
+                .build();
+    }
+
+    // Modified from http://stackoverflow.com/a/3470757
+    protected void ensureLocationServicesEnabled() {
+        // Provider not enabled, prompt user to enable it
+        System.out.println(isLocationEnabled(getApplicationContext()));
+        if(!isLocationEnabled(getApplicationContext())){
+            finish();
+            Toast.makeText(this, "Please turn on high-accuracy location service", Toast.LENGTH_LONG).show();
+            Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            this.startActivity(myIntent);
+        }
+    }
+
+    // Function taken from http://stackoverflow.com/a/22980843
+    public static boolean isLocationEnabled(Context context) {
+        int locationMode = 0;
+        String locationProviders;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            try {
+                locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+            }
+            return locationMode == Settings.Secure.LOCATION_MODE_HIGH_ACCURACY;
+        }else{
+            locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
     }
 
     @Override
@@ -96,7 +137,7 @@ public class LessonActivity extends AppCompatActivity {
         if (extras != null) {
             lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
             userType = (Login.UserType) extras.get("UserType");
-            user = (User)extras.getParcelable("User");
+            user = extras.getParcelable("User");
         }
     }
 
@@ -104,6 +145,7 @@ public class LessonActivity extends AppCompatActivity {
         //if (userType.equals(Login.UserType.Staff)) {
         if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
+            setRegisterCounter();
         } else {
             setContentView(R.layout.activity_lesson_student);
         }
@@ -197,12 +239,12 @@ public class LessonActivity extends AppCompatActivity {
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
+                        // Do nothing
                     }
                 })
                 .create();
 
-        // force keyboard
+        // Force keyboard
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
@@ -219,7 +261,8 @@ public class LessonActivity extends AppCompatActivity {
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
+        googleApiClient.connect();
+
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
                 "Lesson Page", // TODO: Define a title for the content shown.
@@ -230,7 +273,7 @@ public class LessonActivity extends AppCompatActivity {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.team07.signinapp/http/host/path")
         );
-        AppIndex.AppIndexApi.start(client, viewAction);
+        AppIndex.AppIndexApi.start(googleApiClient, viewAction);
     }
 
     @Override
@@ -249,15 +292,37 @@ public class LessonActivity extends AppCompatActivity {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.team07.signinapp/http/host/path")
         );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+        AppIndex.AppIndexApi.end(googleApiClient, viewAction);
+        googleApiClient.disconnect();
     }
 
     //Override for custom transition animation when android back button is pressed
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         this.finish();
         overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
+    }
+
+    private void printLocation(){
+        if (lastLocation != null) {
+            System.out.println("Latitude: " + String.valueOf(lastLocation.getLatitude()));
+            System.out.println("Longitude: " + String.valueOf(lastLocation.getLongitude()));
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        printLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        System.out.println("Connection suspended");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        System.out.println("Connection failure");
     }
 }
