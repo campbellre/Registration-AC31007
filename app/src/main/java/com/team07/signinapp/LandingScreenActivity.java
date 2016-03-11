@@ -57,17 +57,13 @@ public class LandingScreenActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here.
         int id = item.getItemId();
-
         switch (id) {
             case android.R.id.home:
                 drawer_menu_layout.openDrawer(GravityCompat.START);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -75,9 +71,9 @@ public class LandingScreenActivity extends AppCompatActivity{
         // Get data passed to this activity from LoginScreenActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            username = extras.getString("Username");
+            user = extras.getParcelable("User");
             //userType = (Login.UserType)extras.get("UserType");
-            user = (User)extras.getParcelable("User");
+            username = user.getUsername();
         }
     }
 
@@ -130,6 +126,20 @@ public class LandingScreenActivity extends AppCompatActivity{
         drawerHeaderTitle.setText(username + " (" +
                 ((user.isStaff()) ? "Staff" : "Student")
                 + ")");
+
+        // Add onClick event to drawer Attendance button
+        navigationView.getMenu().findItem(R.id.navigation_attendance).setOnMenuItemClickListener(
+            new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    // TODO: Remove user login data if stored in future
+                    Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+                    intent.putExtra("User", user);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+        );
 
         // Add onClick event to drawer logout button
         navigationView.getMenu().findItem(R.id.navigation_logout).setOnMenuItemClickListener(

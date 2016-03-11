@@ -40,6 +40,20 @@ public class Login {
         userInterface = new UserInterface();
         userInterface.setUserDetails(u);
 
+        //Testing logins to avoid server
+        //TODO: Delete this at some point
+        if(username.equals("a") && password.equals("a"))
+        {
+            u.setUserType(1);
+            return true;
+        }
+
+        if(username.equals("b") && password.equals("b"))
+        {
+            u.setUserType(0);
+            return true;
+        }
+
         try {
             return userInterface.sendUser();
         } catch (JSONException e) {
