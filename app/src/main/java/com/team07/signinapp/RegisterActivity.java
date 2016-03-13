@@ -6,15 +6,17 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private Register register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        receiveExtraData();
         setupToolBar();
+        displayList();
     }
 
     @Override
@@ -46,6 +48,23 @@ public class RegisterActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setTitle("Register");
+        }
+    }
+
+    private void receiveExtraData()
+    {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            register = (Register) getIntent().getSerializableExtra("Register");
+        }
+    }
+
+    private void displayList()
+    {
+        TextView registerList = (TextView) findViewById(R.id.RegisterList);
+        for(String student: register.getStudents())
+        {
+            registerList.append("\n" + student);
         }
     }
 

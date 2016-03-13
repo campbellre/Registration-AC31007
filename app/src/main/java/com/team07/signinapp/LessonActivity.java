@@ -33,6 +33,7 @@ import com.google.android.gms.location.LocationServices;
 
 public class LessonActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private Lesson lesson;
+    private Register register;
     private String lessonName;
     private String lessonTime;
     private String lessonLocation;
@@ -44,8 +45,8 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
 
     //TODO:Implement Register Class Fully
     //private List<String> students;
-    private int totalStudents = 50;
-    private int currentStudents = 10;
+    private int totalStudents;
+    private int currentStudents = 0;
 
     private User user = null;
 
@@ -72,6 +73,11 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
                 attendanceSignIn.setEnabled(false);
                 attendanceSignIn.setText("Signed In");
             }
+        }
+        if(user.isStaff()){
+            register.fetchRegister(lesson.getId());
+            totalStudents = register.getStudents().size();
+            setRegisterCounter();
         }
     }
 
@@ -145,13 +151,13 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         //if (userType.equals(Login.UserType.Staff)) {
         if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
-            setRegisterCounter();
         } else {
             setContentView(R.layout.activity_lesson_student);
         }
     }
 
     private void setVariables() {
+        register = new Register();
         if (lesson != null) {
             lessonName = lesson.getName();
             lessonLocation = lesson.getLocation();
@@ -251,6 +257,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
 
     public void viewRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("Register",register);
         startActivity(intent);
         overridePendingTransition(R.anim.right_slide_in, R.anim.left_slide_out);
     }
