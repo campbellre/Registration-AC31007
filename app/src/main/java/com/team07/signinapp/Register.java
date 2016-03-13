@@ -34,6 +34,18 @@ public class Register implements Serializable{
                 students.add("B");
                 students.add("C");
                 students.add("D");
+                students.add("A");
+                students.add("B");
+                students.add("C");
+                students.add("D");
+                students.add("A");
+                students.add("B");
+                students.add("C");
+                students.add("D");
+                students.add("A");
+                students.add("B");
+                students.add("C");
+                students.add("D");
                 break;
             case 2:
                 students.add("Bob");

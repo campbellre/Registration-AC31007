@@ -10,20 +10,18 @@
         android:background="?attr/colorPrimary"
         app:theme="@style/toolBarOverrideStyle"/>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
         android:layout_below="@+id/toolbar">
 
-        <TextView
+        <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/RegisterList"
-            android:layout_below="@+id/toolbar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="92dp"
-            android:layout_gravity="center_horizontal" />
+            android:listSelector="@android:color/transparent"
+            android:id="@+id/registerList"/>
     </LinearLayout>
+
 </RelativeLayout>

@@ -4,12 +4,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class RegisterActivity extends AppCompatActivity {
     private Register register;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +62,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void displayList()
     {
-        TextView registerList = (TextView) findViewById(R.id.RegisterList);
-        for(String student: register.getStudents())
-        {
-            registerList.append("\n" + student);
-        }
+        listView = (ListView) findViewById(R.id.registerList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, register.getStudents());
+        listView.setAdapter(adapter);
+
+//        TextView registerList = (TextView) findViewById(R.id.RegisterList);
+//        for(String student: register.getStudents())
+//        {
+//            registerList.append("\n" + student);
+//        }
     }
 
     //Override for custom transition animation when android back button is pressed
