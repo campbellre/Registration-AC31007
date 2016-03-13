@@ -14,7 +14,7 @@ public class Pin {
             jsonRequest.put("lessonID", lessonID); // or something similar
 
             ServerInteraction serverInteraction = new ServerInteraction();
-            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "checkPin");
+            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/student");
 
             if (jsonResponse != null) {
                 if (jsonResponse.getString("result").equals("fail")) {
@@ -40,11 +40,11 @@ public class Pin {
         try {
             JSONObject jsonRequest = new JSONObject();
 
-            jsonRequest.put("pin", code);
+            jsonRequest.put("pinNum", code);
             jsonRequest.put("lessonID", lessonID); // or something similar
 
             ServerInteraction serverInteraction = new ServerInteraction();
-            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "setPin");
+            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
 
             if (jsonResponse != null) {
                 if (jsonResponse.getString("result").equals("fail")) {
@@ -62,6 +62,9 @@ public class Pin {
 
     // NOTE: Should this be in here?
     public static Boolean isSignedIn(int lessonID, int userID) {
+        // TODO: implement server side
+
+        /*
         try {
             JSONObject jsonRequest = new JSONObject();
 
@@ -85,5 +88,8 @@ public class Pin {
         }
 
         return null;
+        */
+
+        return false;
     }
 }
