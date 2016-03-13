@@ -29,8 +29,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
-//import java.util.List;
-
 public class LessonActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private Lesson lesson;
     private Register register;
@@ -67,7 +65,8 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
-            if (Pin.getShared().isSignedIn(lesson.getId())) {
+            int userID = 1234;
+            if (Pin.isSignedIn(lesson.getId(), userID)) {
                 Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                 attendanceSignIn.setBackgroundColor(Color.GREEN);
                 attendanceSignIn.setEnabled(false);
@@ -201,23 +200,48 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     public void generateCode(View view) {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
         Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
-        int code = Pin.getShared().generatePin(lesson.getId());
-        //generateCodeBut.setText(String.valueOf(code));
-        //generateCodeBut.setEnabled(false);
-        generateCodeBut.setVisibility(View.GONE);
-        codeTextView.setVisibility(View.VISIBLE);
-        codeTextView.setText(String.valueOf(code));
-
+        Integer code = Pin.generatePin(lesson.getId());
+        if(code == null) {
+            new AlertDialog.Builder(LessonActivity.this)
+                .setMessage("Failed to set pin, please try again.")
+                .setTitle("Attendance")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                }).show();
+        } else {
+            generateCodeBut.setVisibility(View.GONE);
+            codeTextView.setVisibility(View.VISIBLE);
+            codeTextView.setText(String.valueOf(code));
+        }
     }
 
     public void studentSignIn(View view) {
-        final EditText code = new EditText(this);
-        code.setInputType(InputType.TYPE_CLASS_NUMBER);
+        final EditText codeText = new EditText(this);
+        codeText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         DialogInterface.OnClickListener signInListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!Pin.getShared().checkPin(Integer.parseInt(code.getText().toString()), lesson.getId())) {
+                int pin = Integer.parseInt(codeText.getText().toString());
+                int lessonID = lesson.getId();
+
+                Boolean pinCorrect = Pin.checkPin(pin, lessonID);
+
+                if(pinCorrect == null) {
+                    new AlertDialog.Builder(LessonActivity.this)
+                            .setMessage("Failed to check pin, please try again.")
+                            .setTitle("Attendance")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            }).show();
+
+                } else if(pinCorrect == false) {
                     new AlertDialog.Builder(LessonActivity.this)
                             .setMessage(R.string.attendance_pin_incorrect)
                             .setTitle("Attendance")
@@ -240,7 +264,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage(R.string.attendance_request_pin)
                 .setTitle("Attendance")
-                .setView(code)
+                .setView(codeText)
                 .setPositiveButton(R.string.attendance_sign_in, signInListener)
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override

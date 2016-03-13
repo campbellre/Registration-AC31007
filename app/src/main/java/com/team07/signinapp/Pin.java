@@ -1,42 +1,98 @@
 package com.team07.signinapp;
 
+import android.util.Log;
+
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Pin {
-    private static Pin instance = null;
-
-    public Pin() {
-        // Empty constructor
-    }
-
-    // Singleton?
-    public static Pin getShared() {
-        if(instance == null) {
-            instance = new Pin();
-        }
-        return instance;
-    }
-
     // LessonID?
-    public boolean checkPin(int pin, int lessonID) {
-        // TODO: Use database
-        int correctPin = 1111;
-        return pin == correctPin;
-    }
+    public static Boolean checkPin(int pin, int lessonID) {
+        try {
+            JSONObject jsonRequest = new JSONObject();
 
-    public int generatePin(int lessonID) {
-        // TODO: Submit to database
-        int code = 0;
-        while(code < 1000){
-            code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+            jsonRequest.put("pinNum", pin);
+            jsonRequest.put("lessonID", lessonID); // or something similar
+
+            ServerInteraction serverInteraction = new ServerInteraction();
+            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/student");
+
+            if (jsonResponse != null) {
+                Log.i("TAG", jsonResponse.toString());
+                Log.i("TAG", jsonResponse.getString("pinState"));
+                if (!jsonResponse.getString("pinState").equals("Succeeded")) {
+                    return false;
+                }
+
+                return true;
+            }
+        } catch(JSONException e) {
+            // drop through
         }
-        return code;
+
+        return null;
     }
 
-    //NOTE: Should this be in here?
-    public boolean isSignedIn(int lessonID) {
-        // TODO: Check against database
-        // Will be signed in randomly
-        return RandomStringUtils.random(1, "01").equals("1");
+    public static Integer generatePin(int lessonID) {
+        int code = 0;
+        while(code < 1000)
+            code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+
+        try {
+            JSONObject jsonRequest = new JSONObject();
+
+            jsonRequest.put("pinNum", code);
+            jsonRequest.put("lessonID", lessonID); // or something similar
+
+            ServerInteraction serverInteraction = new ServerInteraction();
+            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
+
+            if (jsonResponse != null) {
+                // FIX: possibly checking for wrong value
+                if (!jsonResponse.getString("pinState").equals("PinIsSet")) {
+                    return null;
+                }
+
+                return code;
+            }
+        } catch (JSONException e) {
+            // drop through
+        }
+
+        return null;
+    }
+
+    // NOTE: Should this be in here?
+    public static Boolean isSignedIn(int lessonID, int userID) {
+        // TODO: implement server side
+
+        /*
+        try {
+            JSONObject jsonRequest = new JSONObject();
+
+            jsonRequest.put("userID", userID);
+            jsonRequest.put("lessonID", lessonID); // or something similar
+
+            ServerInteraction serverInteraction = new ServerInteraction();
+            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "isSignedIn");
+
+            if (jsonResponse != null) {
+                if (jsonResponse.getString("result").equals("fail")) {
+                    return null;
+                } else if (jsonResponse.getString("result").equals("no")) {
+                    return false;
+                }
+
+                return true;
+            }
+        } catch (JSONException e) {
+            // drop through
+        }
+
+        return null;
+        */
+
+        return false;
     }
 }
