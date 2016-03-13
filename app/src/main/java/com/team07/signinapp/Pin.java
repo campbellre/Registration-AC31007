@@ -1,5 +1,7 @@
 package com.team07.signinapp;
 
+import android.util.Log;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,21 +12,21 @@ public class Pin {
         try {
             JSONObject jsonRequest = new JSONObject();
 
-            jsonRequest.put("pin", pin);
+            jsonRequest.put("pinNum", pin);
             jsonRequest.put("lessonID", lessonID); // or something similar
 
             ServerInteraction serverInteraction = new ServerInteraction();
             JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/student");
 
             if (jsonResponse != null) {
-                if (jsonResponse.getString("result").equals("fail")) {
+                Log.i("TAG", jsonResponse.toString());
+                Log.i("TAG", jsonResponse.getString("pinState"));
+                if (!jsonResponse.getString("pinState").equals("Succeeded")) {
                     return false;
                 }
 
                 return true;
             }
-
-            return false;
         } catch(JSONException e) {
             // drop through
         }
@@ -47,7 +49,8 @@ public class Pin {
             JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
 
             if (jsonResponse != null) {
-                if (jsonResponse.getString("result").equals("fail")) {
+                // FIX: possibly checking for wrong value
+                if (!jsonResponse.getString("pinState").equals("PinIsSet")) {
                     return null;
                 }
 
