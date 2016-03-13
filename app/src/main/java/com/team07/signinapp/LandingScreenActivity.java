@@ -2,9 +2,12 @@ package com.team07.signinapp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -27,7 +30,7 @@ public class LandingScreenActivity extends AppCompatActivity{
 
     // Current list of lessons to be used for testing.
     // Later implement fetch from database
-    private List<Lesson> lessons;
+    private ArrayList<Lesson> lessons;
     private String username = null;
     //private Login.UserType userType = null;
     private User user = null;
@@ -36,9 +39,14 @@ public class LandingScreenActivity extends AppCompatActivity{
         lessons = new ArrayList<>();
 
         // TODO: Pull lesson information from database
-        Date date = new Date();
+        int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
         for(int i=0; i<10; i++){
-            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), date));
+            // Set date to be within five days of today
+            int closeDay = dayOfYear - 5 + (int)Math.round(Math.random() * 10);
+            GregorianCalendar day = new GregorianCalendar();
+            day.set(Calendar.YEAR, 2016);
+            day.set(Calendar.DAY_OF_YEAR, closeDay);
+            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), day.getTime()));
         }
     }
 
@@ -52,8 +60,6 @@ public class LandingScreenActivity extends AppCompatActivity{
         setupToolbar();
         setupDrawer();
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -134,6 +140,7 @@ public class LandingScreenActivity extends AppCompatActivity{
                 public boolean onMenuItemClick(MenuItem item) {
                     // TODO: Remove user login data if stored in future
                     Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+                    intent.putExtra("Lessons", LandingScreenActivity.this.lessons);
                     intent.putExtra("User", user);
                     startActivity(intent);
                     return true;

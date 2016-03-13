@@ -34,7 +34,8 @@ captures/
 local.properties
 .idea/workspace.xml
 .idea/libraries
-.idea/
+.idea
 
+/.idea
 /.idea/libraries
 /gradle.properties
