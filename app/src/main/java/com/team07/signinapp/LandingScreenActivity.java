@@ -133,6 +133,7 @@ public class LandingScreenActivity extends AppCompatActivity{
                 ((user.isStaff()) ? "Staff" : "Student")
                 + ")");
 
+        navigationView.getMenu().findItem(R.id.navigation_schedule).setChecked(true);
         // Add onClick event to drawer Attendance button
         navigationView.getMenu().findItem(R.id.navigation_attendance).setOnMenuItemClickListener(
             new MenuItem.OnMenuItemClickListener() {

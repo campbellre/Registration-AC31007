@@ -123,6 +123,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 ((user.isStaff()) ? "Staff" : "Student")
                 + ")");
 
+        navigationView.getMenu().findItem(R.id.navigation_attendance).setChecked(true);
         // Add onClick event to drawer Schedule button
         navigationView.getMenu().findItem(R.id.navigation_schedule).setOnMenuItemClickListener(
                 new MenuItem.OnMenuItemClickListener() {
