@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-//TODO: Implement Fully
 public class Register implements Serializable{
     private static long serialVersionUID = 1L;
     private List<String> students;

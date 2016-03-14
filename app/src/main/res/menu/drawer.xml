@@ -11,12 +11,6 @@
             android:id="@+id/navigation_attendance"
             android:icon="@drawable/ic_view_list_white_24dp"
             android:title="@string/attendance_title" />
-        <item
-            android:icon="@drawable/ic_menu_white_24dp"
-            android:title="Other Function" />
-        <item
-            android:icon="@drawable/ic_menu_white_24dp"
-            android:title="Other Function" />
     </group>
 
     <group android:id="@+id/menu_settings_group">

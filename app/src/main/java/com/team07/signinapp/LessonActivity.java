@@ -251,9 +251,14 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     //TODO:fetch details from database
     private void updateRegister()
     {
-        currentStudents +=1;
-        TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
-        registerCurrentStudents.setText(Integer.toString(currentStudents));
+        if(currentStudents<totalStudents) {
+            currentStudents += 1;
+            TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
+            registerCurrentStudents.setText(Integer.toString(currentStudents));
+        }
+        else{
+            stopUpdateRunnable();
+        }
     }
 
     public void studentSignIn(View view) {
