@@ -11,6 +11,7 @@ import android.widget.ListView;
 public class RegisterActivity extends AppCompatActivity {
     private Register register;
     private ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

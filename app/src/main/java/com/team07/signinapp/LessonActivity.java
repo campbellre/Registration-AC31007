@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,9 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private Login.UserType userType;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
+
+    private Handler checkRegisterUpdate;
+    private int registerUpdateInterval = 5000;
 
 
     //TODO:Implement Register Class Fully
@@ -77,6 +81,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             register.fetchRegister(lesson.getId());
             totalStudents = register.getStudents().size();
             setRegisterCounter();
+            startUpdateRunnable();
         }
     }
 
@@ -129,6 +134,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         switch (id) {
             case android.R.id.home:
                 //Toolbar button has been pressed. End this activity. Defaults to parent activity
+                stopUpdateRunnable();
                 this.finish();
                 overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
                 return true;
@@ -156,6 +162,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void setVariables() {
+        checkRegisterUpdate = new Handler();
         register = new Register();
         if (lesson != null) {
             lessonName = lesson.getName();
@@ -216,6 +223,37 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             codeTextView.setVisibility(View.VISIBLE);
             codeTextView.setText(String.valueOf(code));
         }
+    }
+
+    private void startUpdateRunnable()
+    {
+        getUpdatedRegister.run();
+    }
+
+    private void stopUpdateRunnable()
+    {
+        checkRegisterUpdate.removeCallbacks(getUpdatedRegister);
+    }
+
+    Runnable getUpdatedRegister = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                updateRegister();
+            } finally {
+                // 100% guarantee that this always happens, even if
+                // your update method throws an exception
+                checkRegisterUpdate.postDelayed(getUpdatedRegister, registerUpdateInterval);
+            }
+        }
+    };
+
+    //TODO:fetch details from database
+    private void updateRegister()
+    {
+        currentStudents +=1;
+        TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
+        registerCurrentStudents.setText(Integer.toString(currentStudents));
     }
 
     public void studentSignIn(View view) {
@@ -330,6 +368,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     //Override for custom transition animation when android back button is pressed
     @Override
     public void onBackPressed() {
+        stopUpdateRunnable();
         this.finish();
         overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
     }
