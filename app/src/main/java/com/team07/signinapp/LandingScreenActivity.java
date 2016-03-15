@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +23,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 public class LandingScreenActivity extends AppCompatActivity{
     private DrawerLayout drawer_menu_layout;
     private RecyclerView scheduleView;
@@ -31,13 +34,31 @@ public class LandingScreenActivity extends AppCompatActivity{
     // Current list of lessons to be used for testing.
     // Later implement fetch from database
     private ArrayList<Lesson> lessons;
+    private LessonInterface lessonInterface = new LessonInterface();
     private String username = null;
     //private Login.UserType userType = null;
     private User user = null;
 
-    private void initializeData() {
-        lessons = new ArrayList<>();
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_landing_screen);
+        receiveUserData();
+        fetchLessons();
+        initializeData();
+        setupScheduleView();
+        setupToolbar();
+        setupDrawer();
+    }
+
+    private void fetchLessons()
+    {
+        lessonInterface.fetchLessons(user.getId(), user.getUserType());
+        //lessons = lessonInterface.getLessons();
+    }
+
+    private void initializeData() {
         // TODO: Pull lesson information from database
         int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
         for(int i=0; i<10; i++){
@@ -46,19 +67,7 @@ public class LandingScreenActivity extends AppCompatActivity{
             GregorianCalendar day = new GregorianCalendar();
             day.set(Calendar.YEAR, 2016);
             day.set(Calendar.DAY_OF_YEAR, closeDay);
-            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), day.getTime(), "Type" + Integer.toString(i) ));
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing_screen);
-        initializeData();
-        receiveUserData();
-        setupScheduleView();
-        setupToolbar();
-        setupDrawer();
     }
 
     @Override
