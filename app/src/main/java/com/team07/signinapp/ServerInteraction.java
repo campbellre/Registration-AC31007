@@ -2,8 +2,10 @@ package com.team07.signinapp;
 
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -103,14 +105,14 @@ public class ServerInteraction {
         return value;
     }
 
-    public JSONObject postAndGetJson(final JSONObject jsonObject, final String ext) {
-        class PostAndGetJson extends AsyncTask<Object, Void, JSONObject> {
+    public String postAndGetJson(final JSONObject jsonObject, final String ext) {
+        class PostAndGetJson extends AsyncTask<Object, Void, String> {
 
             @Override
-            protected JSONObject doInBackground(Object... params) {
+            protected String doInBackground(Object... params) {
                 urlString = urlString.concat((String)params[1]);
                 URL url = null;
-                JSONObject jsonReturn = null;
+                JSONArray jsonReturn = new JSONArray();
                 try {
                     url = new URL(urlString);
                 } catch (MalformedURLException e) {
@@ -154,35 +156,39 @@ public class ServerInteraction {
                         stringBuilder.append(jsonData);
                     }
 
-                    jsonReturn= new JSONObject(stringBuilder.toString());
-                    return jsonReturn;
+                    return stringBuilder.toString();
+
+                   //jsonReturn.put(stringBuilder.toString());
+
+                   //return jsonReturn;
 
                     //bufferedWriter.write(jsonObject.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
 
-                return jsonReturn;
+                return "";
             }
 
 
         }
 
-        JSONObject returnJson = null;
+        //JSONArray returnJson = new JSONArray();
+        String returnString = "";
 
         PostAndGetJson pj = new PostAndGetJson();
         try {
-            returnJson = pj.execute(jsonObject, ext).get();
+
+            returnString = pj.execute(jsonObject, ext).get();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        return returnJson;
+        return returnString;
     }
 
     public JSONObject getJson(String ext) {

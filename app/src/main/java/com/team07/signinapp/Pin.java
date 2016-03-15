@@ -3,6 +3,7 @@ package com.team07.signinapp;
 import android.util.Log;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,7 +17,9 @@ public class Pin {
             jsonRequest.put("lessonID", lessonID); // or something similar
 
             ServerInteraction serverInteraction = new ServerInteraction();
-            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/student");
+            String JsonData = serverInteraction.postAndGetJson(jsonRequest, "pin/student");
+
+            JSONObject jsonResponse = new JSONObject(JsonData);
 
             if (jsonResponse != null) {
                 Log.i("TAG", jsonResponse.toString());
@@ -46,7 +49,8 @@ public class Pin {
             jsonRequest.put("lessonID", lessonID); // or something similar
 
             ServerInteraction serverInteraction = new ServerInteraction();
-            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
+            String JsonData = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
+            JSONObject jsonResponse = new JSONObject(JsonData);
 
             if (jsonResponse != null) {
                 // FIX: possibly checking for wrong value

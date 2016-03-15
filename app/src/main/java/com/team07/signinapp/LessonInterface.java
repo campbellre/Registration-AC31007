@@ -2,6 +2,7 @@ package com.team07.signinapp;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,16 +33,19 @@ public class LessonInterface {
             jsonRequest.put("userId", id);
 
             ServerInteraction serverInteraction = new ServerInteraction();
-            JSONObject jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "lessons/student");
-//            switch(userType)
-//            {
-//                case 0:
-//                    jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "lessons/student");
-//                    break;
-//                case 1:
-//                    jsonResponse = serverInteraction.postAndGetJson(jsonRequest, "lessons/staff");
-//                    break;
-//            }
+            JSONArray jsonResponse = null;
+            String JsonData = "";
+            switch(userType)
+            {
+                case 0:
+                    JsonData = serverInteraction.postAndGetJson(jsonRequest, "lessons/student");
+                    jsonResponse = new JSONArray(JsonData);
+                    break;
+                case 1:
+                    JsonData = serverInteraction.postAndGetJson(jsonRequest, "lessons/staff");
+                    jsonResponse = new JSONArray(JsonData);
+                    break;
+            }
             if (jsonResponse != null) {
                 System.out.println(jsonResponse.toString());
                 return true;
