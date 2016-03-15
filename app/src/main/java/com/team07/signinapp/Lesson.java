@@ -13,12 +13,14 @@ public class Lesson implements Serializable {
     private String name;
     private Date dateTime;
     private String location;
+    private String type;
 
-    public Lesson(int id, String name, String location, Date dateTime) {
+    public Lesson(int id, String name, String location, Date dateTime, String type) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.dateTime = dateTime;
+        this.type = type;
 
         this.dateFormatDate = new SimpleDateFormat("dd/yyyy/MM");
         this.dateFormatTime = new SimpleDateFormat("kk:mm");
@@ -63,4 +65,7 @@ public class Lesson implements Serializable {
     public String getLocation(){
         return this.location;
     }
+
+    public void setType(String type) { this.type = type; }
+    public String getType() { return this.type; }
 }

@@ -46,7 +46,7 @@ public class LandingScreenActivity extends AppCompatActivity{
             GregorianCalendar day = new GregorianCalendar();
             day.set(Calendar.YEAR, 2016);
             day.set(Calendar.DAY_OF_YEAR, closeDay);
-            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), day.getTime()));
+            lessons.add(new Lesson(i, "Name" + Integer.toString(i), "Place" + Integer.toString(i), day.getTime(), "Type" + Integer.toString(i) ));
         }
     }
 

@@ -10,11 +10,13 @@ public class LessonViewHolder extends RecyclerView.ViewHolder {
     public TextView name;
     public TextView location;
     public TextView time;
+    public TextView type;
 
     public LessonViewHolder(View cardView) {
         super(cardView);
         name = (TextView)cardView.findViewById(R.id.LessonCardName);
         location = (TextView)cardView.findViewById(R.id.LessonCardLocation);
         time = (TextView)cardView.findViewById(R.id.LessonCardTime);
+        type = (TextView)cardView.findViewById(R.id.LessonCardType);
     }
 }

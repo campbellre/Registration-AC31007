@@ -37,6 +37,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private String lessonTime;
     private String lessonLocation;
     private String lessonDate;
+    private String lessonType;
     private Login.UserType userType;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
@@ -169,6 +170,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             lessonLocation = lesson.getLocation();
             lessonTime = lesson.getTimeString();
             lessonDate = lesson.getDateString();
+            lessonType = lesson.getType();
         }
     }
 
@@ -181,6 +183,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
         lessonDateView.setText(lessonDate);
+
     }
 
     private void setRegisterCounter()
