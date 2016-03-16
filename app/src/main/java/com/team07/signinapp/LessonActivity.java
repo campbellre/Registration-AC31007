@@ -46,8 +46,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private int registerUpdateInterval = 5000;
 
 
-    //TODO:Implement Register Class Fully
-    //private List<String> students;
     private int totalStudents;
     private int currentStudents = 0;
 

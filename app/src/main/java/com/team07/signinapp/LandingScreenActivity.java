@@ -55,11 +55,10 @@ public class LandingScreenActivity extends AppCompatActivity{
     private void fetchLessons()
     {
         lessonInterface.fetchLessons(user.getId(), user.getUserType());
-        //lessons = lessonInterface.getLessons();
+        lessons = lessonInterface.getLessons();
     }
 
     private void initializeData() {
-        // TODO: Pull lesson information from database
         int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
         for(int i=0; i<10; i++){
             // Set date to be within five days of today

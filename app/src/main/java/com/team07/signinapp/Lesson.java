@@ -1,6 +1,7 @@
 package com.team07.signinapp;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,11 +9,11 @@ public class Lesson implements Serializable {
     private static long serialVersionUID = 0L;
     private SimpleDateFormat dateFormatDate;
     private SimpleDateFormat dateFormatTime;
-
+    //TODO:Add variables for all data contained withing the JSON
     private int id;
     private String name;
-    private Date dateTime;
     private String location;
+    private Date dateTime;
     private String type;
 
     public Lesson(int id, String name, String location, Date dateTime, String type) {

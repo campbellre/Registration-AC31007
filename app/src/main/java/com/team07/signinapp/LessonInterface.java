@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Lewis on 3/15/2016.
@@ -48,7 +49,18 @@ public class LessonInterface {
             }
             if (jsonResponse != null) {
                 System.out.println(jsonResponse.toString());
-                return true;
+                for(int i=0; i<jsonResponse.length(); i++)
+                {
+                    JSONObject lesson = jsonResponse.getJSONObject(i);
+                    //TODO: Set all objects contained within JSON
+                    int lessonId = lesson.getInt("lessonId");
+                    String name = lesson.getString("module");
+                    Date dateTime = new Date();
+                    String location = lesson.getString("building");
+                    String type = lesson.getString("type");
+
+                    lessons.add(new Lesson(lessonId, name, location, dateTime, type));
+                }
             }
         }
         catch(JSONException e) {
