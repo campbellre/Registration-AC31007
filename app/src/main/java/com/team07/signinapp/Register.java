@@ -48,7 +48,7 @@ public class Register implements Serializable{
                 students.add("Ted");
                 break;
             default:
-                students.add("CBA WRITING MORE CASES");
+                students.add("ExampleData");
                 break;
         }
     }
