@@ -17,6 +17,7 @@
     <string name="lesson_location_label_text">Location</string>
     <string name="lesson_date_label_text">Date</string>
     <string name="lesson_time_label_text">Time</string>
+    <string name="lesson_type_label_text">Type</string>
 
     //Strings for Pin dialog boxes
     <string name="attendance_sign_in">Sign In</string>

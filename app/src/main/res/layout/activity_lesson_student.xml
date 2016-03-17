@@ -10,149 +10,197 @@
         android:background="?attr/colorPrimary"
         app:theme="@style/toolBarOverrideStyle"/>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="?attr/colorPrimary"
-        android:text="Lesson Name"
-        android:textColor="#ffffff"
-        android:textSize="30dp"
-        android:gravity="left|bottom"
-        android:paddingLeft="20dp"
-        android:paddingBottom="20dp"
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/LessonTitle" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Date"
-        android:id="@+id/LessonDateLabel"
-        android:layout_below="@+id/LessonTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="43dp"
-        android:textSize="20sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="26/02/16"
-        android:id="@+id/LessonDate"
-        android:layout_below="@+id/LessonDateLabel"
-        android:layout_alignLeft="@+id/LessonDateLabel"
-        android:layout_alignStart="@+id/LessonDateLabel"
-        android:textSize="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?attr/colorPrimary"
+                android:text="Lesson Name"
+                android:textColor="#ffffff"
+                android:textSize="30dp"
+                android:gravity="left|bottom"
+                android:paddingLeft="20dp"
+                android:paddingBottom="20dp"
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/LessonTitle" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Location"
-        android:id="@+id/LessonLocationLabel"
-        android:textSize="20sp"
-        android:layout_below="@+id/LessonDate"
-        android:layout_alignLeft="@+id/LessonDateLabel"
-        android:layout_alignStart="@+id/LessonDateLabel"
-        android:layout_marginTop="30dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Date"
+                android:id="@+id/LessonDateLabel"
+                android:layout_below="@+id/LessonTitle"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="73dp"
+                android:layout_marginTop="43dp"
+                android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Dalhousie"
-        android:id="@+id/LessonLocation"
-        android:layout_below="@+id/LessonLocationLabel"
-        android:layout_alignLeft="@+id/LessonLocationLabel"
-        android:layout_alignStart="@+id/LessonLocationLabel"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
-        android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="26/02/16"
+                android:id="@+id/LessonDate"
+                android:layout_below="@+id/LessonDateLabel"
+                android:layout_alignLeft="@+id/LessonDateLabel"
+                android:layout_alignStart="@+id/LessonDateLabel"
+                android:textSize="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Time"
-        android:id="@+id/LessonTimeLabel"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/LessonLocation"
-        android:layout_alignLeft="@+id/LessonLocationLabel"
-        android:layout_alignStart="@+id/LessonLocationLabel"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Location"
+                android:id="@+id/LessonLocationLabel"
+                android:textSize="20sp"
+                android:layout_below="@+id/LessonDate"
+                android:layout_alignLeft="@+id/LessonDateLabel"
+                android:layout_alignStart="@+id/LessonDateLabel"
+                android:layout_marginTop="30dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="12:00"
-        android:id="@+id/LessonTime"
-        android:layout_below="@+id/LessonTimeLabel"
-        android:layout_alignLeft="@+id/LessonTimeLabel"
-        android:layout_alignStart="@+id/LessonTimeLabel"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
-        android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Dalhousie"
+                android:id="@+id/LessonLocation"
+                android:layout_below="@+id/LessonLocationLabel"
+                android:layout_alignLeft="@+id/LessonLocationLabel"
+                android:layout_alignStart="@+id/LessonLocationLabel"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="20dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dateImage"
-        android:src="@drawable/ic_event_white_24dp"
-        android:layout_alignTop="@+id/LessonDateLabel"
-        android:layout_toLeftOf="@+id/LessonDate"
-        android:layout_toStartOf="@+id/LessonDate"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:tint="#000000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Time"
+                android:id="@+id/LessonTimeLabel"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/LessonLocation"
+                android:layout_alignLeft="@+id/LessonLocationLabel"
+                android:layout_alignStart="@+id/LessonLocationLabel"
+                android:textSize="20sp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/locationImage"
-        android:layout_alignTop="@+id/LessonLocationLabel"
-        android:layout_alignLeft="@+id/dateImage"
-        android:layout_alignStart="@+id/dateImage"
-        android:src="@drawable/ic_place_white_24dp"
-        android:tint="#000000"
-        android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="12:00"
+                android:id="@+id/LessonTime"
+                android:layout_below="@+id/LessonTimeLabel"
+                android:layout_alignLeft="@+id/LessonTimeLabel"
+                android:layout_alignStart="@+id/LessonTimeLabel"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="20dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignTop="@+id/LessonTimeLabel"
-        android:layout_alignLeft="@+id/locationImage"
-        android:layout_alignStart="@+id/locationImage"
-        android:layout_marginTop="5dp"
-        android:tint="#000000"
-        android:src="@drawable/ic_access_time_white_24dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lesson_type_label_text"
+                android:id="@+id/LessonTypeLabel"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/LessonTime"
+                android:layout_alignLeft="@+id/LessonTimeLabel"
+                android:layout_alignStart="@+id/LessonTimeLabel"
+                android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/codeText"
-        android:layout_below="@+id/generateCode"
-        android:layout_alignRight="@+id/generateCode"
-        android:layout_alignEnd="@+id/generateCode" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="LessonTypePlaceholder"
+                android:id="@+id/LessonType"
+                android:layout_below="@+id/LessonTypeLabel"
+                android:layout_alignLeft="@+id/LessonTypeLabel"
+                android:layout_alignStart="@+id/LessonTypeLabel"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:id="@+id/attendanceSignIn"
-        android:layout_below="@+id/LessonTime"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_marginTop="32dp"
-        android:contextClickable="false"
-        android:onClick="studentSignIn" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateImage"
+                android:src="@drawable/ic_event_white_24dp"
+                android:layout_alignTop="@+id/LessonDateLabel"
+                android:layout_toLeftOf="@+id/LessonDate"
+                android:layout_toStartOf="@+id/LessonDate"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:tint="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationImage"
+                android:layout_alignTop="@+id/LessonLocationLabel"
+                android:layout_alignLeft="@+id/dateImage"
+                android:layout_alignStart="@+id/dateImage"
+                android:src="@drawable/ic_place_white_24dp"
+                android:tint="#000000"
+                android:layout_marginTop="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_alignTop="@+id/LessonTimeLabel"
+                android:layout_alignLeft="@+id/locationImage"
+                android:layout_alignStart="@+id/locationImage"
+                android:layout_marginTop="5dp"
+                android:tint="#000000"
+                android:src="@drawable/ic_access_time_white_24dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_alignTop="@+id/LessonTypeLabel"
+                android:layout_alignLeft="@+id/locationImage"
+                android:layout_alignStart="@+id/locationImage"
+                android:layout_marginTop="5dp"
+                android:tint="#000000"
+                android:src="@drawable/ic_blocks_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/codeText"
+                android:layout_below="@+id/LessonType"
+                android:layout_alignRight="@+id/LessonType"
+                android:layout_alignEnd="@+id/LessonType" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:id="@+id/attendanceSignIn"
+                android:layout_below="@+id/LessonType"
+                android:layout_alignLeft="@+id/LessonTypeLabel"
+                android:layout_alignStart="@+id/LessonTypeLabel"
+                android:layout_marginTop="32dp"
+                android:contextClickable="false"
+                android:onClick="studentSignIn" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

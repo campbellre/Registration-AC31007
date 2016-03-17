@@ -177,11 +177,12 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         TextView lessonLocationView = (TextView) findViewById(R.id.LessonLocation);
         TextView lessonTimeView = (TextView) findViewById(R.id.LessonTime);
         TextView lessonDateView = (TextView) findViewById(R.id.LessonDate);
+        TextView lessonTypeView = (TextView) findViewById(R.id.LessonType);
         lessonTitleView.setText(lessonName);
         lessonLocationView.setText(lessonLocation);
         lessonTimeView.setText(lessonTime);
         lessonDateView.setText(lessonDate);
-
+        lessonTypeView.setText(lessonType);
     }
 
     private void setRegisterCounter()
