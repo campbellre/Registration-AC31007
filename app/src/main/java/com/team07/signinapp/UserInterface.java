@@ -47,6 +47,7 @@ public class UserInterface{
             }
 
             this.setUser.setUserType(jsonToParse.getInt("userType"));
+            this.setUser.setId(jsonToParse.getInt("idnumber"));
             return true;
         }
 

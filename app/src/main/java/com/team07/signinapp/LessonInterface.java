@@ -46,7 +46,7 @@ public class LessonInterface {
                     jsonResponse = new JSONArray(JsonData);
                     break;
                 case 1:
-                    JsonData = serverInteraction.postAndGetJson(jsonRequest, "lessons/staff");
+                    JsonData = serverInteraction.postAndGetJson(jsonRequest, "lessons/lecturer");
                     jsonResponse = new JSONArray(JsonData);
                     break;
             }
@@ -60,13 +60,21 @@ public class LessonInterface {
                     String name = lesson.getString("module");
                     Date dateTime = new Date();
                     String building = lesson.getString("building");
-                    String type = lesson.getString("type");
-                    String lecturerName = lesson.getString("lecturerName");
+                    String type = lesson.getString("lessonType");
                     Date startTime = new Date();
                     Date endTime = new Date();
-                    String room = lesson.getString("Room");
+                    String room = lesson.getString("room");
 
-                    lessons.add(new Lesson(lessonId, name, building, dateTime, type, lecturerName, startTime, endTime, room));
+                    if(userType == 0)
+                    {
+                        String lecturerName = lesson.getString("lecturerName");
+                        lessons.add(new Lesson(lessonId, name, building, dateTime, type, lecturerName, startTime, endTime, room));
+                    }
+                    else
+                    {
+                        lessons.add(new Lesson(lessonId, name, building, dateTime, type, startTime, endTime, room));
+                    }
+
                 }
             }
         }

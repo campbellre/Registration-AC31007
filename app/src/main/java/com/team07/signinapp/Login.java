@@ -45,7 +45,7 @@ public class Login {
         if(username.equals("a") && password.equals("a"))
         {
             u.setUserType(1);
-            u.setId(1);
+            u.setId(2);
             return true;
         }
 

@@ -35,6 +35,20 @@ public class Lesson implements Serializable {
         this.dateFormatTime = new SimpleDateFormat("kk:mm");
     }
 
+    public Lesson(int id, String name, String building, Date dateTime, String type, Date startTime, Date endTime, String room) {
+        this.id = id;
+        this.name = name;
+        this.building = building;
+        this.dateTime = dateTime;
+        this.type = type;
+        this.startTime = startTime;
+        this.endTime= endTime;
+        this.room = room;
+
+        this.dateFormatDate = new SimpleDateFormat("dd/yyyy/MM");
+        this.dateFormatTime = new SimpleDateFormat("kk:mm");
+    }
+
     public void setId(int id){
         this.id = id;
     }

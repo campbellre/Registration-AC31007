@@ -94,6 +94,7 @@ public class User implements Parcelable{
             this.username = convertFrom.getString("username");
             this.password = convertFrom.getString("password");
             this.userType = convertFrom.getInt("userType");
+            this.id = convertFrom.getInt("idnumber");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -107,6 +108,7 @@ public class User implements Parcelable{
             convertTo.put("username", this.username);
             convertTo.put("password", this.password);
             convertTo.put("userType", this.userType);
+            convertTo.put("idnumber", this.id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
