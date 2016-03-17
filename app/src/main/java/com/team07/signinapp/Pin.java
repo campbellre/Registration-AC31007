@@ -34,10 +34,16 @@ public class Pin {
         return null;
     }
 
-    public static Integer generatePin(int lessonID) {
+    public static int createPinValue(){
         int code = 0;
-        while(code < 1000)
+        while(code < 1000) {
             code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        }
+        return code;
+    }
+
+    public static Integer generatePin(int lessonID) {
+        int code = createPinValue();
 
         try {
             JSONObject jsonRequest = new JSONObject();

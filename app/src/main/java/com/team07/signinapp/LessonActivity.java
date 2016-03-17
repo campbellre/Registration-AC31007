@@ -204,6 +204,9 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
+    // TODO: Instead of hiding button when pressed, check whether pin for this lesson is currently
+    // TODO: in the database and hide the button if so. This means that pressing back and entering
+    // TODO: the lesson view again will not allow generation of a new pin.
     public void generateCode(View view) {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
         Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
