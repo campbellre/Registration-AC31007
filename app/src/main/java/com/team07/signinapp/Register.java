@@ -1,13 +1,8 @@
 package com.team07.signinapp;
 
-import android.support.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Register implements Serializable{
     private static long serialVersionUID = 1L;

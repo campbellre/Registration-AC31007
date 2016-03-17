@@ -2,9 +2,7 @@ package com.team07.signinapp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * Created by Ryan on 25/02/2016.

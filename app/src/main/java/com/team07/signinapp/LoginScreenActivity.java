@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.Serializable;
-
 public class LoginScreenActivity extends AppCompatActivity {
     private Login login;
 
