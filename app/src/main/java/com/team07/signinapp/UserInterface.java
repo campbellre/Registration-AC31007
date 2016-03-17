@@ -1,5 +1,6 @@
 package com.team07.signinapp;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -34,7 +35,10 @@ public class UserInterface{
 
         ServerInteraction serverInteraction = new ServerInteraction();
 
-        JSONObject jsonToParse = serverInteraction.postAndGetJson(jsonObject, "login");
+        //JSONArray jsonArrayToParse;
+        String JsonString = serverInteraction.postAndGetJson(jsonObject, "login");
+
+        JSONObject jsonToParse = new JSONObject(JsonString);
 
         if(jsonToParse != null)
         {

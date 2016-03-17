@@ -13,6 +13,7 @@ public class User implements Parcelable{
 
     private String username;
     private String password;
+    private int id;
 
     // Weirdness means 1 is staff, 0 is student
     private int userType;
@@ -24,6 +25,7 @@ public class User implements Parcelable{
         username = in.readString();
         password = in.readString();
         userType = in.readInt();
+        id = in.readInt();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -38,7 +40,7 @@ public class User implements Parcelable{
         }
     };
 
-    private int getUserType() {
+    public int getUserType() {
         return userType;
     }
 
@@ -62,6 +64,15 @@ public class User implements Parcelable{
         this.username = username;
     }
 
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public boolean isStaff()
     {
@@ -113,5 +124,6 @@ public class User implements Parcelable{
         dest.writeString(username);
         dest.writeString(password);
         dest.writeInt(userType);
+        dest.writeInt(id);
     }
 }

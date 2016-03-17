@@ -51,6 +51,7 @@
             android:id="@+id/LessonTimeLabel"
             android:textColor="#ffffff"
             android:textSize="20sp"
+            android:layout_marginTop="39dp"
             android:layout_below="@+id/LessonCardName"
             android:layout_alignLeft="@+id/LessonCardName"
             android:layout_alignStart="@+id/LessonCardName" />
@@ -78,6 +79,18 @@
             android:layout_alignRight="@+id/LessonCardName"
             android:layout_alignEnd="@+id/LessonCardName"
             android:text="LocationPlaceholder" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TypePlaceHolder"
+            android:id="@+id/LessonCardType"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_below="@+id/LessonCardName"
+            android:layout_alignLeft="@+id/LessonCardName"
+            android:layout_alignStart="@+id/LessonCardName" />
 
     </RelativeLayout>
 

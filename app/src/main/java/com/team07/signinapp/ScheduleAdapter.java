@@ -32,6 +32,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
         lessonViewHolder.name.setText(lessons.get(i).getName());
         lessonViewHolder.location.setText(lessons.get(i).getLocation());
         lessonViewHolder.time.setText(lessons.get(i).getTimeString());
+        lessonViewHolder.type.setText(lessons.get(i).getType());
         
         lessonViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
