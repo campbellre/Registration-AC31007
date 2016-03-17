@@ -7,6 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -56,10 +59,14 @@ public class LessonInterface {
                     int lessonId = lesson.getInt("lessonId");
                     String name = lesson.getString("module");
                     Date dateTime = new Date();
-                    String location = lesson.getString("building");
+                    String building = lesson.getString("building");
                     String type = lesson.getString("type");
+                    String lecturerName = lesson.getString("lecturerName");
+                    Date startTime = new Date();
+                    Date endTime = new Date();
+                    String room = lesson.getString("Room");
 
-                    lessons.add(new Lesson(lessonId, name, location, dateTime, type));
+                    lessons.add(new Lesson(lessonId, name, building, dateTime, type, lecturerName, startTime, endTime, room));
                 }
             }
         }

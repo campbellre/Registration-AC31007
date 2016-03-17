@@ -12,16 +12,24 @@ public class Lesson implements Serializable {
     //TODO:Add variables for all data contained withing the JSON
     private int id;
     private String name;
-    private String location;
+    private String building;
     private Date dateTime;
     private String type;
+    private String lecturerName;
+    private Date startTime;
+    private Date endTime;
+    private String room;
 
-    public Lesson(int id, String name, String location, Date dateTime, String type) {
+    public Lesson(int id, String name, String building, Date dateTime, String type, String lecturerName, Date startTime, Date endTime, String room) {
         this.id = id;
         this.name = name;
-        this.location = location;
+        this.building = building;
         this.dateTime = dateTime;
         this.type = type;
+        this.lecturerName = lecturerName;
+        this.startTime = startTime;
+        this.endTime= endTime;
+        this.room = room;
 
         this.dateFormatDate = new SimpleDateFormat("dd/yyyy/MM");
         this.dateFormatTime = new SimpleDateFormat("kk:mm");
@@ -59,13 +67,54 @@ public class Lesson implements Serializable {
         return this.name;
     }
 
-    public void setLocation(String location){
-        this.location = location;
+    public void setBuilding(String building){
+        this.building = building;
     }
 
-    public String getLocation(){
-        return this.location;
+    public String getBuilding(){
+        return this.building;
     }
+
+    public void setLecturerName(String lecturerName)
+    {
+        this.lecturerName = lecturerName;
+    }
+
+    public String getLecturerName()
+    {
+        return lecturerName;
+    }
+
+    public void setStartTime(Time startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public Date getStartTime()
+    {
+        return startTime;
+    }
+
+    public void setEndTime(Time endTime)
+    {
+        this.endTime = endTime;
+    }
+
+    public Date getEndTime()
+    {
+        return endTime;
+    }
+
+    public void setRoom(String room)
+    {
+        this.room = room;
+    }
+
+    public String getRoom()
+    {
+        return room;
+    }
+
 
     public void setType(String type) { this.type = type; }
     public String getType() { return this.type; }

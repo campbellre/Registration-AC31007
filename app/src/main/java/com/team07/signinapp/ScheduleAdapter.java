@@ -30,7 +30,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<LessonViewHolder>{
     public void onBindViewHolder(final LessonViewHolder lessonViewHolder, final int i) {
         lessonViewHolder.lesson = lessons.get(i);
         lessonViewHolder.name.setText(lessons.get(i).getName());
-        lessonViewHolder.location.setText(lessons.get(i).getLocation());
+        lessonViewHolder.location.setText(lessons.get(i).getBuilding());
         lessonViewHolder.time.setText(lessons.get(i).getTimeString());
         lessonViewHolder.type.setText(lessons.get(i).getType());
         

@@ -165,7 +165,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         register = new Register();
         if (lesson != null) {
             lessonName = lesson.getName();
-            lessonLocation = lesson.getLocation();
+            lessonLocation = lesson.getBuilding();
             lessonTime = lesson.getTimeString();
             lessonDate = lesson.getDateString();
             lessonType = lesson.getType();
