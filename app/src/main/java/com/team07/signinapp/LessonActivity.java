@@ -212,7 +212,13 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     public void generateCode(View view) {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
         Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
-        Integer code = Pin.generatePin(lesson.getId());
+        Integer code = null;
+        if(lesson.getPinNum() == null) {
+            code = Pin.generatePin(lesson.getId());
+        }
+        else{
+            code = Integer.parseInt(lesson.getPinNum());
+        }
         if(code == null) {
             new AlertDialog.Builder(LessonActivity.this)
                 .setMessage("Failed to set pin, please try again.")

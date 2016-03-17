@@ -72,7 +72,8 @@ public class LessonInterface {
                     }
                     else
                     {
-                        lessons.add(new Lesson(lessonId, name, building, dateTime, type, startTime, endTime, room));
+                        String pinNum = lesson.getJSONObject("pinCode").getString("pinCode");
+                        lessons.add(new Lesson(lessonId, name, building, dateTime, type, startTime, endTime, room, pinNum));
                     }
 
                 }
