@@ -57,11 +57,12 @@ public class LessonInterface {
                     int lessonId = lesson.getInt("lessonId");
                     String name = lesson.getString("module");
                     Date dateTime = new Date();
-                    String building = lesson.getString("building");
+                    String room = lesson.getString("room");
+                    String building = lesson.getString("building") + " " + room;
                     String type = lesson.getString("lessonType");
                     Date startTime = new Date();
                     Date endTime = new Date();
-                    String room = lesson.getString("room");
+
 
                     if (userType == 0) {
                         String lecturerName = lesson.getString("lecturerName");
