@@ -1,5 +1,7 @@
 package com.team07.signinapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -13,8 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +54,24 @@ public class AttendanceActivity extends AppCompatActivity {
         final HashMap<Integer, Integer> lessonsDayCache = new HashMap<>();
 
         calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
+
+        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
+                Date dateDay = date.getDate();
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                String datePicked = df.format(dateDay);
+                new AlertDialog.Builder(AttendanceActivity.this)
+                        .setMessage("Attendance for this day")
+                        .setTitle(datePicked)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        }).show();
+            }
+        });
 
         // NOTE: this will surely lead to insanity
         for(int i=1;i<MAX_LESSONS_IN_DAY;i++) {
