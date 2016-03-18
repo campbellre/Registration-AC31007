@@ -47,13 +47,10 @@ public class Pin {
 
     public static Integer generatePin(int lessonID) {
         int code = createPinValue();
-
         try {
             JSONObject jsonRequest = new JSONObject();
-
-            jsonRequest.put("pinNum", code);
+            jsonRequest.put("pin", code);
             jsonRequest.put("lessonID", lessonID); // or something similar
-
             ServerInteraction serverInteraction = new ServerInteraction();
             String JsonData = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
             JSONObject jsonResponse = new JSONObject(JsonData);
@@ -63,14 +60,13 @@ public class Pin {
                 if (!jsonResponse.getString("pinState").equals("PinIsSet")) {
                     return null;
                 }
-
                 return code;
             }
         } catch (JSONException e) {
             // drop through
         }
-
-        return null;
+        //TODO:Change back to return null
+        return code;
     }
 
     // NOTE: Should this be in here?

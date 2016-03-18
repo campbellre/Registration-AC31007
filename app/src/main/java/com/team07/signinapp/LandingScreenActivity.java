@@ -45,15 +45,23 @@ public class LandingScreenActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
         receiveUserData();
-        fetchLessons();
         initializeData();
-        setupScheduleView();
         setupToolbar();
         setupDrawer();
     }
 
-    private void fetchLessons()
-    {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("THIS IS ON RESUME");
+        fetchLessons();
+        setupScheduleView();
+    }
+
+    private void fetchLessons(){
+        if(lessons!=null){
+            lessons.clear();
+        }
         lessonInterface.fetchLessons(user.getId(), user.getUserType());
         lessons = lessonInterface.getLessons();
     }

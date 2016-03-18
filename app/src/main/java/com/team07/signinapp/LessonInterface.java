@@ -75,7 +75,7 @@ public class LessonInterface {
                         JSONObject pinNum = lesson.getJSONObject("pinCode");
                         int pinNumInt = 0;
                         String pinNumString = pinNum.getString("pinNum");
-                        if(!pinNumString.equals("null")) {
+                        if(!pinNumString.equals("0")) {
                             pinNumInt = Integer.parseInt(pinNum.getString("pinNum"));
                         }
 

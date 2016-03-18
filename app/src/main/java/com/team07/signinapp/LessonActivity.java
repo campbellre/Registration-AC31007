@@ -68,8 +68,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
             // checks if student is already signed in for lesson
             // and updates button to reflect
             // FIX: possibly pass in student id
-            int userID = 1234;
-            if (Pin.isSignedIn(lesson.getId(), userID)) {
+            if (Pin.isSignedIn(lesson.getId(), user.getId())) {
                 Button attendanceSignIn = (Button) findViewById(R.id.attendanceSignIn);
                 attendanceSignIn.setBackgroundColor(Color.GREEN);
                 attendanceSignIn.setEnabled(false);
@@ -215,6 +214,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         int code = lesson.getPinNum();
         if(code == 0){
             code = Pin.generatePin(lesson.getId());
+            lesson.setPinNum(code);
         }
         if(code == 0) {
             new AlertDialog.Builder(LessonActivity.this)

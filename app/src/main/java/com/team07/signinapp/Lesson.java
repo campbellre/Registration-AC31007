@@ -49,6 +49,7 @@ public class Lesson implements Serializable {
 
         this.dateFormatDate = new SimpleDateFormat("dd/yyyy/MM");
         this.dateFormatTime = new SimpleDateFormat("kk:mm");
+        System.out.println(pinNum);
     }
 
     public void setId(int id){
@@ -130,6 +131,11 @@ public class Lesson implements Serializable {
     {
         return room;
     }
+
+    public void setPinNum(int pinNum){
+        this.pinNum = pinNum;
+    }
+
 
     public int getPinNum() {
         return pinNum;
