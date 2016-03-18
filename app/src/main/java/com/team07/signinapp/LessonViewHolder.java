@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,7 +32,7 @@ public class LessonViewHolder extends RecyclerView.ViewHolder {
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         Context cardViewContext = itemView.getContext();
         int colourId;
-        switch(day) {
+        switch (day) {
             case Calendar.MONDAY:
                 colourId = R.color.mondayColour;
                 break;

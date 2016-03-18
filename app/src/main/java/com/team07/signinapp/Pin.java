@@ -3,12 +3,10 @@ package com.team07.signinapp;
 import android.util.Log;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Pin {
-    // LessonID?
     public static Boolean checkPin(int pin, int lessonID) {
         try {
             JSONObject jsonRequest = new JSONObject();
@@ -37,7 +35,7 @@ public class Pin {
         return null;
     }
 
-    public static int createPinValue(){
+    public static int createPinValue() {
         int code = 0;
         while(code < 1000) {
             code = Integer.parseInt(RandomStringUtils.randomNumeric(4));
@@ -47,7 +45,6 @@ public class Pin {
 
     public static Integer generatePin(int lessonID) {
         int code = createPinValue();
-
         try {
             JSONObject jsonRequest = new JSONObject();
 

@@ -45,7 +45,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private Handler checkRegisterUpdate;
     private int registerUpdateInterval = 5000;
 
-
     private int totalStudents;
     private int currentStudents = 0;
 
@@ -54,7 +53,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         receiveUserData();
         setupGoogleApiClient();
         ensureLocationServicesEnabled();
@@ -76,7 +74,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
                 attendanceSignIn.setText("Signed In");
             }
         }
-        if(user.isStaff()){
+        if (user.isStaff()) {
             register.fetchRegister(lesson.getId());
             totalStudents = register.getStudents().size();
             setRegisterCounter();
@@ -97,7 +95,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     protected void ensureLocationServicesEnabled() {
         // Provider not enabled, prompt user to enable it
         System.out.println(isLocationEnabled(getApplicationContext()));
-        if(!isLocationEnabled(getApplicationContext())){
+        if (!isLocationEnabled(getApplicationContext())) {
             finish();
             Toast.makeText(this, "Please turn on high-accuracy location service", Toast.LENGTH_LONG).show();
             Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -117,7 +115,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
                 e.printStackTrace();
             }
             return locationMode == Settings.Secure.LOCATION_MODE_HIGH_ACCURACY;
-        }else{
+        } else {
             locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
             return !TextUtils.isEmpty(locationProviders);
         }
@@ -197,8 +195,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         lessonTypeView.setText(lessonType);
     }
 
-    private void setRegisterCounter()
-    {
+    private void setRegisterCounter(){
         TextView registerCurrentStudents = (TextView) findViewById(R.id.RegisterCurrentStudents);
         TextView registerTotalStudents = (TextView) findViewById(R.id.RegisterTotalStudents);
         registerCurrentStudents.setText(Integer.toString(currentStudents));

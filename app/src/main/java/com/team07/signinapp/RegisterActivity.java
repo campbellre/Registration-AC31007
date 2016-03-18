@@ -39,8 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupToolBar()
-    {
+    private void setupToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -53,31 +52,27 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void receiveExtraData()
-    {
+    private void receiveExtraData() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             register = (Register) getIntent().getSerializableExtra("Register");
         }
     }
 
-    private void displayList()
-    {
+    private void displayList() {
         listView = (ListView) findViewById(R.id.registerList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, register.getStudents());
         listView.setAdapter(adapter);
 
 //        TextView registerList = (TextView) findViewById(R.id.RegisterList);
-//        for(String student: register.getStudents())
-//        {
+//        for(String student: register.getStudents()) {
 //            registerList.append("\n" + student);
 //        }
     }
 
     //Override for custom transition animation when android back button is pressed
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         this.finish();
         overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
     }

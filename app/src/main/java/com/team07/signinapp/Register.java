@@ -18,11 +18,9 @@ public class Register implements Serializable{
         return students;
     }
 
-    public void fetchRegister(int LessonID)
-    {
+    public void fetchRegister(int LessonID) {
         //TODO: Fetch correct register from database;
-        switch (LessonID)
-        {
+        switch (LessonID) {
             case 1:
                 students.add("A");
                 students.add("B");
