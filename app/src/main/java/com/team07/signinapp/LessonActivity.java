@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -160,12 +161,15 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void setLayout() {
-        //if (userType.equals(Login.UserType.Staff)) {
         if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
             setGenerateButtonVisibility();
         } else {
             setContentView(R.layout.activity_lesson_student);
+
+            TextView lessonTitleView = (TextView) findViewById(R.id.LessonTitle);
+            lessonTitleView.setClickable(false);
+            lessonTitleView.setFocusable(false);
         }
     }
 
@@ -333,6 +337,43 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         // Force keyboard
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
+    }
+
+    public void editLesson(View view) {
+        FloatingActionButton customView = (FloatingActionButton) findViewById(R.id.editButton);
+        TextView lessonTitleView = (TextView) findViewById(R.id.LessonTitle);
+        TextView lessonLocationView = (TextView) findViewById(R.id.LessonLocation);
+        TextView lessonTimeView = (TextView) findViewById(R.id.LessonTime);
+        TextView lessonDateView = (TextView) findViewById(R.id.LessonDate);
+        TextView lessonTypeView = (TextView) findViewById(R.id.LessonType);
+
+        if(lessonTitleView.isFocusable()) {
+            customView.setImageResource(R.drawable.ic_edit_white_24dp);
+
+            lessonTitleView.setClickable(false);
+            lessonTitleView.setFocusable(false);
+
+            lessonLocationView.setEnabled(false);
+            lessonTimeView.setEnabled(false);
+            lessonDateView.setEnabled(false);
+            lessonTypeView.setEnabled(false);
+
+            // TODO: save to server
+
+            Toast.makeText(this, "Lesson Saved", Toast.LENGTH_SHORT);
+        } else {
+            customView.setImageResource(R.drawable.ic_action_save);
+
+            lessonTitleView.setFocusableInTouchMode(true);
+            lessonTitleView.setFocusable(true);
+            lessonTitleView.setClickable(true);
+            lessonTitleView.requestFocus();
+
+            lessonLocationView.setEnabled(true);
+            lessonTimeView.setEnabled(true);
+            lessonDateView.setEnabled(true);
+            lessonTypeView.setEnabled(true);
+        }
     }
 
     public void viewRegister(View view) {
