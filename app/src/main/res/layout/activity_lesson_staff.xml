@@ -131,7 +131,7 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="?attr/colorPrimary"
@@ -146,7 +146,8 @@
                 android:layout_alignParentTop="false"
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_alignParentEnd="false"
-                android:layout_alignParentStart="false" />
+                android:layout_alignParentStart="false"
+                android:enabled="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,7 +163,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_below="@+id/RegisterCounter" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -173,7 +174,8 @@
                 android:layout_alignStart="@+id/LessonDateLabel"
                 android:textSize="20dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:enabled="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -187,7 +189,7 @@
                 android:layout_alignStart="@+id/LessonDateLabel"
                 android:layout_marginTop="30dp" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -198,7 +200,8 @@
                 android:layout_alignStart="@+id/LessonLocationLabel"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,7 +215,7 @@
                 android:layout_alignStart="@+id/LessonLocationLabel"
                 android:textSize="20sp" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -223,7 +226,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
                 android:textSize="20dp"
-                android:text="TimePlaceholder" />
+                android:text="TimePlaceholder"
+                android:enabled="false" />
 
             <ImageView
                 android:layout_width="wrap_content"
