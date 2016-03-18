@@ -151,10 +151,22 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
+    private void setGenerateButtonVisibility() {
+        TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
+        Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
+        int code = lesson.getPinNum();
+        if (code != 0) {
+            generateCodeBut.setVisibility(View.GONE);
+            codeTextView.setVisibility(View.VISIBLE);
+            codeTextView.setText(String.valueOf(code));
+        }
+    }
+
     private void setLayout() {
         //if (userType.equals(Login.UserType.Staff)) {
         if(user.isStaff()){
             setContentView(R.layout.activity_lesson_staff);
+            setGenerateButtonVisibility();
         } else {
             setContentView(R.layout.activity_lesson_student);
         }
@@ -210,8 +222,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     // TODO: in the database and hide the button if so. This means that pressing back and entering
     // TODO: the lesson view again will not allow generation of a new pin.
     public void generateCode(View view) {
-        TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
-        Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
         int code = lesson.getPinNum();
         if(code == 0){
             code = Pin.generatePin(lesson.getId());
@@ -227,9 +237,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
                     }
                 }).show();
         } else {
-            generateCodeBut.setVisibility(View.GONE);
-            codeTextView.setVisibility(View.VISIBLE);
-            codeTextView.setText(String.valueOf(code));
+            setGenerateButtonVisibility();
         }
     }
 
