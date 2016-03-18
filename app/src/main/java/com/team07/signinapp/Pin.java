@@ -7,6 +7,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Pin {
+
+    private static String state;
+    private static Integer pinCode;
+
+    public static String getState()
+    {
+        return state;
+    }
+
+    public static Integer getPinCode()
+    {
+        return pinCode;
+    }
+
+    public static void setPinCode(Integer code)
+    {
+        pinCode = code;
+    }
+
     public static Boolean checkPin(int pin, int lessonID) {
         try {
             JSONObject jsonRequest = new JSONObject();
@@ -43,28 +62,39 @@ public class Pin {
         return code;
     }
 
-    public static Integer generatePin(int lessonID) {
-        int code = createPinValue();
+    public static Boolean generatePin(int lessonID) {
+        pinCode = createPinValue();
         try {
             JSONObject jsonRequest = new JSONObject();
-            jsonRequest.put("pin", code);
+            jsonRequest.put("pinNum", pinCode);
             jsonRequest.put("lessonID", lessonID); // or something similar
             ServerInteraction serverInteraction = new ServerInteraction();
             String JsonData = serverInteraction.postAndGetJson(jsonRequest, "pin/staff");
             JSONObject jsonResponse = new JSONObject(JsonData);
 
             if (jsonResponse != null) {
-                // FIX: possibly checking for wrong value
-                if (!jsonResponse.getString("pinState").equals("PinIsSet")) {
-                    return null;
+
+                state = jsonResponse.getString("pinState");
+
+                if(state.equals("Failure"))
+                {
+                    return false;
                 }
-                return code;
+                if(state.equals("PinIsSet"))
+                {
+                    return false;
+                }
+                if(state.equals("Succeeded"))
+                {
+                    return true;
+                }
+
             }
         } catch (JSONException e) {
             // drop through
         }
         //TODO:Change back to return null
-        return code;
+        return false;
     }
 
     // NOTE: Should this be in here?
