@@ -68,10 +68,14 @@ public class LessonInterface {
                         lessons.add(new Lesson(lessonId, name, building, dateTime, type, lecturerName, startTime, endTime, room));
                     }
                     else {
-                        JSONObject pinNum = lesson.getJSONObject("pinCode");
-                        int pinNumInt = 0;
-                        if(!pinNum.isNull("pinNum")) {
-                            pinNumInt = Integer.parseInt(pinNum.getString("pinNum"));
+                        Integer pinNumInt = null;
+                        JSONObject pinCode = lesson.getJSONObject("pinCode");
+                        if(!(pinCode.isNull("pinNum"))) {
+                            pinNumInt = 0;
+                            String pinNumString = pinCode.getString("pinNum");
+                            if (pinNumString != null) {
+                                pinNumInt = Integer.parseInt(pinCode.getString("pinNum"));
+                            }
                         }
                         lessons.add(new Lesson(lessonId, name, building, dateTime, type, startTime, endTime, room, pinNumInt));
                     }

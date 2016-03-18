@@ -19,7 +19,7 @@ public class Lesson implements Serializable {
     private Date startTime;
     private Date endTime;
     private String room;
-    private int pinNum;
+    private Integer pinNum;
 
     public Lesson(int id, String name, String building, Date dateTime, String type, String lecturerName, Date startTime, Date endTime, String room) {
         this.id = id;
@@ -36,7 +36,7 @@ public class Lesson implements Serializable {
         this.dateFormatTime = new SimpleDateFormat("kk:mm");
     }
 
-    public Lesson(int id, String name, String building, Date dateTime, String type, Date startTime, Date endTime, String room, int pinNum) {
+    public Lesson(int id, String name, String building, Date dateTime, String type, Date startTime, Date endTime, String room, Integer pinNum) {
         this.id = id;
         this.name = name;
         this.building = building;
@@ -132,12 +132,12 @@ public class Lesson implements Serializable {
         return room;
     }
 
-    public void setPinNum(int pinNum){
+    public void setPinNum(Integer pinNum){
         this.pinNum = pinNum;
     }
 
 
-    public int getPinNum() {
+    public Integer getPinNum() {
         return pinNum;
     }
 

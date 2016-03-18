@@ -76,6 +76,10 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         if (user.isStaff()) {
             register.fetchRegister(lesson.getId());
             totalStudents = register.getStudents().size();
+            if(lesson.getPinNum() != null)
+            {
+                setGenerateButtonVisibility();
+            }
             setRegisterCounter();
             startUpdateRunnable();
         }
@@ -151,8 +155,8 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     private void setGenerateButtonVisibility() {
         TextView codeTextView = (TextView) this.findViewById(R.id.codeText);
         Button generateCodeBut = (Button) this.findViewById(R.id.generateCode);
-        int code = lesson.getPinNum();
-        if (code != 0) {
+        Integer code = lesson.getPinNum();
+        if (code != null) {
             generateCodeBut.setVisibility(View.GONE);
             codeTextView.setVisibility(View.VISIBLE);
             codeTextView.setText(String.valueOf(code));
@@ -218,22 +222,27 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     // TODO: in the database and hide the button if so. This means that pressing back and entering
     // TODO: the lesson view again will not allow generation of a new pin.
     public void generateCode(View view) {
-        int code = lesson.getPinNum();
-        if(code == 0){
-            code = Pin.generatePin(lesson.getId());
-            lesson.setPinNum(code);
+        Integer code = lesson.getPinNum();
+        if(code == null){
+            if(Pin.generatePin(lesson.getId()))
+            {
+                code = Pin.getPinCode();
+                lesson.setPinNum(code);
+                setGenerateButtonVisibility();
+            }
+            else{
+                new AlertDialog.Builder(LessonActivity.this)
+                        .setMessage("Failed to set pin, please try again.")
+                        .setTitle("Attendance")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        }).show();
+            }
         }
-        if(code == 0) {
-            new AlertDialog.Builder(LessonActivity.this)
-                .setMessage("Failed to set pin, please try again.")
-                .setTitle("Attendance")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                }).show();
-        } else {
+        else {
             setGenerateButtonVisibility();
         }
     }
