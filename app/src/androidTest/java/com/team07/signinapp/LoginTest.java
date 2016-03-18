@@ -21,31 +21,15 @@ public class LoginTest extends ApplicationTestCase<Application> {
     public LoginTest() {
         super(Application.class);
     }
-/*
 
-
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
-*/
-
-
-    //
-    // TODO:
-    // This does nothing until someone works out how not to show our passwords on the internet.
-    //
     public void testLoginValid() throws Exception {
         Login login = new Login();
+        assertTrue(login.loginValid("lsmith", "pass"));
     }
 
-
     public void testGetUserType() throws Exception {
-
+        Login login = new Login();
+        assertTrue(login.getUserType("lsmith").equals("lecturer"));
+        assertTrue(login.getUserType("lpalm").equals("student"));
     }
 }
