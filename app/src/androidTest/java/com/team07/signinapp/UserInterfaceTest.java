@@ -20,16 +20,6 @@ public class UserInterfaceTest extends ApplicationTest {
         ui.setUserDetails(u);
 
         assertEquals("User in Interface is the same", ui.getUserInstance(), u);
-
     }
 
-    @Test
-    public void testGetUserInstance() throws Exception {
-
-    }
-
-    @Test
-    public void testSendUser() throws Exception {
-
-    }
 }

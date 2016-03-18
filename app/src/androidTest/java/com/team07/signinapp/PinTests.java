@@ -10,7 +10,7 @@ public class PinTests extends ApplicationTestCase<Application> {
     private static int pinMinimum = 1000;
     private static int pinMaximum = 9999;
 
-    public PinTests(){super(Application.class);}
+    public PinTests() { super(Application.class); }
 
     @Test
     // Ensure that pin generator is generating pin numbers between 1000 and 9999 inclusive
@@ -18,5 +18,4 @@ public class PinTests extends ApplicationTestCase<Application> {
         int pin = Pin.createPinValue();
         assertTrue(pin >= pinMinimum && pin <= pinMaximum);
     }
-
 }

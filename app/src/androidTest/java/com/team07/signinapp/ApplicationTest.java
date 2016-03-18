@@ -11,12 +11,6 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
-    /*public void testLoginWorksForValidCredentials() throws Exception {
-        Login login = new Login();
-        boolean result = login.loginValid("student", "student");
-        assertTrue(result);
-    }*/
-
     // Technicaly works
     public void testLoginFailsForInvalidCredentials() throws Exception {
         Login login = new Login();
