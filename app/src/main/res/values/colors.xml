@@ -8,11 +8,12 @@
     <color name="secondaryText">#000000</color>
     <color name="bgColor">#603c4eb1</color>
     <color name="titleText">#FFFFFF</color>
-    <color name="mondayc">#1A5276</color>
-    <color name="tuesdayc">#34495E</color>
-    <color name="wednesdayc">#979A9A</color>
-    <color name="thursdayc">#0B5345</color>
-    <color name="fridayc">#6E2C00</color>
-    <color name="saturdayc">#5F6A6A</color>
-    <color name="sundayc">#145A32</color>
+    <color name="mondayColour">#1A5276</color>
+    <color name="tuesdayColour">#34495E</color>
+    <color name="wednesdayColour">#979A9A</color>
+    <color name="thursdayColour">#0B5345</color>
+    <color name="fridayColour">#6E2C00</color>
+    <color name="saturdayColour">#5F6A6A</color>
+    <color name="sundayColour">#145A32</color>
+    <color name="errorColour">#FFFF0000</color>
 </resources>

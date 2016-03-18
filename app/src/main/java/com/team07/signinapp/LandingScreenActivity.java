@@ -1,14 +1,8 @@
 package com.team07.signinapp;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
-
-import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -23,9 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
-public class LandingScreenActivity extends AppCompatActivity{
+public class LandingScreenActivity extends AppCompatActivity {
     private DrawerLayout drawer_menu_layout;
     private RecyclerView scheduleView;
     private RecyclerView.Adapter scheduleAdapter;
@@ -52,8 +44,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         setupDrawer();
     }
 
-    private void fetchLessons()
-    {
+    private void fetchLessons() {
         lessonInterface.fetchLessons(user.getId(), user.getUserType());
         lessons = lessonInterface.getLessons();
     }
@@ -81,7 +72,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    private void receiveUserData(){
+    private void receiveUserData() {
         // Get data passed to this activity from LoginScreenActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -91,7 +82,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         }
     }
 
-    private void setupScheduleView(){
+    private void setupScheduleView() {
         // Fetches the recycler view by id and sets up layout and
         // adapters to fill schedule with the correct information
         scheduleView  = (RecyclerView) findViewById(R.id.schedule_view);
@@ -114,7 +105,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         scheduleView.setAdapter(scheduleAdapter);
     }
 
-    private void setupToolbar(){
+    private void setupToolbar() {
         // Initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -127,7 +118,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         }
     }
 
-    private void setupDrawer(){
+    private void setupDrawer() {
         // Fetches the layout for the drawer
         // Set in layout->drawer_layout
         drawer_menu_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,8 +129,7 @@ public class LandingScreenActivity extends AppCompatActivity{
         View navigationDrawerHeader = navigationView.getHeaderView(0);
         TextView drawerHeaderTitle = (TextView)navigationDrawerHeader.findViewById(R.id.drawer_header_title);
         drawerHeaderTitle.setText(username + " (" +
-                ((user.isStaff()) ? "Staff" : "Student")
-                + ")");
+                ((user.isStaff()) ? "Staff" : "Student") + ")");
 
         navigationView.getMenu().findItem(R.id.navigation_schedule).setChecked(true);
         // Add onClick event to drawer Attendance button
