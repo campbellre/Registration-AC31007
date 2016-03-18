@@ -1,14 +1,8 @@
 package com.team07.signinapp;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
-
-import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -23,8 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
+// Activity which becomes active once the user successfully logs in, displays the lessons which are
+// associated with the currently logged in user
 public class LandingScreenActivity extends AppCompatActivity{
     private DrawerLayout drawer_menu_layout;
     private RecyclerView scheduleView;
@@ -53,7 +47,6 @@ public class LandingScreenActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("THIS IS ON RESUME");
         fetchLessons();
         setupScheduleView();
     }
@@ -89,8 +82,8 @@ public class LandingScreenActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    // Receives data passed to this activity from LoginScreenActivity
     private void receiveUserData(){
-        // Get data passed to this activity from LoginScreenActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             user = extras.getParcelable("User");
@@ -99,9 +92,9 @@ public class LandingScreenActivity extends AppCompatActivity{
         }
     }
 
+    // Fetches the recycler view by id and sets up layout and
+    // adapters to fill schedule with the correct information
     private void setupScheduleView(){
-        // Fetches the recycler view by id and sets up layout and
-        // adapters to fill schedule with the correct information
         scheduleView  = (RecyclerView) findViewById(R.id.schedule_view);
         scheduleLayout = new LinearLayoutManager(this);
         scheduleView.setLayoutManager(scheduleLayout);
@@ -122,8 +115,8 @@ public class LandingScreenActivity extends AppCompatActivity{
         scheduleView.setAdapter(scheduleAdapter);
     }
 
+    // Initialises tool bar with menu button
     private void setupToolbar(){
-        // Initialises tool bar with menu button
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -135,6 +128,8 @@ public class LandingScreenActivity extends AppCompatActivity{
         }
     }
 
+    // Sets up the drawer which is displayed when the user drags from the leftmost edge of the
+    // screen towards the right right of the screen
     private void setupDrawer(){
         // Fetches the layout for the drawer
         // Set in layout->drawer_layout

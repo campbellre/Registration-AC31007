@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+// Activity which becomes active when the user first launches the application.
+// Gives the user the ability to login. Once login is successful, the LandingScreenAcvivity becomes
+// active.
 public class LoginScreenActivity extends AppCompatActivity {
     private Login login;
 

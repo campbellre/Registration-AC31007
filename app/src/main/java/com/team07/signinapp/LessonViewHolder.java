@@ -26,6 +26,8 @@ public class LessonViewHolder extends RecyclerView.ViewHolder {
         type = (TextView)cardView.findViewById(R.id.LessonCardType);
     }
 
+    // Sets the background colour of the lesson card differently depending on the day on which the
+    // lesson takes place
     public void setBackgroundColour(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

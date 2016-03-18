@@ -62,6 +62,8 @@ public class Pin {
         return code;
     }
 
+    // Generates a pin-code to be associated with the lessonId provided and stores this code in
+    // the database
     public static Boolean generatePin(int lessonID) {
         pinCode = createPinValue();
         try {

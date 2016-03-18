@@ -13,7 +13,6 @@ public class Login {
         Staff,
     }
 
-
     private UserInterface userInterface;
     private Map<String, String> userLogins;
     private Map<String, UserType> userTypes;

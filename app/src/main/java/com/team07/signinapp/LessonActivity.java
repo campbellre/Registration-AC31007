@@ -30,6 +30,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+// Activity which becomes active once the user taps on a Lesson 'card' on the LandingScreenActivity
+// the activity will be personalized to show specific information about that particular lesson
 public class LessonActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private Lesson lesson;
     private Register register;
@@ -95,8 +97,8 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     // Modified from http://stackoverflow.com/a/3470757
+    // Prompts the user to enable high-accuracy GPS if it is not currently enabled
     protected void ensureLocationServicesEnabled() {
-        // Provider not enabled, prompt user to enable it
         System.out.println(isLocationEnabled(getApplicationContext()));
         if (!isLocationEnabled(getApplicationContext())) {
             finish();
@@ -107,6 +109,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     // Function taken from http://stackoverflow.com/a/22980843
+    // Returns TRUE if high-accuracy GPS is currently enabled and false otherwise
     public static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
         String locationProviders;
@@ -142,8 +145,8 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         return super.onOptionsItemSelected(item);
     }
 
+    // Receive data passed to this activity from LoginScreenActivity
     private void receiveUserData() {
-        // Get data passed to this activity from LoginScreenActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             lesson = (Lesson) getIntent().getSerializableExtra("Lesson");
@@ -218,9 +221,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-    // TODO: Instead of hiding button when pressed, check whether pin for this lesson is currently
-    // TODO: in the database and hide the button if so. This means that pressing back and entering
-    // TODO: the lesson view again will not allow generation of a new pin.
+    // Generates a pin-code to be associated with the current Lesson
     public void generateCode(View view) {
         Integer code = lesson.getPinNum();
         if(code == null){
@@ -270,7 +271,6 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         }
     };
 
-    //TODO:fetch details from database
     private void updateRegister()
     {
         if(currentStudents<totalStudents) {
@@ -392,7 +392,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         googleApiClient.disconnect();
     }
 
-    //Override for custom transition animation when android back button is pressed
+    // Override for custom transition animation when android back button is pressed
     @Override
     public void onBackPressed() {
         stopUpdateRunnable();
@@ -400,6 +400,7 @@ public class LessonActivity extends AppCompatActivity implements GoogleApiClient
         overridePendingTransition(R.anim.left_slide_in, R.anim.right_slide_out);
     }
 
+    // Prints the latitude and longitude of the user's current location
     private void printLocation(){
         if (lastLocation != null) {
             System.out.println("Latitude: " + String.valueOf(lastLocation.getLatitude()));

@@ -5,11 +5,12 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Stores data and has methods used to access, store and set data describing a Lesson in the
+// schedule
 public class Lesson implements Serializable {
     private static long serialVersionUID = 0L;
     private SimpleDateFormat dateFormatDate;
     private SimpleDateFormat dateFormatTime;
-    //TODO:Add variables for all data contained withing the JSON
     private int id;
     private String name;
     private String building;
@@ -21,7 +22,8 @@ public class Lesson implements Serializable {
     private String room;
     private Integer pinNum;
 
-    public Lesson(int id, String name, String building, Date dateTime, String type, String lecturerName, Date startTime, Date endTime, String room) {
+    public Lesson(int id, String name, String building, Date dateTime, String type,
+                  String lecturerName, Date startTime, Date endTime, String room) {
         this.id = id;
         this.name = name;
         this.building = building;

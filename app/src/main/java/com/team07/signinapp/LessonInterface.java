@@ -1,15 +1,8 @@
 package com.team07.signinapp;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,8 +10,8 @@ import java.util.Date;
  * Created by Lewis on 3/15/2016.
  */
 public class LessonInterface {
-
     private ArrayList<Lesson> lessons;
+
     public LessonInterface()
     {
         lessons = new ArrayList<>();
@@ -37,7 +30,7 @@ public class LessonInterface {
 
             ServerInteraction serverInteraction = new ServerInteraction();
             JSONArray jsonResponse = null;
-            String JsonData = "";
+            String JsonData;
             switch(userType)
             {
                 case 0:
@@ -53,7 +46,6 @@ public class LessonInterface {
                 System.out.println(jsonResponse.toString());
                 for (int i=0; i<jsonResponse.length(); i++) {
                     JSONObject lesson = jsonResponse.getJSONObject(i);
-                    //TODO: Set all objects contained within JSON
                     int lessonId = lesson.getInt("lessonId");
                     String name = lesson.getString("module");
                     Date dateTime = new Date();
@@ -88,6 +80,4 @@ public class LessonInterface {
         }
         return false;
     }
-
-
 }
