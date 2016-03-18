@@ -8,4 +8,11 @@
     <color name="secondaryText">#000000</color>
     <color name="bgColor">#603c4eb1</color>
     <color name="titleText">#FFFFFF</color>
+    <color name="mondayc">#1A5276</color>
+    <color name="tuesdayc">#34495E</color>
+    <color name="wednesdayc">#979A9A</color>
+    <color name="thursdayc">#0B5345</color>
+    <color name="fridayc">#6E2C00</color>
+    <color name="saturdayc">#5F6A6A</color>
+    <color name="sundayc">#145A32</color>
 </resources>
