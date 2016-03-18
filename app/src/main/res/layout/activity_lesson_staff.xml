@@ -140,9 +140,13 @@
                 android:textSize="30dp"
                 android:gravity="left|bottom"
                 android:paddingLeft="20dp"
-                android:paddingBottom="20dp"
-                android:layout_below="@+id/toolbar"
-                android:id="@+id/LessonTitle" />
+                android:paddingBottom="30dp"
+                android:id="@+id/LessonTitle"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,31 +225,6 @@
                 android:textSize="20dp"
                 android:text="TimePlaceholder" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/lesson_type_label_text"
-                android:id="@+id/LessonTypeLabel"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/LessonTime"
-                android:layout_alignLeft="@+id/LessonLocationLabel"
-                android:layout_alignStart="@+id/LessonLocationLabel"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/LessonType"
-                android:layout_below="@+id/LessonTypeLabel"
-                android:layout_alignLeft="@+id/LessonTimeLabel"
-                android:layout_alignStart="@+id/LessonTimeLabel"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="20dp"
-                android:text="TypePlaceholder" />
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -280,31 +259,6 @@
                 android:tint="#000000"
                 android:src="@drawable/ic_access_time_white_24dp" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView"
-                        android:layout_alignTop="@+id/LessonTypeLabel"
-                        android:layout_alignLeft="@+id/locationImage"
-                        android:layout_alignStart="@+id/locationImage"
-                        android:layout_marginTop="5dp"
-                        android:tint="#000000"
-                        android:src="@drawable/ic_blocks_24dp" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:layout_gravity="bottom|center"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/editButton"
-                android:layout_alignRight="@+id/LessonTitle"
-                android:layout_alignBottom="@+id/LessonTitle"
-                android:layout_marginBottom="-23dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_edit_white_24dp"/>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -338,10 +292,38 @@
                     android:text="Generate Code"
                     android:id="@+id/generateCode"
                     android:onClick="generateCode"
-                    android:layout_marginTop="20dp"
                     android:enabled="true"
-                    android:layout_centerInParent="true" />
+                    android:layout_below="@+id/LessonType"
+                    android:layout_centerHorizontal="true" />
+
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/LessonType"
+                android:textSize="20dp"
+                android:text="TypePlaceholder"
+                android:background="?attr/colorPrimary"
+                android:textColor="#ffffff"
+                android:paddingLeft="20dp"
+                android:layout_above="@+id/CodeArea"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="bottom|center"
+                android:id="@+id/editButton"
+                android:src="@drawable/ic_edit_white_24dp"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignTop="@+id/LessonTitle"
+                android:layout_alignRight="@+id/RegisterCounter"
+                android:layout_alignEnd="@+id/RegisterCounter"
+                android:layout_marginTop="53dp" />
 
         </RelativeLayout>
 

@@ -27,7 +27,6 @@
                 android:textSize="30dp"
                 android:gravity="left|bottom"
                 android:paddingLeft="20dp"
-                android:paddingBottom="20dp"
                 android:layout_below="@+id/toolbar"
                 android:id="@+id/LessonTitle" />
 
@@ -112,26 +111,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/lesson_type_label_text"
-                android:id="@+id/LessonTypeLabel"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/LessonTime"
-                android:layout_alignLeft="@+id/LessonTimeLabel"
-                android:layout_alignStart="@+id/LessonTimeLabel"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="LessonTypePlaceholder"
                 android:id="@+id/LessonType"
-                android:layout_below="@+id/LessonTypeLabel"
-                android:layout_alignLeft="@+id/LessonTypeLabel"
-                android:layout_alignStart="@+id/LessonTypeLabel"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_below="@+id/LessonTitle"
+                android:paddingLeft="20dp"
+                android:background="?attr/colorPrimary"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#ffffff" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -167,17 +157,6 @@
                 android:tint="#000000"
                 android:src="@drawable/ic_access_time_white_24dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:layout_alignTop="@+id/LessonTypeLabel"
-                android:layout_alignLeft="@+id/locationImage"
-                android:layout_alignStart="@+id/locationImage"
-                android:layout_marginTop="5dp"
-                android:tint="#000000"
-                android:src="@drawable/ic_blocks_24dp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,20 +166,22 @@
                 android:layout_alignRight="@+id/LessonType"
                 android:layout_alignEnd="@+id/LessonType" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign In"
-                android:id="@+id/attendanceSignIn"
-                android:layout_below="@+id/LessonType"
-                android:layout_alignLeft="@+id/LessonTypeLabel"
-                android:layout_alignStart="@+id/LessonTypeLabel"
-                android:layout_marginTop="32dp"
-                android:contextClickable="false"
-                android:onClick="studentSignIn" />
-
         </RelativeLayout>
 
     </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:id="@+id/attendanceSignIn"
+        android:contextClickable="false"
+        android:onClick="studentSignIn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="136dp" />
 
 </RelativeLayout>
