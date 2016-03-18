@@ -29,8 +29,7 @@ public class LessonInterface {
         return lessons;
     }
 
-    public boolean fetchLessons(int id, int userType)
-    {
+    public boolean fetchLessons(int id, int userType){
         try{
             JSONObject jsonRequest = new JSONObject();
 
@@ -52,8 +51,7 @@ public class LessonInterface {
             }
             if (jsonResponse != null) {
                 System.out.println(jsonResponse.toString());
-                for(int i=0; i<jsonResponse.length(); i++)
-                {
+                for (int i=0; i<jsonResponse.length(); i++) {
                     JSONObject lesson = jsonResponse.getJSONObject(i);
                     //TODO: Set all objects contained within JSON
                     int lessonId = lesson.getInt("lessonId");
@@ -65,23 +63,19 @@ public class LessonInterface {
                     Date endTime = new Date();
                     String room = lesson.getString("room");
 
-                    if(userType == 0)
-                    {
+                    if (userType == 0) {
                         String lecturerName = lesson.getString("lecturerName");
                         lessons.add(new Lesson(lessonId, name, building, dateTime, type, lecturerName, startTime, endTime, room));
                     }
-                    else
-                    {
+                    else {
                         JSONObject pinNum = lesson.getJSONObject("pinCode");
                         int pinNumInt = 0;
                         String pinNumString = pinNum.getString("pinNum");
                         if(!pinNumString.equals("0")) {
                             pinNumInt = Integer.parseInt(pinNum.getString("pinNum"));
                         }
-
                         lessons.add(new Lesson(lessonId, name, building, dateTime, type, startTime, endTime, room, pinNumInt));
                     }
-
                 }
             }
         }

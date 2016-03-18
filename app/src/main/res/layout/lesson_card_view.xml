@@ -11,7 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4682b4">
+        android:background="#4682b4"
+        android:id="@+id/cardBackgroundId">
 
         <TextView
             android:layout_width="fill_parent"

@@ -70,8 +70,7 @@ public class ServerInteraction {
                     //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
                     outputStream.write(jsonObject.toString().getBytes());
 
-                    if (!(connection.getResponseCode() == 200))
-                    {
+                    if (!(connection.getResponseCode() == 200)) {
                         return false;
                     }
 
@@ -148,8 +147,7 @@ public class ServerInteraction {
                     StringBuilder stringBuilder = new StringBuilder();
 
                     String jsonData;
-                    while((jsonData = bufferedReader.readLine()) != null)
-                    {
+                    while((jsonData = bufferedReader.readLine()) != null) {
                         stringBuilder.append(jsonData);
                     }
 
@@ -167,8 +165,6 @@ public class ServerInteraction {
 
                 return "";
             }
-
-
         }
 
         //JSONArray returnJson = new JSONArray();
@@ -255,8 +251,5 @@ public class ServerInteraction {
         }
 
         return jsonObject;
-
     }
-
-
 }

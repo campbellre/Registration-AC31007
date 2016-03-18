@@ -18,7 +18,7 @@ public class Login {
     private Map<String, String> userLogins;
     private Map<String, UserType> userTypes;
 
-    public Login(){
+    public Login() {
         userLogins = new HashMap<>();
         userTypes = new HashMap<>();
 
@@ -29,7 +29,7 @@ public class Login {
         userTypes.put("staff", UserType.Staff);
     }
 
-    public boolean loginValid(String username, String password){
+    public boolean loginValid(String username, String password) {
         // TODO: Use database
         //return userLogins.containsKey(username) && userLogins.get(username).equals(password);
 
@@ -42,15 +42,13 @@ public class Login {
 
         //Testing logins to avoid server
         //TODO: Delete this at some point
-        if(username.equals("a") && password.equals("a"))
-        {
+        if(username.equals("a") && password.equals("a")) {
             u.setUserType(1);
             u.setId(2);
             return true;
         }
 
-        if(username.equals("b") && password.equals("b"))
-        {
+        if(username.equals("b") && password.equals("b")) {
             u.setUserType(0);
             u.setId(1);
 

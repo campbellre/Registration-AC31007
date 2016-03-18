@@ -1,18 +1,13 @@
 package com.team07.signinapp;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 
-/**
- * Created by Ryan on 25/02/2016.
- */
 public class UserInterface{
     private User setUser;
 
-    public UserInterface()
-    {
+    public UserInterface() {
 
     }
 
@@ -40,8 +35,7 @@ public class UserInterface{
 
         JSONObject jsonToParse = new JSONObject(JsonString);
 
-        if(jsonToParse != null)
-        {
+        if(jsonToParse != null) {
             if(jsonToParse.getString("username").equals("no")) {
                 return false;
             }
@@ -54,6 +48,4 @@ public class UserInterface{
         return false;
 
     }
-
-
 }

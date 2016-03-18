@@ -2,13 +2,9 @@ package com.team07.signinapp;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by Ryan on 25/02/2016.
- */
 public class User implements Parcelable{
 
     private String username;
@@ -100,8 +96,7 @@ public class User implements Parcelable{
         }
     }
 
-    public JSONObject toJson()
-    {
+    public JSONObject toJson() {
         JSONObject convertTo = new JSONObject();
 
         try {
@@ -112,7 +107,8 @@ public class User implements Parcelable{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-     return convertTo;
+
+        return convertTo;
     }
 
 
